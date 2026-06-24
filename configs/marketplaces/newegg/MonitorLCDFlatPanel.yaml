@@ -1,0 +1,256 @@
+marketplace: newegg
+name: MonitorLCDFlatPanel
+headers_file: ../../../templates/newegg/ComputerHardware_BatchItemCreation_MonitorLCDFlatPanel.csv
+csv_preamble_row:
+  - Version=1.01
+  - SubCategoryID=20
+  - ""
+  - TemplateDate=2026-06-21
+
+fields:
+  'Seller Part #':
+    literal: ''
+  Manufacturer:
+    literal: ''
+  'Manufacturer Parts #':
+    literal: ''
+  UPC / ISBN:
+    literal: ''
+  Related Seller Part#:
+    literal: ''
+  Website Short Title:
+    literal: ''
+  Bullet Description:
+    literal: ''
+  Product Description:
+    literal: ''
+  Item Length:
+    literal: ''
+  Item Width:
+    literal: ''
+  Item Height:
+    literal: ''
+  Item Weight:
+    literal: ''
+  Packs Or Sets:
+    literal: ''
+  Item Condition:
+    literal: ''
+  Item Package:
+    literal: ''
+  Shipping Restriction:
+    literal: ''
+  Currency:
+    literal: ''
+  MSRP:
+    literal: ''
+  MAP:
+    literal: ''
+  CheckoutMAP:
+    literal: ''
+  Selling Price:
+    literal: ''
+  Shipping:
+    literal: ''
+  Inventory:
+    literal: 0
+  Limit Quantity:
+    literal: ''
+  Activation Mark:
+    literal: ''
+  Action:
+    literal: ''
+  Item Images:
+    literal: ''
+  Condition Details:
+    literal: ''
+  Used Item Images:
+    literal: ''
+  Country Of Origin:
+    literal: ''
+  Age 18+ Verification:
+    literal: ''
+  Choking Hazard 1:
+    literal: ''
+  Choking Hazard 2:
+    literal: ''
+  Choking Hazard 3:
+    literal: ''
+  Choking Hazard 4:
+    literal: ''
+  Lead Time:
+    literal: ''
+  Shipping Template:
+    literal: ''
+  Custom Variety 1 Name:
+    literal: ''
+  Custom Variety 1 Value:
+    literal: ''
+  Custom Variety 2 Name:
+    literal: ''
+  Custom Variety 2 Value:
+    literal: ''
+  Custom Variety 3 Name:
+    literal: ''
+  Custom Variety 3 Value:
+    literal: ''
+  MonitorModelModel:
+    literal: ''
+  MonitorModelCabinetColor:
+    literal: ''
+  MonitorDisplayPanel:
+    literal: ''
+  MonitorDisplayDisplayType:
+    literal: ''
+  MonitorDisplayDisplayColors:
+    literal: ''
+  MonitorDisplayViewingAngle:
+    literal: ''
+  MonitorDisplayMaximumResolution:
+    literal: ''
+  MonitorDisplayHorizontalRefreshRate:
+    literal: ''
+  MonitorDisplayVerticalRefreshRate:
+    literal: ''
+  MonitorConnectivityConnectors:
+    literal: ''
+  MonitorPowerComplieswith:
+    literal: ''
+  MonitorPowerPowerSupply:
+    literal: ''
+  MonitorPowerPowerConsumption:
+    literal: ''
+  MonitorConvenienceUserControls:
+    literal: ''
+  MonitorConvenienceRegulatoryApprovals:
+    literal: ''
+  MonitorDimensionsDimensions:
+    literal: ''
+  MonitorDimensionsWeight:
+    literal: ''
+  MonitorDimensionsTemperatureRange:
+    literal: ''
+  MonitorDimensionsHumidityRange:
+    literal: ''
+  MonitorConvenienceFeatures:
+    literal: ''
+  MonitorDisplayResolution:
+    literal: ''
+  MonitorConvenienceBuilt-inSpeakers:
+    literal: ''
+  MonitorConnectivityInputVideoCompatibility:
+    literal: ''
+  MonitorDisplayAspectRatio:
+    literal: ''
+  MonitorModelBrand:
+    literal: ''
+  MonitorDisplayD-Sub:
+    literal: ''
+  MonitorDisplayDVI:
+    literal: ''
+  MonitorDisplayVideo:
+    literal: ''
+  CommonPackageContents:
+    literal: ''
+  MonitorDisplayHDMI:
+    literal: ''
+  MonitorConvenienceBuilt-inTVTuner:
+    literal: ''
+  MonitorConvenienceStandAdjustments:
+    literal: ''
+  MonitorDisplayWidescreen:
+    literal: ''
+  LCDDisplayScreenSize:
+    literal: ''
+  LCDDisplayMonitorPixelDensity:
+    literal: ''
+  LCDDisplayContrastRatio:
+    literal: ''
+  LCDDisplayResponseTime:
+    literal: ''
+  LCDDisplayBrightness:
+    literal: ''
+  MonitorDisplayUSB20:
+    literal: ''
+  MonitorModelSeries:
+    literal: ''
+  ManufacturerWarrantyParts:
+    literal: ''
+  ManufacturerWarrantyLabor:
+    literal: ''
+  CommonWindowsVista:
+    literal: ''
+  MonitorConvenienceHDCPSupport:
+    literal: ''
+  LCDConsumerAlert:
+    literal: ''
+  MonitorDisplayDisplayPort:
+    literal: ''
+  MonitorConvenienceBuilt-inWebcam:
+    literal: ''
+  MonitorDisplayGlareScreen:
+    literal: ''
+  MonitorDisplayLEDBacklight:
+    literal: ''
+  MonGlobal3DReady:
+    literal: ''
+  MonGlobalRefreshRate:
+    literal: ''
+  MonGlobal3DGlassesIncluded:
+    literal: ''
+  MonitorConvenienceVESACompatibility-Mountable:
+    literal: ''
+  MonitorDisplayUSB30:
+    literal: ''
+  MonitorProcessor:
+    literal: ''
+  MonitorMemory:
+    literal: ''
+  MonitorOSSupport:
+    literal: ''
+  MonitorDisplayOLED:
+    literal: ''
+  MonitorDisplay3DType:
+    literal: ''
+  MonitorDisplay3DFeatures:
+    literal: ''
+  MonitorDisplayCurvedSurfaceScreen:
+    literal: ''
+  MonitorDispalayFrame:
+    literal: ''
+  GlobalElectricalOutletPlugType:
+    literal: ''
+  MonitorDisplayAdaptiveSyncTechnology:
+    literal: ''
+  MonitorDisplayCurvatureRadius:
+    literal: ''
+  MonitorModelPartNumber:
+    literal: ''
+  MonitorConnectivityThunderbolt2:
+    literal: ''
+  MonitorConnectivityThunderbolt3:
+    literal: ''
+  MonitorDisplayVESACertifiedDisplayHDR:
+    literal: ''
+  MonitorDisplayHDRStandard:
+    literal: ''
+  MonitorDisplayColorGamut:
+    literal: ''
+  MonitorDisplayHeadphone:
+    literal: ''
+  MultiValueMNTRVideoPorts:
+    literal: ''
+  MultiValueMNTRUSBPorts:
+    literal: ''
+  MonitorModelCosmeticCondition:
+    literal: ''
+  UniversalContainsEmbeddedBattery:
+    literal: ''
+  SimulatorsSimulatorType:
+    literal: ''
+  SimulatorsPlatform:
+    literal: ''
+  SimulatorsLayer:
+    literal: ''
+  SimulatorsBaseCompatibility:
+    literal: ''

@@ -1,0 +1,42 @@
+{
+  "dell": {
+    "label": "Dell",
+    "google_search": false,
+    "google_cite": "https://www.dell.com",
+    "search_url": "https://www.dell.com/en-ca/shop/dell-laptops/sr/laptops?keys={mpn}",
+    "redirect": false,
+    "enabled": false
+  },
+  "hp": {
+    "label": "HP",
+    "google_search": false,
+    "google_cite": "https://www.hp.com",
+    "search_url": "https://www.hp.com/ca-en/shop/search-results.html?jumpid=in_R11928_/cc_us/Tech-Deals/Search_Results&search={mpn}",
+    "redirect": false,
+    "enabled": false
+  },
+  "lenovo": {
+    "label": "Lenovo",
+    "google_search": false,
+    "google_cite": "https://www.lenovo.com",
+    "search_url": "https://www.lenovo.com/ca/en/search?text={mpn}",
+    "redirect": false,
+    "enabled": false
+  },
+  "samsung": {
+    "label": "Samsung",
+    "google_search": false,
+    "google_cite": "https://www.samsung.com",
+    "search_url": "https://www.samsung.com/ca/search/?searchvalue={mpn}",
+    "redirect": false,
+    "enabled": false
+  },
+  "msi": {
+    "label": "MSI",
+    "google_search": true,
+    "google_cite": "https://ca.msi.com",
+    "search_url": "https://ca.msi.com/search/{mpn}",
+    "redirect": false,
+    "enabled": false
+  }
+}

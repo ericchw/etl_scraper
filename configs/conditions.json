@@ -1,0 +1,22 @@
+{
+  "new": {
+    "label": "Brand New",
+    "suffix": [""]
+  },
+  "open_box": {
+    "label": "Open Box",
+    "suffix": ["-O"]
+  },
+  "refurbished_excellent": {
+    "label": "Refurbished (Excellent)",
+    "suffix": ["-RFB", "-RFBA", "-RUB", "-RA"]
+  },
+  "refurbished_good": {
+    "label": "Refurbished (Good)",
+    "suffix": ["-RFBB", "-RB"]
+  },
+  "refurbished_fair": {
+    "label": "Refurbished (Fair)",
+    "suffix": ["-RFBC", "-RC"]
+  }
+}

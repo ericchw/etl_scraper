@@ -1,0 +1,8 @@
+{
+  "search_url": "https://www.cdw.ca/search/?key={mpn}",
+  "wait_selectors": [
+    "#primaryProductNameStickyHeader",
+    ".accordion.tech-spec-accordion",
+    ".thumbnails"
+  ]
+}

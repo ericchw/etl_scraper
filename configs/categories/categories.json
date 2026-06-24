@@ -1,0 +1,38 @@
+{
+  "notebook": {
+    "code": "NB",
+    "label": "Laptop",
+    "bestbuy": "CAT_1002",
+    "newegg": "Notebooks"
+  },
+  "business_laptop": {
+    "code": "NB",
+    "label": "(X) Business Laptop",
+    "bestbuy": "CAT_1002",
+    "newegg": "BusinessLaptops"
+  },
+  "gaming_laptop": {
+    "code": "NB",
+    "label": "(X) Gaming Laptop",
+    "bestbuy": "CAT_1002",
+    "newegg": "GamingLaptops"
+  },
+  "2_in1_laptop": {
+    "code": "NB",
+    "label": "(X) 2 in 1 Laptop",
+    "bestbuy": "CAT_1002",
+    "newegg": "2in1Laptops"
+  },
+  "monitor": {
+    "code": "MNT",
+    "label": "Monitor",
+    "bestbuy": "CAT_1006",
+    "newegg": "MonitorLCDFlatPanel"
+  },
+  "gaming_monitor": {
+    "code": "MNT",
+    "label": "(X) Gaming Monitor",
+    "bestbuy": "CAT_1006",
+    "newegg": "GamingMonitor"
+  }
+}

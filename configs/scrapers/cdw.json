@@ -1,0 +1,20 @@
+{
+  "source": "cdw",
+  "enabled": true,
+  "manufacturer": false,
+  "search_url": "https://www.cdw.ca/search/?key={mpn}",
+  "auto_redirect": true,
+  "search_page": {
+    "product_container": "div[class*=search]"
+  },
+  "search_check": {
+    "selector": "div.product-codes span.mfg-code",
+    "transform": ["replace:MFG#: -> ''", "trim"]
+  },
+  "dynamic": false,
+  "wait_selectors": [
+    "#primaryProductNameStickyHeader",
+    ".accordion.tech-spec-accordion",
+    ".thumbnails"
+  ]
+}

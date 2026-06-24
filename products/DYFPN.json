@@ -1,0 +1,547 @@
+{
+  "mpn": "DYFPN",
+  "product_code": "NB",
+  "internal": {
+    "identity": {
+      "brand": "Dell",
+      "mpn": "DYFPN",
+      "upc": "",
+      "product_line": "Dell Pro",
+      "model": "16 PC16250",
+      "product_type": "Notebook",
+      "package_qty": ""
+    },
+    "content": {
+      "title": "Dell Pro 16 PC16250 - AI PC - 16\" - Intel Core 5 - 120U - 16 GB RAM - 512 GB SSD",
+      "description": "The Dell Pro 16 PC16250 is designed to meet the demands of modern computing with a polished blend of performance and clarity. It features a 16-inch Full HD Plus display with a native resolution of 1920 x 1200, offering vibrant visuals and wide viewing angles for an immersive experience. The anti-glare technology ensures comfortable viewing over extended periods, while IPS technology adds rich colors and sharp imagery. With a powerful Intel Core 5 processor, this notebook delivers reliable performance tailored for multitasking and professional applications. Equipped with advanced features like a dual array microphone and high definition audio, the Dell Pro 16 ensures crisp sound quality for calls and media. The integrated RGB camera provides high-resolution video at 1920 x 1080 and incorporates a shutter for privacy. Connectivity options abound, with multiple USB ports, HDMI, and Thunderbolt 4 ensuring seamless connectivity to peripherals and displays. With the added benefit of ExpressCharge, quick battery replenishment is possible, making this notebook a dependable companion for both work and leisure.",
+      "features": [
+        "1.4 GHz Intel Core 5 10-Core",
+        "16GB DDR5 | 512GB M.2 SSD",
+        "16\" 1920 x 1200 IPS 60 Hz Display",
+        "Integrated Intel Graphics",
+        "Gigabit LAN | Wi-Fi 6E | Bluetooth 5.3",
+        "Thunderbolt 4 | HDMI 2.1 | USB-A",
+        "Windows 11 Pro"
+      ],
+      "images": [
+        "http://webobjects2.cdw.com/is/image/CDW/8401141",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141a",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141b",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141c",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141d",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141e",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141f",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141g",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141h",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141i",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141j",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141k",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141m"
+      ]
+    },
+    "processor": {
+      "brand": "Intel",
+      "model": "Core i5 120U",
+      "cores": "10",
+      "threads": "12",
+      "clock_ghz": "1.4",
+      "max_clock_ghz": "5",
+      "cache_mb": "12",
+      "family": "Core i5",
+      "number": "120U",
+      "generation": "Series 1",
+      "platform_technology": "",
+      "ai_processor_technology": ""
+    },
+    "memory": {
+      "type": [
+        "DDR5 SDRAM"
+      ],
+      "capacity_gb": "16",
+      "max_capacity_gb": "64",
+      "speed_mhz": "",
+      "rated_speed_mhz": "",
+      "configuration_features": "1 x 16 GB",
+      "slots": "2",
+      "expansion_slots": "1"
+    },
+    "storage": {
+      "type": "SSD",
+      "capacity_gb": 512,
+      "ssd_form_factor": "M.2 2230",
+      "optical_drive": "No optical drive, None",
+      "interface": "PCIe 4.0",
+      "features": "NVM Express (NVMe)"
+    },
+    "graphics": {
+      "type": "",
+      "processor": {
+        "model": [
+          "Intel Graphics"
+        ],
+        "series": "Intel Graphics"
+      },
+      "vram_gb": ""
+    },
+    "display": {
+      "size_in": "16",
+      "panel": "IPS",
+      "resolution": "1920 x 1200",
+      "features": [
+        "0.1795 mm pixel pitch",
+        "35 ms response rate",
+        "Anti-glare"
+      ],
+      "brightness_cdm2": "300",
+      "refresh_rate_hz": "60",
+      "horizontal_viewing_angle": "+85 / -85",
+      "vertical_viewing_angle": "+85 / -85",
+      "pixel_density_ppl": "141",
+      "privacy_technology": "",
+      "widescreen": "Yes",
+      "touchscreen": "No"
+    },
+    "audio": {
+      "input_type": "Dual array microphone",
+      "compliant_standards": [
+        "High Definition Audio",
+        "Wave MAXXAudio Pro"
+      ],
+      "output_types": [
+        "Stereo speakers"
+      ],
+      "output_features": ""
+    },
+    "camera": {
+      "webcam": "Yes",
+      "front_camera_resolution": [
+        "1920 x 1080 (standard)",
+        "640 x 360 (infrared)"
+      ],
+      "front_camera_video_resolution": [
+        "1920 x 1080"
+      ],
+      "image_sensor_type": "CMOS",
+      "frame_rate_fps": "30",
+      "pixel": "2.07 Megapixel (standard), 0.23 Megapixel (infrared)"
+    },
+    "io": {
+      "hdmi_ports": "1",
+      "usb_3_ports": "2",
+      "usb_c_ports": "2",
+      "usb_c_features": [
+        "USB Power Delivery"
+      ],
+      "ports": [
+        "HDMI",
+        "Headphone",
+        "microphone combo jack",
+        "LAN (RJ-45)",
+        "USB 3.2 Gen 1",
+        "USB 3.2 Gen 1 (PowerShare)",
+        "USB4 (supports Thunderbolt 4, DisplayPort Alt Mode) (Power Delivery)",
+        "USB-C 3.2 Gen 2 (supports DisplayPort Alt Mode) (Power Delivery)"
+      ],
+      "flash_memory": [],
+      "input_device_features": [
+        "Copilot key"
+      ],
+      "keyboard_backlight": "Yes"
+    },
+    "power": {
+      "battery": {
+        "capacity": "55 watt hour(s)",
+        "cells": "3",
+        "chemistry": ""
+      },
+      "frequency": "50/60 hertz",
+      "power_watt": "65",
+      "voltage": "5/9/15/20 volt",
+      "voltage_required": "AC 100-240 volt",
+      "battery_life_hour": ""
+    },
+    "network": {
+      "wifi": "802.11a/b/g/n/ac/ax (Wi-Fi 6E)",
+      "bluetooth": "Yes",
+      "wireless_nic": "Intel Wi-Fi 6E AX 211",
+      "ethernet_speed": "1000",
+      "features": [
+        "Dual stream (2x2)"
+      ]
+    },
+    "software": {
+      "os": "Windows 11 Pro",
+      "platform": "Windows",
+      "types": [
+        "Activate your Microsoft 365 for a 30 day trial",
+        "Dell Additional Softwares"
+      ]
+    },
+    "technical": {
+      "embedded_security": "Discrete Trusted Platform Module (TPM 2.0) Security Chip",
+      "finger_pinter_reader": "",
+      "input_device_type": [],
+      "max_operating_temperature_degree": "40",
+      "min_operating_temperature_degree": "0",
+      "operating_humidity": "90% (non-condensing)",
+      "rugged": "",
+      "sensor_type": [],
+      "security_slot_type": "Wedge-shaped security slot",
+      "service_activation": "No",
+      "theft_protection": "Security lock slot (cable lock sold separately)",
+      "bundled_services": "1 Year Basic Onsite Service after remote diagnosis with Hardware-Only Support - Disti SnS"
+    },
+    "certification": {
+      "compliant_standards": [
+        "FIPS 140-2",
+        "TCG Certified"
+      ],
+      "energy_star_certified": "Yes",
+      "epeat_compliant": "Yes",
+      "epeat_level": "Gold",
+      "tco_certified": "No"
+    },
+    "included_items": [
+      "POD Label",
+      "USB-C power adapter"
+    ],
+    "physical": {
+      "packaged_qty": "1",
+      "material": "",
+      "color": "Magnetite",
+      "color_category": "Black",
+      "dimensions": {
+        "item": {
+          "length_in": "9.91",
+          "width_in": "14.09",
+          "height_in": "0.82"
+        },
+        "package": {
+          "length_in": "21.50",
+          "width_in": "12.60",
+          "height_in": "2.70"
+        }
+      },
+      "weight": {
+        "item_lb": "4.23",
+        "package_lb": "6.80"
+      }
+    }
+  },
+  "scraped_data": {
+    "cdw": {
+      "source": "cdw",
+      "category": "Laptops",
+      "title": "Dell Pro 16 PC16250 - AI PC - 16\" - Intel Core 5 - 120U - 16 GB RAM - 512 GB SSD",
+      "mpn": "DYFPN",
+      "description": "The Dell Pro 16 PC16250 is designed to meet the demands of modern computing with a polished blend of performance and clarity. It features a 16-inch Full HD Plus display with a native resolution of 1920 x 1200, offering vibrant visuals and wide viewing angles for an immersive experience. The anti-glare technology ensures comfortable viewing over extended periods, while IPS technology adds rich colors and sharp imagery. With a powerful Intel Core 5 processor, this notebook delivers reliable performance tailored for multitasking and professional applications. Equipped with advanced features like a dual array microphone and high definition audio, the Dell Pro 16 ensures crisp sound quality for calls and media. The integrated RGB camera provides high-resolution video at 1920 x 1080 and incorporates a shutter for privacy. Connectivity options abound, with multiple USB ports, HDMI, and Thunderbolt 4 ensuring seamless connectivity to peripherals and displays. With the added benefit of ExpressCharge, quick battery replenishment is possible, making this notebook a dependable companion for both work and leisure.",
+      "features": [
+        "AI PC",
+        "120U / up to 5 GHz",
+        "Intel Graphics",
+        "512 GB SSD NVMe",
+        "Gigabit Ethernet",
+        "magnetite",
+        "with 1 Year Basic Onsite Service after remote diagnosis with Hardware-Only Support",
+        "Intel Core 5",
+        "Win 11 Pro",
+        "16 GB RAM",
+        "16\" IPS 1920 x 1200 (Full HD Plus)",
+        "Wi-Fi 6E",
+        "BTS",
+        "Disti SnS"
+      ],
+      "images": [
+        "http://webobjects2.cdw.com/is/image/CDW/8401141",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141a",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141b",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141c",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141d",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141e",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141f",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141g",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141h",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141i",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141j",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141k",
+        "http://webobjects2.cdw.com/is/image/CDW/8401141m"
+      ],
+      "specs": {
+        "Overview": {
+          "Brand": "Dell",
+          "Product Line": "Dell Pro",
+          "Model": "16 PC16250",
+          "Manufacturer": "Dell Smart Selection Client"
+        },
+        "Processor": {
+          "Clock Speed": "1.4 GHZ",
+          "Cores": "10-core",
+          "Max Turbo Speed": "5 GHZ",
+          "Processor Brand": "Intel",
+          "Processor Generation": "Series 1",
+          "Processor Main Features": "12 Threads",
+          "Processor Number": "120U",
+          "Processor Type": "Core i5"
+        },
+        "Memory": {
+          "Available Memory Slots": "1",
+          "Cache Memory Installed": "12 megabyte",
+          "Configuration Features": "1 x 16 GB",
+          "Max Memory Supported": "64 GB",
+          "Memory Slots": "2",
+          "Memory Technology": "DDR5 SDRAM",
+          "RAM Installed": "16 GB"
+        },
+        "Storage": {
+          "Hard Drive Capacity": "512 GB",
+          "Hard Drive Features": "NVM Express (NVMe)",
+          "Optical Drive Type": "No optical drive, None",
+          "SSD Form Factor": "M.2 2230",
+          "Storage Type": "SSD",
+          "Hard Drive Interface": "PCIe 4.0"
+        },
+        "Display & Graphics": {
+          "Aspect Ratio": "16:10",
+          "Display Image Brightness": "300 candela per square metre",
+          "Display Resolution Abbreviation": "Full HD Plus",
+          "Display Type": "LED",
+          "Features": "0.1795 mm pixel pitch, 35 ms response rate, Anti-glare",
+          "Graphics Controller Model": "Intel Graphics",
+          "Graphics Processor Series": "Intel Graphics",
+          "Horizontal Viewing Angle": "+85 / -85",
+          "Native Resolution": "1920 x 1200",
+          "Pixel Density (ppi)": "141",
+          "Privacy Technology": "None",
+          "Screen Size": "16 inch",
+          "Screen Size (metric)": "40.646 centimetre",
+          "TFT Technology": "IPS",
+          "Touchscreen": "No",
+          "Vertical Viewing Angle": "+85 / -85",
+          "V-Sync Rate at Max Res.": "60 hertz",
+          "Widescreen Display": "Yes"
+        },
+        "Camera": {
+          "Frame Rate": "30 frames per second",
+          "Front Camera Resolution": "1920 x 1080 (standard), 640 x 360 (infrared)",
+          "Front Camera Video Resolution": "1920 x 1080",
+          "Image Sensor Type": "CMOS",
+          "Webcam": "Yes"
+        },
+        "Audio": {
+          "Audio Input Type": "Dual array microphone",
+          "Compliant Standards": "High Definition Audio, Wave MAXXAudio Pro"
+        },
+        "Connectivity": {
+          "HDMI Ports": "1",
+          "Interfaces": "HDMI, Headphone/microphone combo jack, LAN (RJ-45), USB 3.2 Gen 1, USB 3.2 Gen 1 (PowerShare), USB4 (supports Thunderbolt 4, DisplayPort Alt Mode) (Power Delivery), USB-C 3.2 Gen 2 (supports DisplayPort Alt Mode) (Power Delivery)",
+          "USB 3.0 Ports": "2",
+          "USB Type-C Ports": "2",
+          "USB-C Features": "USB Power Delivery"
+        },
+        "Network & Communication": {
+          "Data Link Protocols": "Bluetooth, Ethernet, Fast Ethernet, Gigabit Ethernet, IEEE 802.11a, IEEE 802.11ac, IEEE 802.11ax (Wi-Fi 6E), IEEE 802.11b, IEEE 802.11g, IEEE 802.11n",
+          "Ethernet Controllers": "Realtek RTL8111H-CG",
+          "Features": "Dual stream (2x2)",
+          "Host Interface": "M.2 2230",
+          "Wired Protocol": "Gigabit Ethernet",
+          "Wireless LAN": "802.11a/b/g/n/ac/ax (Wi-Fi 6E), Bluetooth",
+          "Wireless NIC": "Intel Wi-Fi 6E AX 211"
+        },
+        "Technical Information": {
+          "Camera Resolution": "2.07 Megapixel (standard), 0.23 Megapixel (infrared)",
+          "Embedded Security": "Discrete Trusted Platform Module (TPM 2.0) Security Chip",
+          "Form Factor (RAM)": "SO-DIMM 262-pin",
+          "Input Device Type": "Keyboard, Touchpad",
+          "Max Operating Temperature": "40 degree Celsius",
+          "Min Operating Temperature": "0 degree Celsius",
+          "Numeric Pad": "Yes",
+          "Operating Humidity": "90% (non-condensing)",
+          "Shock Acceleration (Operating)": "140 gram",
+          "Shock Duration (Operating)": "2 ms half-sine pulse",
+          "Vibration Acceleration (Operating)": "0.66 gram",
+          "Vibration Frequency Range (Operating)": "RMS (random)"
+        },
+        "Product Information": {
+          "Audio Codec": "Realtek ALC3204",
+          "Features": "80.2 degrees, 86.6 degrees (IR camera), Camera shutter, ExpressCharge, ExpressChargeBoost, Face Recognition, Intel Rapid Storage Technology, IR camera, RGB camera, Temporal Noise Reduction",
+          "Input Device Features": "Copilot key",
+          "Keyboard Backlight": "Yes",
+          "Output Type": "Stereo speakers",
+          "Packaged Quantity": "1",
+          "Platform Supported": "Windows",
+          "Product Type": "Notebook",
+          "Security Slot Type": "Wedge-shaped security slot",
+          "Service Activation": "No",
+          "Surface Treatment": "Texture",
+          "Theft Protection": "Security lock slot (cable lock sold separately)"
+        },
+        "Scanning": {
+          "Bundled Services": "1 Year Basic Onsite Service after remote diagnosis with Hardware-Only Support - Disti SnS"
+        },
+        "Software": {
+          "Operating System": "Windows 11 Pro",
+          "Operating System Edition": "Windows 11 Pro",
+          "Operating System Platform": "Windows",
+          "Software Type": "Activate your Microsoft 365 for a 30 day trial, Dell Additional Softwares"
+        },
+        "Power": {
+          "Battery Capacity": "55 watt hour(s)",
+          "Battery Cells": "3-cell",
+          "Frequency": "50/60 hertz",
+          "Power Provided": "65 watt",
+          "Provided Voltage": "5/9/15/20 volt",
+          "Required Voltage": "AC 100-240 volt"
+        },
+        "Included Items": {
+          "Included Accessories": "POD Label, USB-C power adapter"
+        },
+        "Physical Characteristics": {
+          "Color": "Magnetite",
+          "Color Category": "Black"
+        },
+        "Dimensions & Weight": {
+          "Height": "2.085 centimetre",
+          "Weight": "1.92 kilogram",
+          "Width": "35.8 centimetre",
+          "Depth": "25.182 centimetre"
+        },
+        "Certifications & Listings": {
+          "Compliant Standards": "FIPS 140-2, TCG Certified",
+          "ENERGY STAR Certified": "Yes",
+          "EPEAT Compliant": "Yes",
+          "EPEAT Level": "EPEAT Gold",
+          "TCO Certified": "No"
+        }
+      }
+    },
+    "bh": {
+      "source": "bh",
+      "mpn": "DYFPN",
+      "title": "Dell 16\" Pro 16 Laptop",
+      "description": "",
+      "features": [
+        "1.4 GHz Intel Core 5 10-Core",
+        "16GB DDR5 | 512GB M.2 SSD",
+        "16\" 1920 x 1200 IPS 60 Hz Display",
+        "Integrated Intel Graphics",
+        "Gigabit LAN | Wi-Fi 6E | Bluetooth 5.3",
+        "Thunderbolt 4 | HDMI 2.1 | USB-A",
+        "Windows 11 Pro"
+      ],
+      "images": [
+        "https://static.bhphoto.com/images/images150x150/1750426279_1899590.jpg",
+        "https://static.bhphoto.com/images/multiple_images/images500x500/1750426270_IMG_2515150.jpg",
+        "https://static.bhphoto.com/images/multiple_images/images500x500/1750426270_IMG_2515151.jpg",
+        "https://static.bhphoto.com/images/multiple_images/images500x500/1750426270_IMG_2515152.jpg",
+        "https://static.bhphoto.com/images/multiple_images/images500x500/1750426270_IMG_2515153.jpg",
+        "https://static.bhphoto.com/images/multiple_images/images500x500/1750426270_IMG_2515154.jpg",
+        "https://static.bhphoto.com/images/images1000x1000/1721123105_1836469.jpg",
+        "https://static.bhphoto.com/images/multiple_images/images500x500/1721122924_IMG_1676393.jpg"
+      ],
+      "specs": {
+        "Key Specs": {
+          "Operating System": "Windows 11 Pro",
+          "Processor": "Intel Core 5 120U",
+          "GPU": "Intel Graphics",
+          "Installed RAM": "16 GB",
+          "Display Size": "16\"",
+          "Native Resolution": "1920 x 1200",
+          "Touchscreen": "No",
+          "Total Installed Storage": "512 GB",
+          "Inputs/Outputs": "1x USB-C (Thunderbolt 4)1x USB-C 3.1/3.2 Gen 22x USB-A 3.0 / 3.1/3.2 Gen 1",
+          "Display I/O": "1x HDMI 2.1 Output",
+          "Wi-Fi": "Wi-Fi 6E (802.11ax)",
+          "Bluetooth": "Bluetooth 5.3",
+          "Weight": "4.27 lb / 1.94 kg"
+        },
+        "Dell Pro 16 16\" Specs": {
+          "Operating System": "Windows 11 Pro"
+        },
+        "Performance": {
+          "Processor": "Intel Core 5 120U",
+          "CPU": "10-Core: 0.9 to 3.8 GHz Efficiency (8 Cores)1.4 to 5 GHz Performance (2 Cores)",
+          "Dedicated AI Cores": "No",
+          "L3 Cache": "12 MB",
+          "GPU": "Intel Graphics",
+          "Installed RAM": "16 GB",
+          "RAM Type": "5200 MT/s DDR5",
+          "RAM Configuration / Capacity": "1x  User-Replaceable 16 GB Module /  Supporting up to 64 GB",
+          "vPro Support": "No"
+        },
+        "Display": {
+          "Panel Type": "IPS-Type LCD",
+          "Size": "16\"",
+          "Aspect Ratio": "16:10",
+          "Native Resolution": "1920 x 1200",
+          "Touchscreen": "No",
+          "Finish": "Anti-Glare",
+          "Maximum Brightness": "300 nits / cd/m2",
+          "Color Gamut": "45% NTSC",
+          "Refresh Rate": "60 Hz"
+        },
+        "Storage and Expansion": {
+          "Total Installed Storage": "512 GB",
+          "Storage Drive Type": "1x 512 GB / M.2 SSD",
+          "Storage Expansion": "1x M.2 Slot [Occupied]"
+        },
+        "Inputs / Outputs": {
+          "Inputs/Outputs": "1x USB-C (Thunderbolt 4) / Supports Power Delivery1x USB-C 3.1/3.2 Gen 2 / Supports Video Alt Mode2x USB-A 3.0 / 3.1/3.2 Gen 1",
+          "Display I/O": "1x HDMI 2.1 Output",
+          "Audio I/O": "1x 1/8\" / 3.5 mm Headphone/Microphone Input/Output",
+          "Network I/O": "1x RJ45 (Gigabit Ethernet)",
+          "Built-In Speakers": "Yes",
+          "Built-In Microphones": "Yes",
+          "Media/Memory Card Slot": "No"
+        },
+        "Communications": {
+          "Wi-Fi": "Wi-Fi 6E (802.11ax) with MU-MIMO Support",
+          "Bluetooth": "Bluetooth 5.3",
+          "Cellular Support": "No",
+          "GPS": "No",
+          "Webcam": "Yes"
+        },
+        "Battery": {
+          "Battery Chemistry": "Lithium-Ion Polymer (LiPo)",
+          "Capacity": "3-Cell: 55 Wh"
+        },
+        "Keyboard & Mouse": {
+          "Keyboard": "Built-In Chiclet-Style Keyboard",
+          "Pointing Device": "TouchPad"
+        },
+        "General": {
+          "Power Supply": "65 W with Barrel/Proprietary",
+          "Dimensions": "14.09 x 9.91 x 0.82\" / 35.79 x 25.17 x 2.08 cm",
+          "Weight": "4.27 lb / 1.94 kg"
+        },
+        "Packaging Info": {
+          "Package Weight": "6.8 lb",
+          "Box Dimensions (LxWxH)": "21.5 x 12.6 x 2.7\""
+        },
+        "Package Dimensions": {
+          "Weight": "6.8 lb",
+          "Length": "21.5",
+          "Width": "12.6",
+          "Height": "2.7"
+        }
+      },
+      "specs_text": "Specifications:\n　Key Specs\n　　Operating System: Windows 11 Pro\n　　Processor: Intel Core 5 120U\n　　GPU: Intel Graphics\n　　Installed RAM: 16 GB\n　　Display Size: 16\"\n　　Native Resolution: 1920 x 1200\n　　Touchscreen: No\n　　Total Installed Storage: 512 GB\n　　Inputs/Outputs: 1x USB-C (Thunderbolt 4)1x USB-C 3.1/3.2 Gen 22x USB-A 3.0 / 3.1/3.2 Gen 1\n　　Display I/O: 1x HDMI 2.1 Output\n　　Wi-Fi: Wi-Fi 6E (802.11ax)\n　　Bluetooth: Bluetooth 5.3\n　　Weight: 4.27 lb / 1.94 kg\n\n　Dell Pro 16 16\" Specs\n　　Operating System: Windows 11 Pro\n\n　Performance\n　　Processor: Intel Core 5 120U\n　　CPU: 10-Core: 0.9 to 3.8 GHz Efficiency (8 Cores)1.4 to 5 GHz Performance (2 Cores)\n　　Dedicated AI Cores: No\n　　L3 Cache: 12 MB\n　　GPU: Intel Graphics\n　　Installed RAM: 16 GB\n　　RAM Type: 5200 MT/s DDR5\n　　RAM Configuration / Capacity: 1x  User-Replaceable 16 GB Module /  Supporting up to 64 GB\n　　vPro Support: No\n\n　Display\n　　Panel Type: IPS-Type LCD\n　　Size: 16\"\n　　Aspect Ratio: 16:10\n　　Native Resolution: 1920 x 1200\n　　Touchscreen: No\n　　Finish: Anti-Glare\n　　Maximum Brightness: 300 nits / cd/m2\n　　Color Gamut: 45% NTSC\n　　Refresh Rate: 60 Hz\n\n　Storage and Expansion\n　　Total Installed Storage: 512 GB\n　　Storage Drive Type: 1x 512 GB / M.2 SSD\n　　Storage Expansion: 1x M.2 Slot [Occupied]\n\n　Inputs / Outputs\n　　Inputs/Outputs: 1x USB-C (Thunderbolt 4) / Supports Power Delivery1x USB-C 3.1/3.2 Gen 2 / Supports Video Alt Mode2x USB-A 3.0 / 3.1/3.2 Gen 1\n　　Display I/O: 1x HDMI 2.1 Output\n　　Audio I/O: 1x 1/8\" / 3.5 mm Headphone/Microphone Input/Output\n　　Network I/O: 1x RJ45 (Gigabit Ethernet)\n　　Built-In Speakers: Yes\n　　Built-In Microphones: Yes\n　　Media/Memory Card Slot: No\n\n　Communications\n　　Wi-Fi: Wi-Fi 6E (802.11ax) with MU-MIMO Support\n　　Bluetooth: Bluetooth 5.3\n　　Cellular Support: No\n　　GPS: No\n　　Webcam: Yes\n\n　Battery\n　　Battery Chemistry: Lithium-Ion Polymer (LiPo)\n　　Capacity: 3-Cell: 55 Wh\n\n　Keyboard & Mouse\n　　Keyboard: Built-In Chiclet-Style Keyboard\n　　Pointing Device: TouchPad\n\n　General\n　　Power Supply: 65 W with Barrel/Proprietary\n　　Dimensions: 14.09 x 9.91 x 0.82\" / 35.79 x 25.17 x 2.08 cm\n　　Weight: 4.27 lb / 1.94 kg\n\n　Packaging Info\n　　Package Weight: 6.8 lb\n　　Box Dimensions (LxWxH): 21.5 x 12.6 x 2.7\"",
+      "dim_unit": "in",
+      "weight_unit": "lb"
+    }
+  },
+  "merge_report": {
+    "product_code": "NB",
+    "spec": "cdw",
+    "physical.dimensions.package.length_in": "bh",
+    "physical.dimensions.item.length_in": "cdw",
+    "physical.dimensions.package.width_in": "bh",
+    "physical.dimensions.item.width_in": "cdw",
+    "physical.dimensions.package.height_in": "bh",
+    "physical.dimensions.item.height_in": "cdw",
+    "physical.weight.package_lb": "bh",
+    "physical.weight.item_lb": "cdw",
+    "content.images": "cdw",
+    "content.features": "bh",
+    "content.description": "cdw"
+  }
+}

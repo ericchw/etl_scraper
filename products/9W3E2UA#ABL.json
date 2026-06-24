@@ -1,0 +1,309 @@
+{
+  "mpn": "9W3E2UA#ABL",
+  "product_code": "NB",
+  "internal": {
+    "identity": {
+      "brand": "OMEN",
+      "mpn": "9W3E2UA#ABL",
+      "upc": "",
+      "product_line": "Transcend",
+      "model": "16-u1000ca",
+      "product_type": "Notebook",
+      "package_qty": ""
+    },
+    "content": {
+      "title": "OMEN Transcend 16-u1000 16-u1000ca 16\" Notebook - WQXGA - 240 Hz - Intel Core i9 14th Gen i9-14900HX - 32 GB - 2 TB SSD",
+      "description": "Overview | Play to create anything.\n\nDitch the scroll and take control with the OMEN Transcend 16\" gaming laptop's new expansive 16:10 screen, new Intel® Core Processor, and NVIDIA® GeForce RTX? 40 Series graphics card. It also has an upgraded FHD camera, so you can finally retire the blur.\n\nMakes IRL look low res\n\nLess scrolling and more playing with our new 16:10 screen with next gen vibrancy and a high refresh rate.\n\nTake it. Play it. Make it. Create it.\n\nTurn wherever you are into a professional studio with our new FHD webcam.\n\nPower with a large side of cooling\n\nA next gen processor and graphics card that will easily power all your gaming and nongaming needs.\n\nWe're in this together\n\nDoing our part with recycled materials, and EPEAT® Gold and ENERGY STAR® certification.\n\nFeatures | Get a fresh perspective\n\nFrom a rejuvenated Start menu, to new ways to connect to your favorite people, news, games, and content-Windows 11 is the place to think, express, and create in a natural way.\n\nGame without compromise. Go beyond performance with Intel Core and Intel Core Ultra Processors\n\nBe everything you want to be, in-game and out with optimized performance and new features. Play harder and work smarter with Intel Core Processors.\n\nBeyond Fast\n\nNVIDIA® GeForce RTX? 40 Series GPUs are beyond fast. Powered by the NVIDIA Ada Lovelace architecture which delivers a leap in both performance and AIpowered graphics. Experience lifelike virtual worlds with ray tracing and ultra-high FPS gaming.\n\nYour Ideas, Accelerated\n\nNVIDIA Studio platform supercharges your creative process. Our industry-leading RTX GPUs, paired with our exclusive driver technology, enhance your creative apps with a level of performance and ability that is nothing short of inspiring.\n\nNVIDIA® G-SYNC?\n\nBy synchronizing the refresh rates of your GPU and display, NVIDIA® G-SYNC? technology delivers gameplay that's sharp, fluid, and stutter-free with minimal input lag.\n\nOLED display\n\nWith display technology that lights each pixel separately, you'll get deeper blacks for richer contrast, enhanced color depth, and more power efficiency than traditional LED screens.",
+      "features": [
+        "16\" display with 2560 x 1600 resolution delivers stunning clarity for movies, games, and photos, offering an immersive and captivating visual experience",
+        "With 32 GB of memory, you can run as many programs as you want while experiencing seamless execution",
+        "7.75 Hours battery run time allows you to stay untethered and productive for extended periods without interruption"
+      ],
+      "images": [
+        "http://webobjects2.cdw.com/is/image/CDW/7840842",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842a",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842b",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842c",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842f",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842h",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842i",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842j"
+      ]
+    },
+    "processor": {
+      "brand": "Intel",
+      "model": "Core i9",
+      "cores": "24",
+      "threads": "",
+      "clock_ghz": "",
+      "max_clock_ghz": "5.80",
+      "cache_mb": "",
+      "family": "Core i9",
+      "number": "",
+      "generation": "14th Gen",
+      "platform_technology": "",
+      "ai_processor_technology": ""
+    },
+    "memory": {
+      "type": [],
+      "capacity_gb": "32",
+      "max_capacity_gb": "",
+      "speed_mhz": "",
+      "rated_speed_mhz": "",
+      "configuration_features": "",
+      "slots": "",
+      "expansion_slots": "0"
+    },
+    "storage": {
+      "type": "SSD",
+      "capacity_gb": 2048,
+      "ssd_form_factor": "M.2",
+      "optical_drive": "",
+      "interface": "",
+      "features": ""
+    },
+    "graphics": {
+      "type": "",
+      "processor": {
+        "model": [
+          "GeForce RTX 4070",
+          "UHD Graphics"
+        ],
+        "series": ""
+      },
+      "vram_gb": 8
+    },
+    "display": {
+      "size_in": "16",
+      "panel": "",
+      "resolution": "",
+      "features": [],
+      "brightness_cdm2": "",
+      "refresh_rate_hz": "240",
+      "horizontal_viewing_angle": "",
+      "vertical_viewing_angle": "",
+      "pixel_density_ppl": "",
+      "privacy_technology": "",
+      "widescreen": "",
+      "touchscreen": "No"
+    },
+    "audio": {
+      "input_type": "",
+      "compliant_standards": [],
+      "output_types": [],
+      "output_features": ""
+    },
+    "camera": {
+      "webcam": "",
+      "front_camera_resolution": [],
+      "front_camera_video_resolution": [],
+      "image_sensor_type": "",
+      "frame_rate_fps": "",
+      "pixel": ""
+    },
+    "io": {
+      "hdmi_ports": "",
+      "usb_3_ports": "",
+      "usb_c_ports": "",
+      "usb_c_features": [],
+      "ports": [],
+      "flash_memory": [],
+      "input_device_features": [],
+      "keyboard_backlight": "Yes"
+    },
+    "power": {
+      "battery": {
+        "capacity": "",
+        "cells": "",
+        "chemistry": ""
+      },
+      "frequency": "",
+      "power_watt": "",
+      "voltage": "",
+      "voltage_required": "",
+      "battery_life_hour": ""
+    },
+    "network": {
+      "wifi": "IEEE 802.11be",
+      "bluetooth": "Yes",
+      "wireless_nic": "",
+      "ethernet_speed": "",
+      "features": []
+    },
+    "software": {
+      "os": "Windows 11 Home",
+      "platform": "Windows",
+      "types": []
+    },
+    "technical": {
+      "embedded_security": "",
+      "finger_pinter_reader": "",
+      "input_device_type": [],
+      "max_operating_temperature_degree": "",
+      "min_operating_temperature_degree": "",
+      "operating_humidity": "",
+      "rugged": "",
+      "sensor_type": [],
+      "security_slot_type": "",
+      "service_activation": "",
+      "theft_protection": "",
+      "bundled_services": ""
+    },
+    "certification": {
+      "compliant_standards": [],
+      "energy_star_certified": "Yes",
+      "epeat_compliant": "",
+      "epeat_level": "",
+      "tco_certified": ""
+    },
+    "included_items": [],
+    "physical": {
+      "packaged_qty": "",
+      "material": "",
+      "color": "",
+      "color_category": "Shadow Black Aluminum",
+      "dimensions": {
+        "item": {
+          "length_in": "10.59",
+          "width_in": "14.04",
+          "height_in": "0.78"
+        },
+        "package": {
+          "length_in": "",
+          "width_in": "",
+          "height_in": ""
+        }
+      },
+      "weight": {
+        "item_lb": "4.81",
+        "package_lb": ""
+      }
+    }
+  },
+  "scraped_data": {
+    "cdw": {
+      "source": "cdw",
+      "category": "Laptops",
+      "title": "OMEN Transcend 16-u1000 16-u1000ca 16\" Notebook - WQXGA - 240 Hz - Intel Core i9 14th Gen i9-14900HX - 32 GB - 2 TB SSD",
+      "mpn": "9W3E2UA#ABL",
+      "description": "Overview | Play to create anything.\n\nDitch the scroll and take control with the OMEN Transcend 16\" gaming laptop's new expansive 16:10 screen, new Intel® Core Processor, and NVIDIA® GeForce RTX? 40 Series graphics card. It also has an upgraded FHD camera, so you can finally retire the blur.\n\nMakes IRL look low res\n\nLess scrolling and more playing with our new 16:10 screen with next gen vibrancy and a high refresh rate.\n\nTake it. Play it. Make it. Create it.\n\nTurn wherever you are into a professional studio with our new FHD webcam.\n\nPower with a large side of cooling\n\nA next gen processor and graphics card that will easily power all your gaming and nongaming needs.\n\nWe're in this together\n\nDoing our part with recycled materials, and EPEAT® Gold and ENERGY STAR® certification.\n\nFeatures | Get a fresh perspective\n\nFrom a rejuvenated Start menu, to new ways to connect to your favorite people, news, games, and content-Windows 11 is the place to think, express, and create in a natural way.\n\nGame without compromise. Go beyond performance with Intel Core and Intel Core Ultra Processors\n\nBe everything you want to be, in-game and out with optimized performance and new features. Play harder and work smarter with Intel Core Processors.\n\nBeyond Fast\n\nNVIDIA® GeForce RTX? 40 Series GPUs are beyond fast. Powered by the NVIDIA Ada Lovelace architecture which delivers a leap in both performance and AIpowered graphics. Experience lifelike virtual worlds with ray tracing and ultra-high FPS gaming.\n\nYour Ideas, Accelerated\n\nNVIDIA Studio platform supercharges your creative process. Our industry-leading RTX GPUs, paired with our exclusive driver technology, enhance your creative apps with a level of performance and ability that is nothing short of inspiring.\n\nNVIDIA® G-SYNC?\n\nBy synchronizing the refresh rates of your GPU and display, NVIDIA® G-SYNC? technology delivers gameplay that's sharp, fluid, and stutter-free with minimal input lag.\n\nOLED display\n\nWith display technology that lights each pixel separately, you'll get deeper blacks for richer contrast, enhanced color depth, and more power efficiency than traditional LED screens.",
+      "features": [
+        "16\" display with 2560 x 1600 resolution delivers stunning clarity for movies, games, and photos, offering an immersive and captivating visual experience",
+        "With 32 GB of memory, you can run as many programs as you want while experiencing seamless execution",
+        "7.75 Hours battery run time allows you to stay untethered and productive for extended periods without interruption"
+      ],
+      "images": [
+        "http://webobjects2.cdw.com/is/image/CDW/7840842",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842a",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842b",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842c",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842f",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842h",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842i",
+        "http://webobjects2.cdw.com/is/image/CDW/7840842j"
+      ],
+      "specs": {
+        "Overview": {
+          "Brand": "OMEN",
+          "Product Line": "Transcend",
+          "Model": "16-u1000ca",
+          "Series": "16-u1000",
+          "Manufacturer": "HP Inc."
+        },
+        "Processor": {
+          "Chipset Manufacturer": "Intel",
+          "Chipset Model": "HM770",
+          "Cores": "Tetracosa-core (24 Core)",
+          "Max Turbo Speed": "5.80 GHZ",
+          "Processor Brand": "Intel",
+          "Processor Generation": "14th Gen",
+          "Processor Model": "i9-14900HX",
+          "Processor Type": "Core i9"
+        },
+        "Memory": {
+          "Available Memory Slots": "0",
+          "Occupied Memory Slots": "2",
+          "RAM Installed": "32 GB"
+        },
+        "Storage": {
+          "Hard Drive Capacity": "2 TB",
+          "SSD Form Factor": "M.2",
+          "Storage Type": "SSD"
+        },
+        "Display & Graphics": {
+          "Graphics Controller Model": "GeForce RTX 4070, UHD Graphics",
+          "Screen Mode": "WQXGA",
+          "Screen Resolution": "2560 x 1600",
+          "Screen Size": "16 inch",
+          "Touchscreen": "No",
+          "V-Sync Rate at Max Res.": "240 hertz"
+        },
+        "Network & Communication": {
+          "Bluetooth": "Yes",
+          "Data Link Protocols": "Gigabit Ethernet",
+          "Wireless LAN": "IEEE 802.11be"
+        },
+        "Connectivity": {
+          "HDMI": "Yes",
+          "Network (RJ-45)": "Yes",
+          "Thunderbolt 4 Ports": "2",
+          "Total USB Ports": "2"
+        },
+        "Video": {
+          "Color Gamut": "100% DCI-P3",
+          "Installed Size": "8 GB"
+        },
+        "Projectors": {
+          "Brightness": "500 candela per square metre"
+        },
+        "Camera": {
+          "Front Camera": "Yes",
+          "Infrared Camera": "Yes"
+        },
+        "Product Information": {
+          "Features": "Flicker-free, Low Blue Light, NVIDIA G-SYNC",
+          "Keyboard Backlight": "Yes",
+          "Product Type": "Notebook",
+          "Wireless LAN": "Yes"
+        },
+        "Power": {
+          "Battery Run Time": "7.75 Hours",
+          "Max Power Supply Wattage": "230 watt",
+          "80 PLUS Certification": "Electronic Product Environmental Assessment Tool Gold (EPEAT Gold)"
+        },
+        "Software": {
+          "Operating System": "Windows 11 Home",
+          "Operating System Platform": "Windows"
+        },
+        "Technical Information": {
+          "Processor Threads": "32"
+        },
+        "Physical Characteristics": {
+          "Color Family": "Gray",
+          "Color Category": "Shadow Black Aluminum"
+        },
+        "Certifications & Listings": {
+          "ENERGY STAR Certified": "Yes",
+          "Environmentally Friendly": "Yes"
+        },
+        "Dimensions & Weight": {
+          "Height": "0.78 inch",
+          "Weight": "4.81 lb",
+          "Width": "14.04 inch",
+          "Depth": "10.59 inch"
+        }
+      }
+    }
+  },
+  "merge_report": {
+    "product_code": "NB",
+    "spec": "cdw",
+    "physical.dimensions.item.length_in": "cdw",
+    "physical.dimensions.item.width_in": "cdw",
+    "physical.dimensions.item.height_in": "cdw",
+    "physical.weight.item_lb": "cdw",
+    "content.images": "cdw",
+    "content.features": "cdw",
+    "content.description": "cdw"
+  }
+}

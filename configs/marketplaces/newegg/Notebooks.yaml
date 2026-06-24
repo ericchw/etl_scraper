@@ -1,0 +1,364 @@
+marketplace: newegg
+name: Notebooks
+headers_file: ../../../templates/newegg/ComputerHardware_BatchItemCreation_Notebooks.csv
+csv_preamble_row:
+  - Version=1.01
+  - SubCategoryID=32
+  - ""
+  - TemplateDate=2026-06-22
+
+fields:
+  'Seller Part #':
+    from_submission: sku
+  Manufacturer:
+    from_submission: manufacturer
+    transform: get_brand_label
+  'Manufacturer Parts #':
+    from: identity.mpn
+  UPC / ISBN:
+    from_submission: upc
+  Related Seller Part#:
+    literal: ''
+  Website Short Title:
+    pipeline:
+      - transform: ne_title
+#      - replace: #replace in function
+#          " - ": ", "
+  Bullet Description:
+    transform: export_features
+  Product Description:
+    transform: ne_long_description
+    design_heading: "Feature & Design:"
+    spec_heading: "Specifications:"
+
+  Item Length:
+    sources:
+      - ["internal", "physical", "dimensions", "package", "length_in"]
+      - ["internal", "physical", "dimensions", "item", "length_in"]
+  Item Width:
+    sources:
+      - [ "internal", "physical", "dimensions", "package", "width_in" ]
+      - [ "internal", "physical", "dimensions", "item", "width_in" ]
+  Item Height:
+    sources:
+      - [ "internal", "physical", "dimensions", "package", "height_in" ]
+      - [ "internal", "physical", "dimensions", "item", "height_in" ]
+  Item Weight:
+    sources:
+      - ["internal", "physical", "weight", "package_lb"]
+      - ["internal", "physical", "weight", "item_lb"]
+  Packs Or Sets:
+    literal: 1
+#    sources:
+#      - ["internal", "physical", "packaged_qty"]
+#    default: 1
+#    type: integer
+  Item Condition:
+    transform: ne_product_condition
+    allowed: ["", "New", "Refurbished", "UsedLikeNew", "UsedVeryGood" , "UsedGood", "UsedAcceptable"]
+  Item Package:
+    literal: "Retail"
+    allowed: ["Retail", "OEM"]
+  Shipping Restriction:
+    literal: ''
+    allowed: ["", "Yes", "No"]
+  Currency:
+    literal: ''
+  MSRP:
+    literal: ''
+  MAP:
+    literal: ''
+  CheckoutMAP:
+    literal: ''
+    allowed: ["", "True", "False"]
+  Selling Price:
+    from_submission: price
+  Shipping:
+    from_submission: marketplaces.newegg.shipping_type
+    allowed: ["Free", "Default"]
+  Inventory:
+    literal: 0
+  Limit Quantity:
+    literal: ''
+  Activation Mark:
+    literal: 'TRUE'
+    allowed: ["", "TRUE", "FALSE"]
+  Action:
+    literal: 'Create Item'
+    allowed: ["", "Create Item", "Update Item", "Update/Append Image", "Replace Image"]
+  Item Images:
+    sources:
+      - [ "internal", "content", "images" ]
+    list_join: ","
+#    transform: scraped_image_url
+#    image_index: 1
+  Condition Details:
+    literal: ''
+  Used Item Images:
+    literal: ''
+  Country Of Origin:
+    literal: ''
+  Age 18+ Verification:
+    literal: ''
+  Choking Hazard 1:
+    literal: ''
+  Choking Hazard 2:
+    literal: ''
+  Choking Hazard 3:
+    literal: ''
+  Choking Hazard 4:
+    literal: ''
+  Lead Time:
+    literal: ''
+  Shipping Template:
+    literal: ''
+  Custom Variety 1 Name:
+    literal: ''
+  Custom Variety 1 Value:
+    literal: ''
+  Custom Variety 2 Name:
+    literal: ''
+  Custom Variety 2 Value:
+    literal: ''
+  Custom Variety 3 Name:
+    literal: ''
+  Custom Variety 3 Value:
+    literal: ''
+  NBModel:
+    sources:
+      - [ "internal", "identity", "model" ]
+  NBSeries:
+    sources:
+      - [ "internal", "identity", "product_line" ]
+  NBPartNumber:
+    sources:
+      - [ "internal", "identity", "mpn" ]
+#    from: identity.mpn
+  NBCPUType:
+    literal: ''
+  NBProcessorName:
+    sources:
+      - [ "internal", "processor", "brand" ]
+      - [ "internal", "processor", "model" ]
+    join: " "
+  NBCPUL2Cache:
+    sources:
+      - [ "internal", "processor", "cache_mb" ]
+  NBScreenSize:
+    sources:
+      - ["internal", "display", "size_in"]
+    transform: ne_check_screensize
+  NBDisplayType:
+    literal: ''
+  NBResolution:
+    sources:
+      - ["internal", "display", "resolution"]
+  NBGPUVPU:
+    sources:
+      - ["internal", "graphics", "processor", "model"]
+    list_join: ', '
+  NBVideoMemory:
+    sources:
+      - [ "internal", "graphics", "vram_gb" ]
+    suffix: "GB"
+  NBAudio:
+    sources:
+     - [ "internal", "audio", "input_type" ]
+     - [ "internal", "audio", "compliant_standards" ]
+    join: ", "
+  NBSpeaker:
+    sources:
+      - [ "internal", "audio", "output_types" ]
+  NBHDD:
+    sources:
+      - [ "internal", "storage", "capacity_gb" ]
+    transform: hdd_capacity_gb
+  NBMemorySpeed:
+    sources:
+      - path: ["internal", "memory", "configuration_features"]
+      - path: ["internal", "memory", "rated_speed_mhz"]
+        suffix: " MHz"
+      - path: ["internal", "memory", "type"]
+        join: "/"
+    join: " "
+  NBMemory:
+    sources:
+      - ["internal", "memory", "capacity_gb"]
+    transform: only_digits
+    suffix: "GB"
+  NBMaxMemorySupported:
+    sources:
+      - ["internal", "memory", "max_capacity_gb"]
+    suffix: "GB"
+  NBOpticalDriveType:
+    literal: ''
+  NBLAN:
+    sources:
+      - ["internal", "network", "ethernet_speed"]
+    transform: ne_check_ethernet_speed
+  NBWLAN:
+    sources:
+      - ["internal", "network", "wifi"]
+    transform: ne_check_wifi_standard
+  NBBluetooth:
+    sources:
+      - ["internal", "network", "bluetooth"]
+  NBTouchpad:
+    literal: ''
+  NBKeyboard:
+    literal: ''
+  NBOtherInputDevices:
+    literal: ''
+  NBUSB:
+    literal: ''
+  NBAudioPorts:
+    sources:
+      - [ "internal", "audio", "output_features" ]
+      - [ "internal", "io", "usb_c_features" ]
+      - [ "internal", "io", "input_device_features" ]
+      - [ "internal", "network", "features" ]
+    join: ", "
+  NBDockingConnector:
+    literal: ''
+  NBCardReader:
+    sources:
+      - ["internal", "io", "flash_memory"]
+  NBWebcam:
+    sources:
+      - ["internal", "camera", "webcam"]
+  NBDimensionsWxDxH:
+    sources:
+      - ["internal", "physical", "dimensions", "item", "width_in"]
+      - ["internal", "physical", "dimensions", "item", "length_in"]
+      - ["internal", "physical", "dimensions", "item", "height_in"]
+    join: ' x '
+  NBWeight:
+    source: ["internal", "physical", "weight", "item_lb"]
+    transform: ne_check_item_weight_scale
+  NBACAdapterCharger:
+    source: ["internal", "power", "power_watt"]
+    suffix: "-watt AC Adapter"
+  NBBattery:
+    source: [ "internal", "power", "battery", "cells"]
+    join: "-cell Lithium Ion"
+  NBBatteryLife:
+    literal: ''
+  NBOperatingSystem:
+    source: [ "internal", "software", "os"]
+  NBSoftwareIncluded:
+    source: [ "internal", "software", "types"]
+    join: ", "
+  NBBrand:
+    from_submission: manufacturer
+    transform: get_brand_label
+    # from: identity.brand
+    # source: [ "internal", "identity", "brand"]
+  NBDisplayFeatures:
+    source: [ "internal", "display", "features" ]
+    join: ", "
+  NBStorageSpec:
+    literal: ''
+  NBMemorySpec:
+    literal: ''
+  NBVideoPort:
+    source: ["internal", "io", "ports"]
+    filter_include_keywords: ["hdmi", "displayport", "display port", "dvi", "vga"]
+    join: ", "
+  NBOtherport:
+    source: ["internal", "io", "ports"]
+    filter_exclude_keywords: [ "hdmi", "displayport", "display port", "dvi", "vga", "usb", "lan", "rj-45", "rj45", "ethernet" ]
+    join: ", "
+  NBBOtherFeatures:
+    transform: join_specs
+    sources:
+      - path: [ "internal", "audio", "output_features" ]
+      - path: [ "internal", "io", "usb_c_features" ]
+      - path: [ "internal", "io", "input_device_features" ]
+      - path: [ "internal", "network", "features" ]
+  NBGraphicType:
+    transform: gpu_type
+    suffix: ' Card'
+    allowed: ["", "Integrated Card", "Dedicated Card"]
+  NBWideScreenSupport:
+    source: ["internal", "display", "widescreen"]
+    transform: spec_yes_no
+  ManufacturerWarrantyParts:
+    literal: ''
+  ManufacturerWarrantyLabor:
+    literal: ''
+  NBBColor:
+    source: ["internal", "physical", "color"]
+  CommonConsumerAlert:
+    literal: ''
+  NBMemorySlotTotal:
+    source: ["internal", "memory", "slots"]
+    transform: only_digits
+  NBMemorySlotAvailable:
+    source: ["internal", "memory", "slots"]
+    transform: only_digits
+  NBHDMI:
+    source: ["internal", "io", "hdmi_ports"]
+    transform: only_digits
+  NBUsage:
+    literal: "Everyday Value"
+    allowed: ["", "3D/CAD Rendering", "AI/Machine Learning", "Art Creative", "Business", "Consumer", "Content Creation", "Education", "Everyday Value", "Gaming", "Heavy Multitasking", "Home / Personal", "Mainstream", "Programming", "Video Editing", "Other", "Workstation"]
+  NBType:
+    literal: "Work / Business"
+    allowed: ["", "Content Creation", "Everyday Value", "Gaming", "Mainstream", "Workstation", "Work / Business", "Home / Personal", "Education"]
+  NBStyle:
+    literal: ''
+    allowed: ["", "Convertible", "Detachable", "Sleekbook", "Standard", "Thin and Light", "Ultrabook", "Slate"]
+  NBTouchscreen:
+    source: [ "internal", "display", "touchscreen" ]
+    transform: ne_check_touchscreen
+    allowed: ["", "Touch Screen", "Non-Touch Screen"]
+  NBSSD:
+    source: [ "internal", "storage", "capacity_gb" ]
+    transform: ssd_capacity_with_unit
+  NBBacklitKeyboard:
+    source: [ "internal", "io", "keyboard_backlight" ]
+    transform: ne_check_backlight_keyboard
+    allowed: ["", "Backlit", "Non-Backlit"]
+  NBNumberofCores:
+    source: [ "internal", "processor", "cores" ]
+    suffix: "-core Processor"
+  NBPackageContent:
+    sources:
+      - path: included_items
+        join: ", "
+    template: "{mpn};{value}"
+  NBTurboFrequency:
+    source: ["internal", "processor", "max_clock_ghz"]
+    transform: only_digits
+    suffix: 'GHz'
+  NBCPUL3Cache:
+    source: ["internal", "processor", "cache_mb"]
+    suffix: " MB"
+  NBCoreName:
+    literal: ''
+  NBPanel:
+    source: ["internal", "display", "panel"]
+    allowed: ["IPS", "TN", "OLED", "Mini LED", "TFT"]
+  NBRefreshRate:
+    source: [ "internal", "display", "refresh_rate_hz" ]
+    suffix: " Hz"
+  NBSmartCache:
+    literal: ''
+  NBWiFiGeneration:
+    source: [ "internal", "network", "wireless_nic" ]
+    transform: ne_check_wifi_generation
+    allowed: ["", "Wi-Fi 7", "Wi-Fi 6E", "Wi-Fi 6", "Wi-Fi 5", "Wi-Fi 4 and earlier generation"]
+  NBThunderbolt:
+    source: [ "internal", "io", "ports" ]
+    filter_include_keywords: [ "thunderbolt" ]
+    join: ", "
+  NBEthernet:
+    source: [ "internal", "network", "ethernet_speed" ]
+    transform: ne_check_ethernet_speed
+  NBCosmeticCondition:
+    literal: ''
+    allowed: ["", "Grade A (Excellent)", "Grade B (Good)", "Grade C (Fair)"]
+  NBNeuralProcessingUnitNPU:
+    literal: ''
+  UniversalContainsEmbeddedBattery:
+    literal: ''

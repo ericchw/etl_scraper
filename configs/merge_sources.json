@@ -1,0 +1,27 @@
+{
+  "spec": [
+    "cdw",
+    "bh",
+    "manufacturer"
+  ],
+  "packing": [
+    "bh",
+    "cdw",
+    "manufacturer"
+  ],
+  "photo": [
+    "cdw",
+    "bh",
+    "manufacturer"
+  ],
+  "features": [
+    "bh",
+    "cdw",
+    "manufacturer"
+  ],
+  "design": [
+    "cdw",
+    "bh",
+    "manufacturer"
+  ]
+}

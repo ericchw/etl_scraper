@@ -1,0 +1,8 @@
+{
+  "bestbuy": {
+    "csv_skip_rows": 0
+  },
+  "newegg": {
+    "csv_skip_rows": 1
+  }
+}

@@ -1,0 +1,9 @@
+﻿# save as generate-tree.ps1
+
+Get-ChildItem -Recurse -File |
+Where-Object { $_.FullName -notmatch "\\(venv|\.venv|\.idea|__pycache__)\\" } |
+Where-Object { $_.Extension -in ".py",".ini",".json",".yaml",".yml",".txt" } |
+ForEach-Object {
+    $_.FullName.Replace((Get-Location).Path + "\", ".\")
+} |
+Out-File tree.txt -Encoding UTF8

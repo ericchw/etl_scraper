@@ -1,0 +1,241 @@
+marketplace: bestbuy
+name: CAT_1006
+headers_file: ../../../templates/bestbuy/CAT_1006.csv
+fields:
+  BBYCat:
+    from_category:
+      marketplace: bestbuy
+  shop_sku:
+    from_submission: sku
+  _Title_BB_Category_Root_EN:
+    transform: bb_title
+    pipeline:
+      - replace:
+          " - ": ", "
+  _Short_Description_BB_Category_Root_EN:
+    transform: export_features_bullets
+  _Brand_Name_Category_Root_EN:
+    from: identity.brand
+  _Primary_UPC_Category_Root_EN:
+    from_submission: upc
+  _Model_Number_Category_Root_EN:
+    from: identity.model
+  _Manufacturers_Part_Number_Category_Root_EN:
+    from: identity.mpn
+  _Long_Description_BB_Category_Root_EN:
+    transform: bb_long_description
+    design_heading: "Feature & Design:"
+    spec_heading: "Specifications:"
+  _MP_Source_Image_URL_01_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 1
+  _MP_Source_Image_URL_02_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 2
+  _MP_Source_Image_URL_03_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 3
+  _MP_Source_Image_URL_04_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 4
+  _MP_Source_Image_URL_05_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 5
+  _MP_Source_Image_URL_06_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 6
+  _MP_Source_Image_URL_07_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 7
+  _MP_Source_Image_URL_08_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 8
+  _MP_Source_Image_URL_09_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 9
+  _MP_Source_Image_URL_10_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 10
+  _Web_Hierarchy_Location_Category_Root_EN:
+    literal: ''
+  _French_Compliant_Category_Root_EN:
+    literal: ''
+  _ESRB_Category_Root_EN:
+    literal: ""
+    allowed: [ "", "C", "R", "P", "O", "M", "A", "E", "S", "T" ]
+  _Software_Platform_Category_Root_EN:
+    sources:
+      - path: software.platform
+      - group: Product Information
+        key: Platform Supported
+      - group: Software
+        key: Operating System Platform
+    join: " "
+  _Energy_Star_Indicator_Category_Root_EN:
+    sources:
+      - [ "internal", "certification", "energy_star_certified" ]
+    transform: spec_y_n
+  Variant_Group_Code:
+    literal: ''
+  _Pim_Code_Category_Root_EN:
+    literal: ''
+  _Warranty_And_Repair_Disclosure_URL_Category_Root_EN:
+    literal: ''
+    #    transform: warranty_url_by_brand
+  _Warranty_And_Repair_Disclosure_URL_FR_Category_Root_EN:
+    literal: ''
+  _ProductCondition_20257570_CAT_1006_EN:
+    literal: ''
+    transform: bb_product_condition
+    allowed: [ "Brand New", "Open Box", "Refurbished Excellent", "Refurbished Good", "Refurbished Fair" ]
+  _ScreenSize_3914_CAT_1006_EN:
+    sources:
+      - [ "internal", "display", "size_in" ]
+    transform: only_digits
+  _RefreshRate_18598_CAT_1006_EN:
+    sources:
+      - [ "internal", "display", "refresh_rate_hz" ]
+    suffix: " Hz"
+  _Resolution_30558_CAT_1006_EN:
+    sources:
+      - [ "internal", "display", "resolution" ]
+  _WhatsintheBox_4667_CAT_1006_EN:
+    sources:
+      - [ "internal", "included_items" ]
+    list_join: ";"
+  _Brightness_18563_CAT_1006_EN:
+    literal: ''
+  _DisplayType_28393_CAT_1006_EN:
+    literal: ''
+  _NativeResolution_28396_CAT_1006_EN:
+    literal: ''
+  _ResponseTimeBlackWhiteBlack_28398_CAT_1006_EN:
+    literal: ''
+  _BuiltinSpeakers_28399_CAT_1006_EN:
+    literal: ''
+  _BuiltInTVTuner_28400_CAT_1006_EN:
+    literal: ''
+  _WidthWithoutStand_28404_CAT_1006_EN:
+    literal: ''
+  _HeightWithoutStand_28405_CAT_1006_EN:
+    literal: ''
+  _DepthWithoutStand_28406_CAT_1006_EN:
+    literal: ''
+  _WeightWithoutStand_28407_CAT_1006_EN:
+    literal: ''
+  _MultiTouchPoints_31080_CAT_1006_EN:
+    literal: ''
+  _GlossyMatte_31081_CAT_1006_EN:
+    literal: ''
+  _ResponseTimeGreytoGrey_31082_CAT_1006_EN:
+    literal: ''
+  _ColourGamut_31084_CAT_1006_EN:
+    sources:
+      - [ "internal", "display", "brightness_cdm2" ]
+    transform: only_digits
+  _BuiltInWebcam_31093_CAT_1006_EN:
+    literal: ''
+  _DVIDSupport_31107_CAT_1006_EN:
+    literal: ''
+  _HDCPSupport_31108_CAT_1006_EN:
+    literal: ''
+  _EnergySavingMode_31117_CAT_1006_EN:
+    literal: ''
+  _TiltAdjustment_31119_CAT_1006_EN:
+    literal: ''
+  _SwivelAdjustment_31120_CAT_1006_EN:
+    literal: ''
+  _HeightAdjustment_31121_CAT_1006_EN:
+    literal: ''
+  _RotatetoPortrait_31122_CAT_1006_EN:
+    literal: ''
+  _VESAMountable_31123_CAT_1006_EN:
+    literal: ''
+  _VESASizesSupported_31124_CAT_1006_EN:
+    literal: ''
+    list_join: ";"
+  _WidthWithStand_31126_CAT_1006_EN:
+    literal: ''
+  _DepthWithStand_31128_CAT_1006_EN:
+    literal: ''
+  _WeightWithStand_31129_CAT_1006_EN:
+    literal: ''
+  _Curved_39638_CAT_1006_EN:
+    literal: ''
+  _AspectRatio_9471_CAT_1006_EN:
+    literal: ''
+  _AutoOff_19703_CAT_1006_EN:
+    literal: ''
+  _BacklightType_19653_CAT_1006_EN:
+    literal: ''
+  _Colour_5105_CAT_1006_EN:
+    literal: ''
+    join: ";"
+  _DynamicContrastRatio_18588_CAT_1006_EN:
+    literal: ''
+  _OtherFeatures_26219_CAT_1006_EN:
+    literal: ''
+    list_join: ";"
+  _SpeakerOutputPower_13985_CAT_1006_EN:
+    literal: ''
+  _StandByConsumption_19702_CAT_1006_EN:
+    literal: ''
+  _StaticContrastRatio_18562_CAT_1006_EN:
+    literal: ''
+  _Touchscreen_19922_CAT_1006_EN:
+    literal: ''
+  _TypicalConsumption_19701_CAT_1006_EN:
+    literal: ''
+  _ViewingAngle_10316_CAT_1006_EN:
+    literal: ''
+  _3DVideoSupportBuiltin_31091_CAT_1006_EN:
+    literal: ''
+  _HeightWithStand_852161_CAT_1006_EN:
+    literal: ''
+  _PanelTechnology_1536229_CAT_1006_EN:
+    literal: ''
+  _PanelType_31078_CAT_1006_EN:
+    literal: ''
+  _InputOutputTypes_28401_CAT_1006_EN:
+    literal: ''
+    list_join: ";"
+  _ENERGYSTARcertified_22372173_CAT_1006_EN:
+    literal: ''
+  sku:
+    from_submission: sku
+  product-id:
+    from_submission: sku
+  product-id-type:
+    literal: "SHOP_SKU"
+  description:
+    literal: ''
+  internal-description:
+    literal: ''
+  price:
+    from_submission: marketplaces.bestbuy.list_price
+  price-additional-info:
+    literal: ''
+  quantity:
+    literal: 0
+  min-quantity-alert:
+    literal: ''
+  state:
+    literal: ''
+  available-start-date:
+    literal: ''
+  available-end-date:
+    literal: ''
+  logistic-class:
+    literal: ''
+  discount-price:
+    literal: ''
+  discount-start-date:
+    literal: ''
+  discount-end-date:
+    literal: ''
+  update-delete:
+    literal: ''
+  manufacturer-warranty:
+    literal: ''
+  pim:
+    literal: ''

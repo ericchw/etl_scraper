@@ -1,0 +1,8 @@
+{
+  "source": "bh",
+  "manufacturer": false,
+  "search_url": "https://www.bhphotovideo.com/c/search?q={mpn}",
+  "auto_redirect": true,
+  "dynamic": false,
+  "enabled": true
+}

@@ -1,0 +1,144 @@
+{
+  "identity": {
+    "brand": "",
+    "mpn": "",
+    "upc": "",
+    "product_line": "",
+    "model": "",
+    "product_type": "",
+    "package_qty": ""
+  },
+  "content": {
+    "title": "",
+    "description": "",
+    "features": [],
+    "images": []
+  },
+  "display": {
+    "size_in": "",
+    "panel": "",
+    "backlight_technology": "",
+    "resolution": "",
+    "video_format": "",
+    "features": [],
+    "color_support": "",
+    "brightness_cdm2": "",
+    "refresh_rate_hz": "",
+    "response_time": [],
+    "aspect_ratio": "",
+    "static_contrast_ratio": "",
+    "adjustment": {
+      "height": false,
+      "pivot": false,
+      "swivel": false,
+      "tilt": false
+    },
+    "adjustment_scale": {
+      "height_mm": "",
+      "rotation_angle": "",
+      "swivel_angle": "",
+      "tilt_angle": ""
+    },
+    "height_adjustment": "",
+    "screen_coating": [],
+    "screen_technology": [],
+    "display_type": "",
+    "form_factor": "",
+    "hdr": {
+      "hdr_capable": "",
+      "hdr_format": ""
+    },
+    "horizonal_refresh_rate": "",
+    "vertical_refresh_rate": "",
+    "horizontal_viewing_angle": "",
+    "vertical_viewing_angle": "",
+    "pixel_density_ppl": "",
+    "pixel_pitch_mm": "",
+    "widescreen": false,
+    "curve_screen": false,
+    "screen_curvature": "",
+    "touchscreen": false
+  },
+  "audio": {
+    "output_type": "",
+    "speaker_output_power_watt": "",
+    "speaker_configuration": ""
+  },
+  "camera": {
+    "webcam": false
+  },
+  "io": {
+    "input_signal": "",
+    "interfaces": [],
+    "usb_hub": "",
+    "usb_power_delivery_watt": "",
+    "built-in_devices": []
+  },
+  "power": {
+    "energy_class": "",
+    "frequency_hz": "",
+    "consumption_watt": {
+      "off_mode": "",
+      "on_mode": "",
+      "typical": "",
+      "max": ""
+    },
+    "voltage_required": ""
+  },
+  "software": {
+      "types": [],
+      "operating_system_required": []
+    },
+  "technical": {
+    "max_operating_temperature_degree": "",
+    "min_operating_temperature_degree": "",
+    "operating_humidity": "",
+    "features": [],
+    "mount_size": [],
+    "security_slot_type": "",
+    "tv_tuner_presence": ""
+  },
+  "certification": {
+    "hdr_certification": "",
+    "software_certification": []
+  },
+  "included_items": [],
+  "physical": {
+    "packaged_qty": "",
+    "dimensions": {
+      "item": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      },
+      "item_with_stand": {
+        "highest_position": {
+          "length_in": "",
+          "width_in": "",
+          "height_in": ""
+        },
+        "lowest_position": {
+          "length_in": "",
+          "width_in": "",
+          "height_in": ""
+        }
+      },
+      "item_without_stand": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      },
+      "package": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      }
+    },
+    "weight": {
+      "item_lb": "",
+      "item_with_stand_lb": "",
+      "item_without_stand_lb": "",
+      "package_lb": ""
+    }
+  }
+}

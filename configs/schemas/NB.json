@@ -1,0 +1,164 @@
+{
+  "identity": {
+    "brand": "",
+    "mpn": "",
+    "upc": "",
+    "product_line": "",
+    "model": "",
+    "product_type": "",
+    "package_qty": ""
+  },
+  "content": {
+    "title": "",
+    "description": "",
+    "features": [],
+    "images": []
+  },
+  "processor": {
+    "brand": "",
+    "model": "",
+    "cores": "",
+    "threads": "",
+    "clock_ghz": "",
+    "max_clock_ghz": "",
+    "cache_mb": "",
+    "family": "",
+    "number": "",
+    "generation": "",
+    "platform_technology": "",
+    "ai_processor_technology": ""
+  },
+  "memory": {
+    "type": "",
+    "capacity_gb": "",
+    "max_capacity_gb": "",
+    "speed_mhz": "",
+    "rated_speed_mhz": "",
+    "configuration_features": "",
+    "slots": "",
+    "expansion_slots": ""
+  },
+  "storage": {
+    "type": "",
+    "capacity_gb": "",
+    "ssd_form_factor": "",
+    "optical_drive": "",
+    "interface": "",
+    "features": []
+  },
+  "graphics": {
+    "type": "",
+    "processor": {
+      "model": [],
+      "series": ""
+    },
+    "vram_gb": ""
+  },
+  "display": {
+    "size_in": "",
+    "panel": "",
+    "resolution": "",
+    "features": [],
+    "brightness_cdm2": "",
+    "refresh_rate_hz": "",
+    "horizontal_viewing_angle": "",
+    "vertical_viewing_angle": "",
+    "pixel_density_ppl": "",
+    "privacy_technology": "",
+    "widescreen": "",
+    "touchscreen": ""
+  },
+  "audio": {
+    "input_type": "",
+    "compliant_standards": [],
+    "output_types": [],
+    "output_features": ""
+  },
+  "camera": {
+    "webcam": "",
+    "front_camera_resolution": [],
+    "front_camera_video_resolution": [],
+    "image_sensor_type": "",
+    "frame_rate_fps": "",
+    "pixel": ""
+  },
+  "io": {
+    "hdmi_ports": "",
+    "usb_3_ports": "",
+    "usb_c_ports": "",
+    "usb_c_features": [],
+    "ports": [],
+    "flash_memory": [],
+    "input_device_features": "",
+    "keyboard_backlight": ""
+  },
+  "power": {
+    "battery": {
+      "capacity": "",
+      "cells": "",
+      "chemistry": ""
+    },
+    "frequency": "",
+    "power_watt": "",
+    "voltage": "",
+    "voltage_required": "",
+    "battery_life_hour": ""
+
+  },
+  "network": {
+    "wifi": "",
+    "bluetooth": "",
+    "wireless_nic": "",
+    "ethernet_speed": "",
+    "features": []
+  },
+  "software": {
+    "os": "",
+    "platform": "",
+    "types": []
+  },
+  "technical": {
+    "embedded_security": "",
+    "finger_pinter_reader": "",
+    "input_device_type": [],
+    "max_operating_temperature_degree": "",
+    "min_operating_temperature_degree": "",
+    "operating_humidity": "",
+    "rugged": "",
+    "sensor_type": "",
+    "security_slot_type": "",
+    "service_activation": "",
+    "theft_protection": "",
+    "bundled_services": ""
+  },
+  "certification": {
+    "compliant_standards": [],
+    "energy_star_certified": "",
+    "epeat_compliant": "",
+    "epeat_level": "",
+    "tco_certified": ""
+  },
+  "included_items": [],
+  "physical": {
+    "packaged_qty": "",
+    "material": [],
+    "color": "",
+    "color_category": "",
+    "dimensions": {
+      "item": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      },
+      "package": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      }
+    },
+    "weight": {
+      "item_lb": "",
+      "package_lb": ""
+    }
+  }
+}
