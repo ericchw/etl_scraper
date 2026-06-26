@@ -8,7 +8,6 @@ from typing import Any
 from core.merge_policy import load_merge_sources
 from core.schema.product import empty_internal, get_path, set_path
 from core.schema.registry import DEFAULT_PRODUCT_CODE
-import json
 
 # ----------------------------
 # utils
@@ -17,10 +16,14 @@ import json
 def _is_empty(val: Any) -> bool:
     if val is None:
         return True
+    if isinstance(val, bool):
+        return False
     if isinstance(val, str):
         return not val.strip()
     if isinstance(val, (list, dict)):
         return len(val) == 0
+    if isinstance(val, (int, float)) and val == 0:
+        return True
     return False
 
 
@@ -34,8 +37,6 @@ def _field_policies() -> dict[str, tuple[str, ...]]:
     cfg = load_merge_sources()
     spec = tuple(cfg.get("spec") or ("cdw", "bh", "manufacturer"))
     packing = tuple(cfg.get("packing") or ("bh", "cdw", "manufacturer"))
-    print(f"_field_policies: {spec}; {packing}")
-
 
     policies: dict[str, tuple[str, ...]] = {}
 
@@ -58,6 +59,55 @@ def _field_policies() -> dict[str, tuple[str, ...]]:
 # ----------------------------
 # helpers
 # ----------------------------
+
+def _leaf_paths(node: Any, prefix: str = "") -> list[str]:
+    if not isinstance(node, dict):
+        return []
+    paths: list[str] = []
+    for key, val in node.items():
+        path = f"{prefix}.{key}" if prefix else key
+        if isinstance(val, dict):
+            paths.extend(_leaf_paths(val, path))
+        else:
+            paths.append(path)
+    return paths
+
+
+_GAP_FILL_SKIP_PREFIXES = (
+    "content.",
+    "physical.dimensions.package.",
+)
+_GAP_FILL_SKIP_EXACT = frozenset({"physical.weight.package_lb"})
+
+
+def _should_gap_fill(path: str) -> bool:
+    if path in _GAP_FILL_SKIP_EXACT:
+        return False
+    return not any(path.startswith(prefix) for prefix in _GAP_FILL_SKIP_PREFIXES)
+
+
+def _fill_spec_gaps(
+    merged: dict,
+    partials: dict[str, dict],
+    spec_order: tuple[str, ...],
+    *,
+    product_code: str,
+    report: dict,
+) -> None:
+    """Fill empty internal fields from lower-priority spec sources."""
+    template = empty_internal(product_code)
+    for path in _leaf_paths(template):
+        if not _should_gap_fill(path):
+            continue
+        if not _is_empty(get_path(merged, path)):
+            continue
+        val, winner = _pick_scalar(path, partials, spec_order)
+        if _is_empty(val):
+            continue
+        set_path(merged, path, _copy(val))
+        if winner:
+            report[f"spec_gap.{path}"] = winner
+
 
 def _pick_scalar(path: str, partials: dict[str, dict], policy: tuple[str, ...]):
     for source in policy:
@@ -172,8 +222,6 @@ def _pick_description(partials, design_order):
 
 
 def _extract_packaging_specs(partials, packing_order):
-    print("_extract_packaging_specs partial:", partials)
-    print("_extract_packaging_specs packing_order:", packing_order)
     for source in packing_order:
         partial = partials.get(source) or {}
 
@@ -213,22 +261,26 @@ def merge_internals(
     spec_source = _winner_source(partials, spec_order, check=_has_spec)
     if spec_source:
         _apply_spec_block(merged, partials[spec_source])
-        print("AFTER APPLY SPEC: ", merged["physical"])
         report["spec"] = spec_source
     else:
         report["spec"] = "none"
+
+    _fill_spec_gaps(
+        merged,
+        partials,
+        spec_order,
+        product_code=code,
+        report=report,
+    )
 
     # ---------------- scalar fields ----------------
     policies = _field_policies()
     for path, policy in policies.items():
         val, winner = _pick_scalar(path, partials, policy)
-        print("path, val, winner: ", path, "-", val, "-", winner)
         if not _is_empty(val):
             set_path(merged, path, val)
             if winner:
                 report[path] = winner
-        if path.startswith("physical"):
-            print('if path.startswith("physical"): path, val, winner: ', path, "-", val, "-", winner)
 
     # ---------------- content ----------------
     images, img_src = _pick_images(partials, photo_order)
@@ -250,10 +302,5 @@ def merge_internals(
     if pkg:
         merged["packaging_specs"] = pkg
         report["packaging_specs"] = pkg_src
-
-    print("merge_internalsSPEC SOURCE=", spec_source)
-    print("merge_internals pkg, pkg_src=", pkg, pkg_src)
-
-    print("merge_internals partials=", partials)
 
     return merged, report

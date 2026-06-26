@@ -45,7 +45,7 @@
     "display_type": "",
     "form_factor": "",
     "hdr": {
-      "hdr_capable": "",
+      "hdr_capable": false,
       "hdr_format": ""
     },
     "horizonal_refresh_rate": "",
@@ -57,7 +57,8 @@
     "widescreen": false,
     "curve_screen": false,
     "screen_curvature": "",
-    "touchscreen": false
+    "touchscreen": false,
+    "color_gamut": []
   },
   "audio": {
     "speaker": false,

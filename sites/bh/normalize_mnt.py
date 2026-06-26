@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from core.schema.registry import empty_internal
-from core.spec_lookup import extract_number, spec_value, spec_list
+from core.spec_lookup import extract_number, spec_value, spec_list, match_any
 from sites.bh.content import parse_description_from_raw, parse_features_from_raw
 from sites.bh.normalize_shared import fill_bh_packaging
 
@@ -22,8 +22,11 @@ def normalize_bh_mnt(raw: dict) -> dict:
 
     #test cdw no details on 32U889SA-W
     # display
+    internal["display"]["brightness_cdm2"] = extract_number(spec_value(specs, "Key Specs", "Maximum Brightness"))
     internal["display"]["refresh_rate_hz"] = extract_number(spec_value(specs, "Display", "Refresh Rate"))
-
+    internal["display"]['hdr']["hdr_capable"] = match_any(spec_value(specs, "Key Specs", "HDR Support"),["yes"])
+    internal["display"]['hdr']["hdr_format"] = spec_value(specs, "Key Specs", "HDR Support").split(":", 1)[1].strip() if "yes" in spec_value(specs, "Key Specs", "HDR Support").lower() else spec_value(specs, "Key Specs", "HDR Support")
+    internal["display"]["color_gamut"] = spec_list(specs, "Key Specs", "Color Gamut")
 
     # desc = parse_description_from_raw(raw)
     # if desc:

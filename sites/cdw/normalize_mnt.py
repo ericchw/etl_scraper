@@ -5,9 +5,9 @@ from __future__ import annotations
 import re
 
 from core.schema.registry import empty_internal
-from core.spec_lookup import extract_number, resolve_spec_field, spec_value, spec_list, split_and_filter_patterns
+from core.spec_lookup import extract_number, resolve_spec_field, spec_value, spec_list, split_and_filter_patterns, match_any
 from core.units import length_to_in, weight_to_lb
-from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch, to_int_number, match_any
+from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch, to_int_number
 from sites.cdw.spec_bindings import CDW_PROCESSOR_BINDINGS
 
 def normalize_cdw_mnt(raw: dict) -> dict:
@@ -56,6 +56,7 @@ def normalize_cdw_mnt(raw: dict) -> dict:
     internal["display"]["curve_screen"] = match_any(spec_value(specs, "Display & Graphics", "Curved Screen"), ["yes"])
     internal["display"]["screen_curvature"] = spec_value(specs, "Display & Graphics", "Screen Curvature")
     internal["display"]["touchscreen"] = match_any(spec_value(specs, "Display & Graphics", "Touchscreen"), ["yes"])
+    internal["display"]["color_gamut"] = spec_list(specs, "Video", "Color Gamut")
 
     # audio
     internal["audio"]["speaker"] = match_any(spec_value(specs, "Audio", "Speakers Configuration"), ["*"])

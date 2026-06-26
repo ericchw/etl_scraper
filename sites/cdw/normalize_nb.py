@@ -5,9 +5,9 @@ from __future__ import annotations
 import re
 
 from core.schema.registry import empty_internal
-from core.spec_lookup import extract_number, resolve_spec_field, spec_value, spec_list, split_and_filter_patterns
+from core.spec_lookup import extract_number, resolve_spec_field, spec_value, spec_list, split_and_filter_patterns, match_any
 from core.units import length_to_in, weight_to_lb
-from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch, match_any
+from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch
 from sites.cdw.spec_bindings import CDW_PROCESSOR_BINDINGS
 from core.transforms import extract_bluetooth, normalize_capacity, extract_ethernet_speed
 

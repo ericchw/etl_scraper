@@ -526,26 +526,20 @@ def to_int_number(text: str) -> int | None:
 
     return int(num)
 
-def match_any(text: str, target_str_list: list[str]) -> bool:
-    print(text)
-    text = text.strip().lower()
-    if "*" in target_str_list:
-        return bool(text)
-    print(text, any(t.lower() in text for t in target_str_list))
-    return any(t.lower() in text for t in target_str_list)
-
 if __name__ == "__main__":
-    print(to_int_number("16.7 million colors"))
+    # print(to_int_number("16.7 million colors"))
+    #
+    # text = "Height, Pivot (rotation), Swivel, Tilt"
+    # targets = ["pivot", "swivel"]
+    # print(match_any(text, targets))
+    #
+    # print(extract_display_type("LED-backlit LCD monitor"))  # "LCD"
+    # print(extract_display_type("LED-backlit LED monitor"))  # "LED"
+    # print(extract_display_type("OLED monitor"))  # "OLED"
+    # print(extract_display_type("Some unknown type"))  # None
+    #
+    # text = "Yes"
+    # targets = ["yes"]
+    # print(match_any(text, targets))
 
-    text = "Height, Pivot (rotation), Swivel, Tilt"
-    targets = ["pivot", "swivel"]
-    print(match_any(text, targets))
-
-    print(extract_display_type("LED-backlit LCD monitor"))  # "LCD"
-    print(extract_display_type("LED-backlit LED monitor"))  # "LED"
-    print(extract_display_type("OLED monitor"))  # "OLED"
-    print(extract_display_type("Some unknown type"))  # None
-
-    text = "Yes"
-    targets = ["yes"]
-    print(match_any(text, targets))
+    pass

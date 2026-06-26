@@ -179,5 +179,16 @@ def resolve_spec_paths(
             return value, raw, f"{group} > {key}"
     return value, "", ""
 
+def match_any(text: str, target_str_list: list[str]) -> bool:
+    text = text.strip().lower()
+    if "*" in target_str_list:
+        return bool(text)
+    print(text, any(t.lower() in text for t in target_str_list))
+    return any(t.lower() in text for t in target_str_list)
+
 if __name__ == "__main__":
+    text = "Height, Pivot (rotation), Swivel, Tilt"
+    targets = ["pivot", "swivel"]
+    print(match_any(text, targets))
+
     pass
