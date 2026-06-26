@@ -60,6 +60,7 @@
     "touchscreen": false
   },
   "audio": {
+    "speaker": false,
     "output_type": "",
     "speaker_output_power_watt": "",
     "speaker_configuration": ""
@@ -81,7 +82,8 @@
       "off_mode": "",
       "on_mode": "",
       "typical": "",
-      "max": ""
+      "max": "",
+      "standby": ""
     },
     "voltage_required": ""
   },
@@ -94,17 +96,26 @@
     "min_operating_temperature_degree": "",
     "operating_humidity": "",
     "features": [],
-    "mount_size": [],
+    "vesa_mount": false,
+    "vesa_mount_size": [],
     "security_slot_type": "",
-    "tv_tuner_presence": ""
+    "tv_tuner_presence": false
   },
   "certification": {
+    "compliant_standards": [],
+    "energy_star_certified": false,
+    "epeat_compliant": false,
+    "epeat_level": "",
+    "tco_certified": false,
+    "environmental_certification": [],
     "hdr_certification": "",
     "software_certification": []
   },
   "included_items": [],
   "physical": {
     "packaged_qty": "",
+    "color": "",
+    "color_category": "",
     "dimensions": {
       "item": {
         "length_in": "",

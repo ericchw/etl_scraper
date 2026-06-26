@@ -15,6 +15,14 @@
     "redirect": false,
     "enabled": false
   },
+  "lg": {
+    "label": "LG",
+    "google_search": false,
+    "google_cite": "https://www.lg.com",
+    "search_url": "www.lg.com/ca_en/search/?search={mpn}",
+    "redirect": false,
+    "enabled": false
+  },
   "lenovo": {
     "label": "Lenovo",
     "google_search": false,

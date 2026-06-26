@@ -50,6 +50,7 @@ def only_digits(value: Any, **_kwargs) -> str:
 
 def spec_yes_no(value: Any, **_kwargs) -> str:
     text = clean(value).strip().lower()
+    print(f"spec_yes_no: {value}, {text}")
 
     if not text:
         return ""
@@ -679,6 +680,12 @@ def check_copilotpc(value, *, context, **kwargs) -> str:
     return ("Yes" if contains_keywords(context, keywords)
         else "No")
 
+def check_hdcp(value, *, context, **kwargs) -> str:
+    del value
+    keywords = ("hdcp")
+    return ("Yes" if contains_keywords(context, keywords)
+        else "No")
+
 def bb_check_wifi_standard(value, *, context=None, sources=None, **kwargs) -> str:
     text = clean(value)
 
@@ -838,6 +845,53 @@ def ne_check_screensize(value: Any, **_kwargs) -> str:
     match = re.search(r"\d+(?:\.\d+)?", clean(value))
     return f'{float(match.group(0)):.1f}"' if match else ""
 
+def bb_extract_display_type(value: Any, **_kwargs) -> str | None:
+    text = value.strip().upper()
+    display_types = ["OLED", "LCD", "LED"]
+    for dtype in display_types:
+        if dtype in text:
+            return dtype
+    return ""
+
+def ne_monitor_convenience_stand_adjustments(value: Any, *, context: dict, **_kwargs) -> str:
+    del value
+
+    _ALLOWED = {
+        frozenset(): "No",
+        frozenset({"height"}): "Height",
+        frozenset({"pivot"}): "Pivot",
+        frozenset({"tilt"}): "Tilt",
+        frozenset({"swivel"}): "Swivel",
+        frozenset({"height", "pivot"}): "Height & Pivot",
+        frozenset({"height", "tilt"}): "Height & Tilt",
+        frozenset({"height", "swivel"}): "Height & Swivel",
+        frozenset({"pivot", "tilt"}): "Pivot & Tilt",
+        frozenset({"pivot", "swivel"}): "Pivot & Swivel",
+        frozenset({"swivel", "tilt"}): "Swivel & Tilt",
+        frozenset({"pivot", "swivel", "tilt"}): "Pivot, Swivel & Tilt",
+        frozenset({"height", "pivot", "tilt"}): "Height, Pivot, Tilt",
+        frozenset({"height", "pivot", "swivel"}): "Height, Pivot, Swivel",
+        frozenset({"height", "swivel", "tilt"}): "Height, Swivel, Tilt",
+        frozenset({"height", "pivot", "swivel", "tilt"}): "Height, Pivot, Swivel, Tilt",
+    }
+
+    internal = context.get("internal") or {}
+    adjustment = internal.get("display", {}).get("adjustment", {}) or {}
+
+    features = {
+        name
+        for name in ("height", "pivot", "swivel", "tilt")
+        if adjustment.get(name)
+    }
+
+    return _ALLOWED.get(frozenset(features), "")
+
+def ne_curved_surface_screen(value: Any, *, context: dict, **_kwargs) -> str:
+    del value
+    internal = context.get("internal") or {}
+    curve = clean(internal.get("display", {}).get("curve_screen", "")).strip().lower()
+    return "Curved" if curve in {"true", "yes"} else "Flat Panel"
+
 TRANSFORMS = {
     "clean": clean,
     "only_number": only_number,
@@ -874,6 +928,7 @@ TRANSFORMS = {
     "check_stylus": check_stylus,
     "check_cellular": check_cellular,
     "check_copilotpc": check_copilotpc,
+    "check_hdcp": check_hdcp,
     "bb_check_wifi_standard": bb_check_wifi_standard,
     "ne_check_wifi_standard": ne_check_wifi_standard,
     "ne_check_wifi_generation": ne_check_wifi_generation,
@@ -883,6 +938,9 @@ TRANSFORMS = {
     "ne_check_backlight_keyboard": ne_check_backlight_keyboard,
     "get_brand_label": get_brand_label,
     "ne_check_screensize": ne_check_screensize,
+    "bb_extract_display_type": bb_extract_display_type,
+    "ne_monitor_convenience_stand_adjustments": ne_monitor_convenience_stand_adjustments,
+    "ne_curved_surface_screen": ne_curved_surface_screen,
     "passthrough": clean,
 }
 
@@ -904,13 +962,16 @@ if __name__ == "__main__":
     # print(scraped_image_url(None, context=context, image_index=1))
 
 
-    data = {
-        "internal": {
-            "network":{
-                "wifi": "IEEE 802.11be"
-            }
-        }
-    }
-    context = {"network": data["internal"]["network"]["wifi"]}
+    # data = {
+    #     "internal": {
+    #         "network":{
+    #             "wifi": "IEEE 802.11be"
+    #         }
+    #     }
+    # }
+    # context = {"network": data["internal"]["network"]["wifi"]}
+    #
+    # print(ne_check_wifi_standard("IEEE 802.11be"))
 
-    print(ne_check_wifi_standard("IEEE 802.11be"))
+    print(spec_yes_no("No"))
+    pass

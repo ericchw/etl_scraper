@@ -7,7 +7,7 @@ import re
 from core.schema.registry import empty_internal
 from core.spec_lookup import extract_number, resolve_spec_field, spec_value, spec_list, split_and_filter_patterns
 from core.units import length_to_in, weight_to_lb
-from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch
+from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch, match_any
 from sites.cdw.spec_bindings import CDW_PROCESSOR_BINDINGS
 from core.transforms import extract_bluetooth, normalize_capacity, extract_ethernet_speed
 
@@ -76,8 +76,8 @@ def normalize_cdw_nb(raw: dict) -> dict:
     internal["display"]["vertical_viewing_angle"] = spec_value(specs, "Display & Graphics", "Vertical Viewing Angle")
     internal["display"]["pixel_density_ppl"] = extract_number(spec_value(specs, "Display & Graphics", "Pixel Density (ppi)"))
     internal["display"]["privacy_technology"] = spec_value(specs, "Display & Graphics", "Privacy Technology")
-    internal["display"]["widescreen"] = spec_value(specs, "Display & Graphics", "Widescreen Display")
-    internal["display"]["touchscreen"] = spec_value(specs, "Display & Graphics", "Touchscreen")
+    internal["display"]["widescreen"] = match_any(spec_value(specs, "Display & Graphics", "Widescreen Display"), ["yes"])
+    internal["display"]["touchscreen"] = match_any(spec_value(specs, "Display & Graphics", "Touchscreen"), ["yes"])
 
     # audio
     internal["audio"]["input_type"] = spec_value(specs, "Audio", "Audio Input Type")
@@ -86,7 +86,7 @@ def normalize_cdw_nb(raw: dict) -> dict:
     internal["audio"]["output_features"] = spec_value(specs, "Product Information", "Audio Output Features")
 
     #camera
-    internal["camera"]["webcam"] = spec_value(specs, "Camera", "Webcam")
+    internal["camera"]["webcam"] = match_any(spec_value(specs, "Camera", "Webcam"), ["yes"])
     internal["camera"]["front_camera_resolution"] = spec_list(specs, "Camera", "Front Camera Resolution")
     internal["camera"]["front_camera_video_resolution"] = spec_list(specs, "Camera", "Front Camera Video Resolution")
     internal["camera"]["image_sensor_type"] = spec_value(specs, "Camera", "Image Sensor Type")
@@ -101,7 +101,7 @@ def normalize_cdw_nb(raw: dict) -> dict:
     internal["io"]["flash_memory"] = spec_list(specs, "Memory", "Supported Flash Memory")
     internal["io"]["ports"] = spec_list(specs, "Connectivity", "Interfaces")
     internal["io"]["input_device_features"] = spec_list(specs, "Product Information", "Input Device Features")
-    internal["io"]["keyboard_backlight"] = spec_value(specs, "Product Information", "Keyboard Backlight")
+    internal["io"]["keyboard_backlight"] = match_any(spec_value(specs, "Product Information", "Keyboard Backlight"), ["yes"])
 
     # power
     internal["power"]["battery"]["capacity"] = spec_value(specs, "Power", "Battery Capacity")
@@ -144,12 +144,12 @@ def normalize_cdw_nb(raw: dict) -> dict:
 
     # certification
     internal["certification"]["compliant_standards"] = spec_list(specs, "Certifications & Listings", "Compliant Standards")
-    internal["certification"]["energy_star_certified"] = spec_value(specs, "Certifications & Listings", "ENERGY STAR Certified")
-    internal["certification"]["epeat_compliant"] = spec_value(specs, "Certifications & Listings", "EPEAT Compliant")
+    internal["certification"]["energy_star_certified"] = match_any(spec_value(specs, "Certifications & Listings", "ENERGY STAR Certified"), ["yes"])
+    internal["certification"]["epeat_compliant"] = match_any(spec_value(specs, "Certifications & Listings", "EPEAT Compliant"), ["yes"])
     internal["certification"]["epeat_level"] = spec_value(specs, "Certifications & Listings", "EPEAT Level").replace(" ", "").replace("EPEAT", "")
-    internal["certification"]["tco_certified"] = spec_value(specs, "Certifications & Listings", "TCO Certified")
+    internal["certification"]["tco_certified"] = match_any(spec_value(specs, "Certifications & Listings", "TCO Certified"), ["yes"])
 
-    #included_items
+    # included_items
     acc = spec_value(specs, "Included Items", "Included Accessories")
     if acc:
         internal["included_items"] = [p.strip() for p in re.split(r"[,;]", acc) if p.strip()]

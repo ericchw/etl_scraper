@@ -7,7 +7,7 @@ import re
 from core.schema.registry import empty_internal
 from core.spec_lookup import extract_number, resolve_spec_field, spec_value, spec_list, split_and_filter_patterns
 from core.units import length_to_in, weight_to_lb
-from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch, to_int_number, match_any, extract_display_type
+from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch, to_int_number, match_any
 from sites.cdw.spec_bindings import CDW_PROCESSOR_BINDINGS
 
 def normalize_cdw_mnt(raw: dict) -> dict:
@@ -58,9 +58,13 @@ def normalize_cdw_mnt(raw: dict) -> dict:
     internal["display"]["touchscreen"] = match_any(spec_value(specs, "Display & Graphics", "Touchscreen"), ["yes"])
 
     # audio
+    internal["audio"]["speaker"] = match_any(spec_value(specs, "Audio", "Speakers Configuration"), ["*"])
     internal["audio"]["output_type"] = spec_value(specs, "Audio", "Output Type")
     internal["audio"]["speaker_output_power_watt"] = extract_number(spec_value(specs, "Audio", "Speaker Output Power"))
     internal["audio"]["speaker_configuration"] = spec_value(specs, "Audio", "Speakers Configuration")
+
+    # camera
+    internal["camera"]["webcam"] = match_any(spec_value(specs, "Product Information", "Built-in Camera"), ["yes"])
 
     # io
     internal["io"]["output_type"] = spec_list(specs, "Display & Graphics", "Input Signal")
@@ -69,18 +73,15 @@ def normalize_cdw_mnt(raw: dict) -> dict:
     internal["io"]["usb_power_delivery_watt"] = spec_value(specs, "Product Information", "USB Power Delivery").replace(" watt", "")
     internal["io"]["built-in_devices"] = spec_list(specs, "Technical Information", "Built-in Devices")
 
-    # camera
-    internal["camera"]["webcam"] = match_any(spec_value(specs, "Product Information", "Built-in Camera"), ["yes"])
-
     # power
     internal["power"]["energy_class"] = spec_value(specs, "Power", "Energy Class").replace("Class ","")
-    internal["power"]["energy_class"] = spec_value(specs, "Power", "Frequency").replace(" hertz", "")
+    internal["power"]["frequency_hz"] = spec_value(specs, "Power", "Frequency").replace(" hertz", "")
     internal["power"]["consumption_watt"]["off_mode"]= spec_value(specs, "Power", "Power Consumption (Off Mode)").replace(" watt", "")
     internal["power"]["consumption_watt"]["on_mode"] = spec_value(specs, "Power","Power Consumption (On Mode)").replace(" watt", "")
     internal["power"]["consumption_watt"]["typical"] = spec_value(specs, "Power","Power Consumption (Typical)").replace(" watt", "")
-    internal["power"]["consumption_watt"]["typical"] = spec_value(specs, "Power","Required Voltage").replace(" volt", "")
-    internal["power"]["consumption_watt"]["max"] = spec_value(specs, "Technical Information", "Max Power Consumption").replace(" volt","")
-    internal["power"]["voltage_required"] = spec_value(specs, "Power", "Required Voltage")
+    internal["power"]["consumption_watt"]["max"] = spec_value(specs, "Technical Information", "Max Power Consumption").replace(" watt","")
+    internal["power"]["consumption_watt"]["standby"] = spec_value(specs, "Energy & Performance", "Standby Power Consumption").replace(" watt","")
+    internal["power"]["voltage_required"] = spec_value(specs, "Power", "Required Voltage").replace("AC ", "").replace(" watt", "")
 
     # software
     internal["software"]["types"] = spec_list(specs, "Software", "Software Type")
@@ -92,21 +93,30 @@ def normalize_cdw_mnt(raw: dict) -> dict:
     internal["technical"]["operating_humidity"] = spec_value(specs, "Technical Information", "Operating Humidity")
     internal["technical"]["features"] = spec_list(specs, "Technical Information", "Features")
     # internal["technical"]["mount_size"] = spec_list(specs, "Product Information", "Flat Panel Mount Interface").replace(" mm","")
-    internal["technical"]["mount_size"] = [s.replace(" mm", "") for s in spec_list(specs, "Product Information", "Flat Panel Mount Interface")]
+    internal["technical"]["vesa_mount"] = match_any(spec_value(specs, "Product Information", "Flat Panel Mount Interface"), ["*"])
+    internal["technical"]["vesa_mount_size"] = [s.replace(" mm", "") for s in spec_list(specs, "Product Information", "Flat Panel Mount Interface")]
     internal["technical"]["security_slot_type"] = spec_value(specs, "Product Information", "Security Slot Type")
-    internal["technical"]["tv_tuner_presence"] = spec_value(specs, "Product Information", "TV Tuner Presence")
+    internal["technical"]["tv_tuner_presence"] = match_any(spec_value(specs, "Product Information", "TV Tuner Presence"), ["yes"])
 
     # certification
+    internal["certification"]["compliant_standards"] = spec_list(specs, "Certifications & Listings", "Compliant Standards")
+    internal["certification"]["energy_star_certified"] = match_any(spec_value(specs, "Certifications & Listings", "ENERGY STAR Certified"), ["yes"])
+    internal["certification"]["energy_star_version"] = spec_value(specs, "Certifications & Listings", "Energy Star Version")
+    internal["certification"]["epeat_compliant"] = match_any(spec_value(specs, "Certifications & Listings", "EPEAT Compliant"), ["yes"])
+    internal["certification"]["epeat_level"] = spec_value(specs, "Certifications & Listings", "EPEAT Level").replace(" ", "").replace("EPEAT", "")
+    internal["certification"]["tco_certified"] = match_any(spec_value(specs, "Certifications & Listings", "TCO Certified") , ["yes"])
+    internal["certification"]["environmental_certification"] = spec_list(specs, "Certifications & Listings", "Environmental Certification")
     internal["certification"]["hdr_certification"] = spec_value(specs, "Display & Graphics","HDR Certification")
     internal["certification"]["software_certification"] = spec_list(specs, "Software", "Software Certification")
 
-    # physical
-    internal["physical"]["packaged_qty"] = spec_value(specs, "Product Information", "Packaged Quantity")
-
-    #
+    # included_items
     acc = spec_value(specs, "Included Items", "Cables")
     if acc: internal["included_items"] = [p.strip() for p in re.split(r"[,;]", acc) if p.strip()]
 
+    # physical
+    internal["physical"]["packaged_qty"] = spec_value(specs, "Product Information", "Packaged Quantity")
+    internal["physical"]["color"] = spec_value(specs, "Physical Characteristics", "Color")
+    internal["physical"]["color_category"] = spec_value(specs, "Physical Characteristics", "Color Category")
     fill_item_dimensions_weight(internal,specs, spec_value=spec_value, length_to_in=length_to_in, weight_to_lb=weight_to_lb,)
 
     return internal

@@ -30,7 +30,6 @@ fields:
     transform: ne_long_description
     design_heading: "Feature & Design:"
     spec_heading: "Specifications:"
-
   Item Length:
     sources:
       - ["internal", "physical", "dimensions", "package", "length_in"]
@@ -213,10 +212,8 @@ fields:
     literal: ''
   NBAudioPorts:
     sources:
-      - [ "internal", "audio", "output_features" ]
-      - [ "internal", "io", "usb_c_features" ]
-      - [ "internal", "io", "input_device_features" ]
-      - [ "internal", "network", "features" ]
+      - [ "internal", "audio", "input_type" ]
+      - [ "internal", "audio", "output_types" ]
     join: ", "
   NBDockingConnector:
     literal: ''
@@ -226,6 +223,7 @@ fields:
   NBWebcam:
     sources:
       - ["internal", "camera", "webcam"]
+    transform: spec_yes_no
   NBDimensionsWxDxH:
     sources:
       - ["internal", "physical", "dimensions", "item", "width_in"]

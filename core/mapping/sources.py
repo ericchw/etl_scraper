@@ -16,11 +16,13 @@ def has_source_rule(rule: dict) -> bool:
 def is_empty(val: Any) -> bool:
     if val is None:
         return True
+    if isinstance(val, bool):
+        return False
     if isinstance(val, str) and not val.strip():
         return True
     if isinstance(val, (list, dict)) and len(val) == 0:
         return True
-    if val == 0 or val == 0.0:
+    if isinstance(val, (int, float)) and val == 0:
         return True
     return False
 

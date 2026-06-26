@@ -19,6 +19,12 @@ def normalize_bh_mnt(raw: dict) -> dict:
 
     internal["identity"]["mpn"] = str(raw.get("mpn") or "").strip().upper()
     internal["content"]["features"] = parse_features_from_raw(raw)
+
+    #test cdw no details on 32U889SA-W
+    # display
+    internal["display"]["refresh_rate_hz"] = extract_number(spec_value(specs, "Display", "Refresh Rate"))
+
+
     # desc = parse_description_from_raw(raw)
     # if desc:
     #     internal["content"]["description"] = desc

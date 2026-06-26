@@ -529,16 +529,10 @@ def to_int_number(text: str) -> int | None:
 def match_any(text: str, target_str_list: list[str]) -> bool:
     print(text)
     text = text.strip().lower()
+    if "*" in target_str_list:
+        return bool(text)
     print(text, any(t.lower() in text for t in target_str_list))
     return any(t.lower() in text for t in target_str_list)
-
-def extract_display_type(text: str) -> str | None:
-    text = text.strip().upper()
-    display_types = ["OLED", "LCD", "LED"]
-    for dtype in display_types:
-        if dtype in text:
-            return dtype
-    return ""
 
 if __name__ == "__main__":
     print(to_int_number("16.7 million colors"))

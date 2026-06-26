@@ -1,4 +1,16 @@
 {
+  "monitor": {
+    "code": "MNT",
+    "label": "Monitor",
+    "bestbuy": "CAT_1006",
+    "newegg": "MonitorLCDFlatPanel"
+  },
+  "gaming_monitor": {
+    "code": "MNT",
+    "label": "(X) Gaming Monitor",
+    "bestbuy": "CAT_1006",
+    "newegg": "GamingMonitor"
+  },
   "notebook": {
     "code": "NB",
     "label": "Laptop",
@@ -23,16 +35,22 @@
     "bestbuy": "CAT_1002",
     "newegg": "2in1Laptops"
   },
-  "monitor": {
-    "code": "MNT",
-    "label": "Monitor",
-    "bestbuy": "CAT_1006",
-    "newegg": "MonitorLCDFlatPanel"
+  "desktop_pc": {
+    "code": "SYS",
+    "label": "(X) Desktop PC",
+    "bestbuy": "CAT_1003",
+    "newegg": "DesktopPC"
   },
-  "gaming_monitor": {
-    "code": "MNT",
-    "label": "(X) Gaming Monitor",
-    "bestbuy": "CAT_1006",
-    "newegg": "GamingMonitor"
+  "all_in_one_pc": {
+    "code": "SYS",
+    "label": "All in One PC",
+    "bestbuy": "CAT_1003",
+    "newegg": "AllinOnePCs"
+  },
+  "tablet": {
+    "code": "NB",
+    "label": "Tablet",
+    "bestbuy": "CAT_314802",
+    "newegg": "TabletPCTablets"
   }
 }

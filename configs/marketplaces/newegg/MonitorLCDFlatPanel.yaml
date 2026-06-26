@@ -9,35 +9,55 @@ csv_preamble_row:
 
 fields:
   'Seller Part #':
-    literal: ''
+    from_submission: sku
   Manufacturer:
-    literal: ''
+    from_submission: manufacturer
+    transform: get_brand_label
   'Manufacturer Parts #':
-    literal: ''
+    from: identity.mpn
   UPC / ISBN:
-    literal: ''
+    from_submission: upc
   Related Seller Part#:
     literal: ''
   Website Short Title:
-    literal: ''
+    pipeline:
+      - transform: ne_title
+    #      - replace: #replace in function
+    #          " - ": ", "
   Bullet Description:
-    literal: ''
+    transform: export_features
   Product Description:
-    literal: ''
+    transform: ne_long_description
+    design_heading: "Feature & Design:"
+    spec_heading: "Specifications:"
   Item Length:
-    literal: ''
+    sources:
+      - [ "internal", "physical", "dimensions", "package", "length_in" ]
+      - [ "internal", "physical", "dimensions", "item", "length_in" ]
   Item Width:
-    literal: ''
+    sources:
+      - [ "internal", "physical", "dimensions", "package", "width_in" ]
+      - [ "internal", "physical", "dimensions", "item", "width_in" ]
   Item Height:
-    literal: ''
+    sources:
+      - [ "internal", "physical", "dimensions", "package", "height_in" ]
+      - [ "internal", "physical", "dimensions", "item", "height_in" ]
   Item Weight:
-    literal: ''
+    sources:
+      - [ "internal", "physical", "weight", "package_lb" ]
+      - [ "internal", "physical", "weight", "item_lb" ]
   Packs Or Sets:
-    literal: ''
+    literal: 1
+    #    sources:
+    #      - ["internal", "physical", "packaged_qty"]
+    #    default: 1
+    #    type: integer
   Item Condition:
-    literal: ''
+    transform: ne_product_condition
+    allowed: [ "", "New", "Refurbished", "UsedLikeNew", "UsedVeryGood" , "UsedGood", "UsedAcceptable" ]
   Item Package:
-    literal: ''
+    literal: "Retail"
+    allowed: [ "Retail", "OEM" ]
   Shipping Restriction:
     literal: ''
   Currency:
@@ -48,20 +68,26 @@ fields:
     literal: ''
   CheckoutMAP:
     literal: ''
+    allowed: [ "", "True", "False" ]
   Selling Price:
-    literal: ''
+    from_submission: price
   Shipping:
-    literal: ''
+    from_submission: marketplaces.newegg.shipping_type
+    allowed: [ "Free", "Default" ]
   Inventory:
     literal: 0
   Limit Quantity:
     literal: ''
   Activation Mark:
-    literal: ''
+    literal: 'TRUE'
+    allowed: [ "", "TRUE", "FALSE" ]
   Action:
-    literal: ''
+    literal: 'Create Item'
+    allowed: [ "", "Create Item", "Update Item", "Update/Append Image", "Replace Image" ]
   Item Images:
-    literal: ''
+    sources:
+      - [ "internal", "content", "images" ]
+    list_join: ","
   Condition Details:
     literal: ''
   Used Item Images:
@@ -95,29 +121,48 @@ fields:
   Custom Variety 3 Value:
     literal: ''
   MonitorModelModel:
-    literal: ''
+    sources:
+      - [ "internal", "identity", "model" ]
   MonitorModelCabinetColor:
-    literal: ''
+    sources:
+      - [ "internal", "physical", "color" ]
   MonitorDisplayPanel:
-    literal: ''
+    sources:
+      - [ "internal", "display", "panel" ]
   MonitorDisplayDisplayType:
-    literal: ''
+    sources:
+      - [ "internal", "display", "video_format" ]
   MonitorDisplayDisplayColors:
-    literal: ''
+    sources:
+      - [ "internal", "display", "color_support" ]
   MonitorDisplayViewingAngle:
-    literal: ''
+    sources:
+      - [ "internal", "display", "horizontal_viewing_angle" ]
+      - [ "internal", "display", "horizontal_viewing_angle" ]
+    join: 'º (H) / '
+    suffix: 'º (V)'
   MonitorDisplayMaximumResolution:
-    literal: ''
+    sources:
+      - [ "internal", "display", "resolution" ]
   MonitorDisplayHorizontalRefreshRate:
-    literal: ''
+    sources:
+      - [ "internal", "display", "refresh_rate_hz" ]
+    suffix: " Hz"
   MonitorDisplayVerticalRefreshRate:
     literal: ''
   MonitorConnectivityConnectors:
-    literal: ''
+    sources:
+      - [ "internal", "io", "interfaces" ]
+    filter_include_keywords: [ "d-sub", "dsub", "bnc", "hdmi", "dvi", "usb", "displayport", "display port", "mhl", "s-video" ]
   MonitorPowerComplieswith:
-    literal: ''
+    sources:
+      - [ "internal", "certification", "energy_star_version" ]
+    prefix: "Energy Star "
   MonitorPowerPowerSupply:
-    literal: ''
+    sources:
+      - [ "internal", "power", "voltage_required" ]
+      - [ "internal", "certification", "frequency_hz" ]
+    join: ', '
   MonitorPowerPowerConsumption:
     literal: ''
   MonitorConvenienceUserControls:
@@ -125,83 +170,125 @@ fields:
   MonitorConvenienceRegulatoryApprovals:
     literal: ''
   MonitorDimensionsDimensions:
-    literal: ''
+    sources:
+      - [ "internal", "physical", "dimensions", "item", "width_in" ]
+      - [ "internal", "physical", "dimensions", "item", "length_in" ]
+      - [ "internal", "physical", "dimensions", "item", "height_in" ]
+    join: ' x '
   MonitorDimensionsWeight:
-    literal: ''
+    sources:
+      - [ "internal", "physical", "weight", "item_lb" ]
+    transform: ne_check_item_weight_scale
   MonitorDimensionsTemperatureRange:
     literal: ''
   MonitorDimensionsHumidityRange:
-    literal: ''
+    source: [ "internal", "technical", "operating_humidity" ]
   MonitorConvenienceFeatures:
-    literal: ''
+    sources:
+      - [ "internal", "audio", "output_features" ]
+      - [ "internal", "io", "usb_c_features" ]
+      - [ "internal", "io", "input_device_features" ]
+      - [ "internal", "network", "features" ]
+    join: ", "
   MonitorDisplayResolution:
-    literal: ''
+    sources:
+      - [ "internal", "display", "resolution" ]
   MonitorConvenienceBuilt-inSpeakers:
-    literal: ''
+    sources:
+      - [ "internal", "audio", "speaker" ]
+    transform: spec_yes_no
   MonitorConnectivityInputVideoCompatibility:
     literal: ''
   MonitorDisplayAspectRatio:
-    literal: ''
+    sources:
+      - [ "internal", "display", "aspect_ratio" ]
   MonitorModelBrand:
-    literal: ''
+    from_submission: manufacturer
+    transform: get_brand_label
   MonitorDisplayD-Sub:
-    literal: ''
+    sources:
+      - [ "internal", "io", "interface" ]
+    filter_include_keywords: [ "dsub", "d-sub" ]
   MonitorDisplayDVI:
-    literal: ''
+    sources:
+      - [ "internal", "io", "interface" ]
+    filter_include_keywords: [ "dvi" ]
   MonitorDisplayVideo:
     literal: ''
   CommonPackageContents:
-    literal: ''
+    sources:
+      - path: included_items
+        join: ", "
+    template: "{mpn};{value}"
   MonitorDisplayHDMI:
-    literal: ''
+    sources:
+      - [ "internal", "io", "interface" ]
+    filter_include_keywords: [ "hdmi" ]
   MonitorConvenienceBuilt-inTVTuner:
-    literal: ''
+    sources:
+      - [ "internal", "technical", "tv_tuner_presence" ]
+    transform: spec_yes_no
+    allowed: [ "", "Yes", "No" ]
   MonitorConvenienceStandAdjustments:
-    literal: ''
+    transform: ne_monitor_convenience_stand_adjustments
   MonitorDisplayWidescreen:
-    literal: ''
+    source: [ "internal", "display", "widescreen" ]
+    transform: spec_yes_no
   LCDDisplayScreenSize:
-    literal: ''
+    sources:
+      - [ "internal", "display", "size_in" ]
+    transform: ne_check_screensize
   LCDDisplayMonitorPixelDensity:
-    literal: ''
+    source: [ "internal", "display", "pixel_pitch_mm" ]
+    suffix: ' mm'
   LCDDisplayContrastRatio:
-    literal: ''
+    source: [ "internal", "display", "static_contrast_ratio" ]
   LCDDisplayResponseTime:
-    literal: ''
+    source: [ "internal", "display", "response_time" ]
   LCDDisplayBrightness:
-    literal: ''
+    source: [ "internal", "display", "brightness_cdm2" ]
+    suffix: ' cd/m2'
   MonitorDisplayUSB20:
-    literal: ''
+    source: [ "internal", "io", "interfaces" ]
+    filter_include_keywords: [ "usb2.0", "usb 2.0" ]
   MonitorModelSeries:
     literal: ''
   ManufacturerWarrantyParts:
-    literal: ''
+    literal: '1 Year'
   ManufacturerWarrantyLabor:
-    literal: ''
+    literal: '1 Year'
   CommonWindowsVista:
     literal: ''
   MonitorConvenienceHDCPSupport:
-    literal: ''
+    transform: check_hdcp
   LCDConsumerAlert:
     literal: ''
   MonitorDisplayDisplayPort:
-    literal: ''
+    source: [ "internal", "io", "ports" ]
+    filter_include_keywords: [ "displayport" ]
   MonitorConvenienceBuilt-inWebcam:
-    literal: ''
+    sources:
+      - [ "internal", "camera", "webcam" ]
+    transform: spec_yes_no
   MonitorDisplayGlareScreen:
-    literal: ''
+    transform: check_anti_glare
   MonitorDisplayLEDBacklight:
     literal: ''
   MonGlobal3DReady:
     literal: ''
   MonGlobalRefreshRate:
-    literal: ''
+    sources:
+      - [ "internal", "display", "refresh_rate_hz" ]
+    suffix: " Hz"
   MonGlobal3DGlassesIncluded:
     literal: ''
   MonitorConvenienceVESACompatibility-Mountable:
-    literal: ''
+    sources:
+      - [ "internal", "technical", "vesa_mount_size" ]
+    list_join: ","
   MonitorDisplayUSB30:
-    literal: ''
+    source: [ "internal", "io", "interfaces" ]
+    filter_include_keywords: [ "usb3.0", "usb 3.0" ]
   MonitorProcessor:
     literal: ''
   MonitorMemory:
@@ -215,35 +302,48 @@ fields:
   MonitorDisplay3DFeatures:
     literal: ''
   MonitorDisplayCurvedSurfaceScreen:
-    literal: ''
+    transform: ne_curved_surface_screen
   MonitorDispalayFrame:
     literal: ''
   GlobalElectricalOutletPlugType:
     literal: ''
   MonitorDisplayAdaptiveSyncTechnology:
     literal: ''
+    # Pending
   MonitorDisplayCurvatureRadius:
     literal: ''
+    #Pending
   MonitorModelPartNumber:
-    literal: ''
+    from: identity.mpn
   MonitorConnectivityThunderbolt2:
     literal: ''
   MonitorConnectivityThunderbolt3:
     literal: ''
   MonitorDisplayVESACertifiedDisplayHDR:
-    literal: ''
+    sources:
+      - [ "internal", "technical", "hdr_certification" ]
   MonitorDisplayHDRStandard:
     literal: ''
+    #Pending
+    allowed: ["", "HDR10", "HDR10+"]
   MonitorDisplayColorGamut:
     literal: ''
+    #pending
   MonitorDisplayHeadphone:
-    literal: ''
+    sources:
+      - [ "internal", "io", "interface" ]
+    filter_include_keywords: [ "usb" ]
   MultiValueMNTRVideoPorts:
-    literal: ''
+    sources:
+      - [ "internal", "io", "interfaces" ]
+    filter_include_keywords: [ "d-sub", "dsub", "bnc", "hdmi", "dvi", "usb", "displayport", "display port", "mhl", "s-video" ]
   MultiValueMNTRUSBPorts:
-    literal: ''
+    sources:
+      - [ "internal", "io", "interface" ]
+    filter_include_keywords: [ "usb" ]
   MonitorModelCosmeticCondition:
     literal: ''
+    allowed: ["", "Grade A", "Grade B", "Grade C"]
   UniversalContainsEmbeddedBattery:
     literal: ''
   SimulatorsSimulatorType:

@@ -65,8 +65,8 @@
     "vertical_viewing_angle": "",
     "pixel_density_ppl": "",
     "privacy_technology": "",
-    "widescreen": "",
-    "touchscreen": ""
+    "widescreen": false,
+    "touchscreen": false
   },
   "audio": {
     "input_type": "",
@@ -75,7 +75,7 @@
     "output_features": ""
   },
   "camera": {
-    "webcam": "",
+    "webcam": false,
     "front_camera_resolution": [],
     "front_camera_video_resolution": [],
     "image_sensor_type": "",
@@ -90,7 +90,7 @@
     "ports": [],
     "flash_memory": [],
     "input_device_features": "",
-    "keyboard_backlight": ""
+    "keyboard_backlight": false
   },
   "power": {
     "battery": {
@@ -133,10 +133,11 @@
   },
   "certification": {
     "compliant_standards": [],
-    "energy_star_certified": "",
-    "epeat_compliant": "",
+    "energy_star_certified": false,
+    "energy_star_version": "",
+    "epeat_compliant": false,
     "epeat_level": "",
-    "tco_certified": ""
+    "tco_certified": false
   },
   "included_items": [],
   "physical": {

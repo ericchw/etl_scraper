@@ -183,3 +183,4 @@ cython_debug/
 #
 /output/
 /templates/
+/products/
