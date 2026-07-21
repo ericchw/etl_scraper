@@ -327,7 +327,7 @@ def bb_title(value: Any, *, context: dict, **_kwargs) -> str:
     base = f"{title} ({mpn})" if mpn else title
     label = _condition_label(context.get("condition"))
     if label:
-        return f"{label} – {base}"
+        return f"{label} - {base}" #–
     return base
 
 
@@ -396,7 +396,7 @@ def export_features(value: Any, *, context: dict, **_kwargs) -> str:
         "Refurbished Good",
         "Refurbished Fair",
     ):
-        prefix = f"{label}: UNUSED, 10/10 condition product w/ full warranty still valid"
+        prefix = f"{label}: UNUSED, 10/10 condition product w/ valid manufacturer warranty"
         return f"{prefix}\n{features}" if features else prefix
 
     return features or ""

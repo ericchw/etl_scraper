@@ -28,6 +28,44 @@ def spec_value(specs: dict | None, group: str, key: str) -> str:
 
     return ""
 
+# def spec_list(
+#     specs: dict | None,
+#     group: str,
+#     key: str,
+#     *,
+#     separators: str = r"[,;/|\r\n]"
+# ) -> list[str]:
+#     value = spec_value(specs, group, key)
+#
+#     if not value:
+#         return []
+#
+#     pattern = re.compile(separators)
+#
+#     result = []
+#     buf = []
+#     depth = 0
+#
+#     for ch in value:
+#         if ch == "(":
+#             depth += 1
+#         elif ch == ")":
+#             depth = max(0, depth - 1)
+#
+#         if depth == 0 and pattern.match(ch):
+#             item = "".join(buf).strip()
+#             if item:
+#                 result.append(item)
+#             buf = []
+#         else:
+#             buf.append(ch)
+#
+#     last = "".join(buf).strip()
+#     if last:
+#         result.append(last)
+#
+#     return [item for item in result if item]
+
 def spec_list(
     specs: dict | None,
     group: str,
@@ -40,25 +78,50 @@ def spec_list(
     if not value:
         return []
 
-    pattern = re.compile(separators)
+    # New: support literal multi-character separators
+    if len(separators) > 1 and not separators.startswith("["):
+        splitters = [separators]
+    else:
+        splitters = None
 
     result = []
     buf = []
     depth = 0
+    i = 0
 
-    for ch in value:
+    while i < len(value):
+        ch = value[i]
+
         if ch == "(":
             depth += 1
         elif ch == ")":
             depth = max(0, depth - 1)
 
-        if depth == 0 and pattern.match(ch):
-            item = "".join(buf).strip()
-            if item:
-                result.append(item)
-            buf = []
-        else:
+        matched = False
+
+        if depth == 0:
+            if splitters:
+                for sep in splitters:
+                    if value.startswith(sep, i):
+                        item = "".join(buf).strip()
+                        if item:
+                            result.append(item)
+                        buf = []
+                        i += len(sep)
+                        matched = True
+                        break
+            else:
+                pattern = re.compile(separators)
+                if pattern.match(ch):
+                    item = "".join(buf).strip()
+                    if item:
+                        result.append(item)
+                    buf = []
+                    matched = True
+
+        if not matched:
             buf.append(ch)
+            i += 1
 
     last = "".join(buf).strip()
     if last:
@@ -186,9 +249,37 @@ def match_any(text: str, target_str_list: list[str]) -> bool:
     print(text, any(t.lower() in text for t in target_str_list))
     return any(t.lower() in text for t in target_str_list)
 
+def to_int_number(text: str) -> int | None:
+    text = text.strip().lower()
+
+    scale_map = {
+        "hundred": 100,
+        "thousand": 1_000,
+        "million": 1_000_000,
+        "billion": 1_000_000_000,
+        "k": 1_000,
+        "m": 1_000_000,
+        "b": 1_000_000_000,
+    }
+
+    # extract number + scale anywhere in the string (ignore trailing words like "colors")
+    match = re.search(r"(\d+(?:\.\d+)?)\s*(hundred|thousand|million|billion|k|m|b)?", text)
+    if not match:
+        return None
+
+    num = float(match.group(1))
+    scale = match.group(2)
+
+    if scale:
+        num *= scale_map[scale]
+
+    return int(num)
+
 if __name__ == "__main__":
     text = "Height, Pivot (rotation), Swivel, Tilt"
     targets = ["pivot", "swivel"]
     print(match_any(text, targets))
+
+    print(to_int_number("1.07 Billion Colors (10-Bit)"))
 
     pass

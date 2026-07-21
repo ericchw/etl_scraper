@@ -1,0 +1,361 @@
+marketplace: bestbuy
+name: CAT_1003
+headers_file: ../../../templates/bestbuy/CAT_1003-sample.csv
+fields:
+  BBYCat:
+    from_category:
+      marketplace: bestbuy
+  shop_sku:
+    from_submission: sku
+  _Title_BB_Category_Root_EN:
+    transform: bb_title
+    pipeline:
+      - replace:
+          " - ": ", "
+  _Short_Description_BB_Category_Root_EN:
+    transform: export_features_bullets
+  _Brand_Name_Category_Root_EN:
+    from: identity.brand
+  _Primary_UPC_Category_Root_EN:
+    from_submission: upc
+  _Model_Number_Category_Root_EN:
+    from: identity.model
+  _Manufacturers_Part_Number_Category_Root_EN:
+    from: identity.mpn
+  _Long_Description_BB_Category_Root_EN:
+    transform: bb_long_description
+    design_heading: "Feature & Design:"
+    spec_heading: "Specifications:"
+  _MP_Source_Image_URL_01_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 1
+  _MP_Source_Image_URL_02_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 2
+  _MP_Source_Image_URL_03_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 3
+  _MP_Source_Image_URL_04_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 4
+  _MP_Source_Image_URL_05_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 5
+  _MP_Source_Image_URL_06_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 6
+  _MP_Source_Image_URL_07_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 7
+  _MP_Source_Image_URL_08_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 8
+  _MP_Source_Image_URL_09_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 9
+  _MP_Source_Image_URL_10_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 10
+  _Web_Hierarchy_Location_Category_Root_EN:
+    literal: ""
+  _French_Compliant_Category_Root_EN:
+    literal: ""
+  _ESRB_Category_Root_EN:
+    literal: ""
+    allowed: ["", "C", "R", "P", "O", "M", "A", "E", "S", "T"]
+  _Software_Platform_Category_Root_EN:
+    sources:
+      - path: software.platform
+      - group: Product Information
+        key: Platform Supported
+      - group: Software
+        key: Operating System Platform
+    join: " "
+    pipeline:
+      - normalize_whitespace
+      - uppercase
+      - keyword_map:
+          WINDOWS: [WINDOWS, WIN, MICROSOFT WINDOWS]
+          ANDROID: [ANDROID, GOOGLE ANDROID]
+          MAC: [MAC, MACOS, OSX]
+    allowed: ["", "WINDOWS", "ANDROID", "MAC"]
+  _Energy_Star_Indicator_Category_Root_EN:
+    sources:
+      - ["internal", "certification", "energy_star_certified"]
+    transform: spec_yes_no
+    allowed: ["", "Y", "N"]
+  Variant_Group_Code:
+    literal: ""
+  _Pim_Code_Category_Root_EN:
+    literal: ""
+  _Warranty_And_Repair_Disclosure_URL_Category_Root_EN:
+    literal: ""
+#    transform: warranty_url_by_brand
+  _Warranty_And_Repair_Disclosure_URL_FR_Category_Root_EN:
+    literal: ""
+  _ProductCondition_20257570_CAT_1003_EN:
+    transform: bb_product_condition
+    allowed: [ "Brand New", "Open Box", "Refurbished Excellent", "Refurbished Good", "Refurbished Fair" ]
+  _VRReady_1817678_CAT_1003_EN:
+    literal: ""
+  _IntelOptaneMemory_12826800_CAT_1003_EN:
+    literal: ""
+  _CardReader_15934_CAT_1003_EN:
+    sources:
+      - [ "internal", "io", "flash_memory" ]
+    join: ", "
+  _CoolingSystem_6566785_CAT_1003_EN:
+    literal: ""
+    allowed: ["", "Immersion Cooling", "Water Cooling", "No Cooling System", "Air Cooling", "Liquid Cooling"]
+  _IOPortsFront_6567238_CAT_1003_EN:
+    sources:
+      - [ "internal", "io", "ports" ]
+  _IOPortsBack_6567257_CAT_1003_EN:
+    sources:
+      - [ "internal", "io", "ports" ]
+  _ExpansionSlots_6416760_CAT_1003_EN:
+    sources:
+      - [ "internal", "memory", "expansion_slots" ]
+    transform: only_digits
+  _TotalHardDriveCapacity_3888_CAT_1003_EN:
+    sources:
+      - [ "internal", "storage", "capacity_gb" ]
+    transform: hdd_capacity_gb
+  _DedicatedGraphicCard_15914_CAT_1003_EN:
+    allowed: ["", "Yes", "No"]
+  _NativeScreenResolution_15917_CAT_1003_EN:
+    sources:
+      - [ "internal", "display", "resolution" ]
+  _IntegratedBluetooth_15246_CAT_1003_EN:
+    ources:
+      - [ "internal", "network", "bluetooth" ]
+  _IntegratedWiFi_15245_CAT_1003_EN:
+    sources:
+      - [ "internal", "network", "wifi" ]
+    transform: extract_80211
+  _OperatingSystemLanguage_15257_CAT_1003_EN:
+    literal: ""
+  _OtherInputorOutputPorts_24708_CAT_1003_EN:
+    sources:
+      - [ "internal", "io", "ports" ]
+    filter_exclude_keywords:
+      - hdmi
+      - displayport
+      - display port
+      - dvi
+      - vga
+      - usb
+      - lan
+      - rj-45
+      - rj45
+      - ethernet
+    join: ", "
+  _PowerSupply_15946_CAT_1003_EN:
+    sources:
+      - [ "internal", "power", "power_watt" ]
+    transform: only_digits
+  _AudioOutput_15961_CAT_1003_EN:
+    sources:
+      - [ "internal", "audio", "output_types" ]
+    list_join: ";"
+  _ProcessorType_3885_CAT_1003_EN:
+    sources:
+      - [ "internal", "processor", "brand" ]
+      - [ "internal", "processor", "model" ]
+    join: " "
+  _ProcessorSpeed_3886_CAT_1003_EN:
+    sources:
+      - [ "internal", "processor", "clock_ghz" ]
+  _LoadedSoftware_3906_CAT_1003_EN:
+    sources:
+      - [ "internal", "software", "types" ]
+    join: ", "
+  _ScreenSizeType_6401_CAT_1003_EN:
+    sources:
+      - [ "internal", "display", "size_in" ]
+      - [ "internal", "display", "panel" ]
+      - [ "internal", "display", "display_type" ]
+    join: " "
+  _OpticalDrive_6602_CAT_1003_EN:
+    literal: ""
+  _ProcessorCache_3897_CAT_1003_EN:
+    sources:
+      - [ "internal", "processor", "cache_mb" ]
+  _TouchscreenDisplay_23335_CAT_1003_EN:
+    sources:
+      - [ "internal", "display", "touchscreen" ]
+    transform: spec_yes_no
+    allowed: [ "", "Yes", "No" ]
+  _Webcam_15213_CAT_1003_EN:
+    sources:
+      - [ "internal", "camera", "webcam" ]
+  _Weight_5302_CAT_1003_EN:
+    sources:
+      - [ "internal", "physical", "weight", "item_lb" ]
+    transform: weight_lb_to_kg
+  _WhatsintheBox_4667_CAT_1003_EN:
+    sources:
+      - [ "internal", "included_items" ]
+    list_join: ";"
+  _Width_6823_CAT_1003_EN:
+    sources:
+      - [ "internal", "physical", "dimensions", "item", "width_in" ]
+    transform: length_in_to_cm
+  _CollectionTheme_35250_CAT_1003_EN:
+    literal: ""
+  _PreloadedOperatingSystem_6603_CAT_1003_EN:
+    sources:
+      - [ "internal", "software", "os" ]
+  _SystemBus_6604_CAT_1003_EN:
+    sources:
+      - path: [ "internal", "processor", "clock_ghz" ]
+        suffix: " GHz"
+      - path: [ "internal", "memory", "speed_mhz" ]
+    join: ", "
+  _EthernetPort_6605_CAT_1003_EN:
+    sources:
+      - [ "internal", "network", "ethernet_speed" ]
+  _BuiltinMonitor_25548_CAT_1003_EN:
+    literal: ""
+    allowed: ["", "Yes", "No"]
+  _Colour_5105_CAT_1003_EN:
+    sources:
+      - [ "internal", "physical", "color" ]
+  _Depth_14236_CAT_1003_EN:
+    sources:
+      - [ "internal", "physical", "dimensions", "item", "length_in" ]
+    transform: length_in_to_cm
+  _HardDriveSpeedRevolutionsPerMinute_23343_CAT_1003_EN:
+    literal: ""
+  _HDCPCompliant_15219_CAT_1003_EN:
+    literal: ""
+    allowed: [ "", "No", "Yes" ]
+  _Height_15404_CAT_1003_EN:
+    sources:
+      - [ "internal", "physical", "dimensions", "item", "height_in" ]
+    transform: length_in_to_cm
+  _GraphicsCard_3899_CAT_1003_EN:
+    sources:
+      - [ "internal", "graphics", "processor", "model" ]
+  _SoundCard_3900_CAT_1003_EN:
+    literal: ""
+  _USBPorts_3902_CAT_1003_EN:
+    sources:
+      - [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - usb
+  _HardDiskDriveCapacity_4085566_CAT_1003_EN:
+    sources:
+      - [ "internal", "storage", "capacity_gb" ]
+    transform: hdd_capacity_gb
+  _SolidStateDriveCapacity_4085597_CAT_1003_EN:
+    sources:
+      - [ "internal", "storage", "capacity_gb" ]
+    transform: ssd_capacity_gb
+  _RAMSize_9685909_CAT_1003_EN:
+    sources:
+      - [ "internal", "memory", "capacity_gb" ]
+    # transform: only_number
+    transform: only_digits
+  _DesktopType_11077346_CAT_1003_EN:
+    literal: ""
+    allowed: ["", "All-in-One PC", "Everyday PC Desktop", "Apple Mac Mini", "Barebone Desktop", "Apple iMac", "Mini PC Desktop", "Server", "Gaming Desktop", "Chromebox"]
+  _PreinstalledVoiceAssistant_19775045_CAT_1003_EN:
+    literal: ""
+  _RAMType_3887_CAT_1003_EN:
+    sources:
+      - path: [ "internal", "memory", "configuration_features" ]
+      - path: [ "internal", "memory", "rated_speed_mhz" ]
+        suffix: " MHz"
+      - path: [ "internal", "memory", "type" ]
+        join: "/"
+    join: " "
+  _ProcessorGenerationSeries_18968194_CAT_1003_EN:
+    sources:
+      - [ "internal", "processor", "generation" ]
+  _ENERGYSTARcertified_22372173_CAT_1003_EN:
+    sources:
+      - [ "internal", "certification", "energy_star_certified" ]
+  _ServerFormFactor_26354329_CAT_1003_EN:
+    literal: ""
+    allowed: [ "", "Workstation", "GPU", "Rack", "Tower", "Edge"]
+  _NumberofProcessors_26354339_CAT_1003_EN:
+    literal: ""
+    allowed: [ "", "Quad Processor", "Dual Processor", "Single Processor" ]
+  _RAIDLevel_26354341_CAT_1003_EN:
+    literal: ""
+    allowed: [ "", "RAID 0", "RAID 1", "Support Multiple RAID Levels", "RAID 10", "RAID 5" ]
+  _ServerRackHeight_26354347_CAT_1003_EN:
+    literal: ""
+    allowed: [ "", "3U", "2U", "4U+", "1U"]
+  _WiFiStandards_26475847_CAT_1003_EN:
+    sources:
+      - [ "internal", "network", "wifi" ]
+    transform: bb_check_wifi_standard
+  _RGBLighting_18622455_CAT_1003_EN:
+    literal: ""
+  _MaximumSupportedRAM_26500977_CAT_1003_EN:
+    sources:
+      - [ "internal", "memory", "max_capacity_gb" ]
+    suffix: " GB"
+  _GraphicsMemoryVRAM_26514362_CAT_1003_EN:
+    sources:
+      - [ "internal", "type", "vram_gb" ]
+    suffix: " GB"
+  _DisplayPort_25929468_CAT_1003_EN:
+    literal: ""
+    transform: only_digits
+  _HDMIOutput_15221_CAT_1003_EN:
+    literal: ""
+    transform: only_digits
+  sku:
+    from_submission: sku
+  product-id:
+    from_submission: sku
+  product-id-type:
+    literal: "SHOP_SKU"
+  description:internal-description:
+    literal: ""
+  price:
+    from_submission: marketplaces.bestbuy.list_price
+    type: decimal
+    decimals: 2
+    default: FILL
+  price-additional-info:
+    literal: ""
+  quantity:
+    literal: 0
+    type: integer
+  min-quantity-alert:
+    literal: ""
+  state:
+    literal: "11"
+  available-start-date:
+    literal: ""
+  available-end-date:
+    literal: ""
+  logistic-class:
+    from_submission: marketplaces.bestbuy.package_size
+  discount-price:
+    from_submission: price
+    type: decimal
+    decimals: 2
+    default: FILL
+  discount-start-date:
+    from_submission: marketplaces.bestbuy.discount_start_date
+    transform: start_of_day_pst
+  discount-end-date:
+    from_submission: marketplaces.bestbuy.discount_end_date
+    transform: end_of_day_pst
+  leadtime-to-ship:
+    literal: ""
+  update-delete:
+    literal: "UPDATE"
+  manufacturer-warranty:
+    literal: 365
+    type: integer
+  pim:
+    literal: ""
+
+
+

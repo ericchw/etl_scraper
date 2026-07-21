@@ -144,7 +144,17 @@ fields:
   _OtherInputorOutputPorts_24708_CAT_1002_EN:
     sources:
       - ["internal", "io", "ports"]
-    filter_exclude_keywords: [ "hdmi", "displayport", "display port", 'dvi', 'vga', 'usb', 'lan', 'rj-45', 'rj45', 'ethernet' ]
+    filter_exclude_keywords:
+      - hdmi
+      - displayport
+      - display port
+      - dvi
+      - vga
+      - usb
+      - lan
+      - rj-45
+      - rj45
+      - ethernet
     join: ", "
   _Platform_27709_CAT_1002_EN:
     literal: "Business"
@@ -232,7 +242,9 @@ fields:
   _DisplayPorts_6416723_CAT_1002_EN:
     sources:
       - ["internal", "io", "ports"]
-    filter_include_keywords: ["displayport", "display port"]
+    filter_include_keywords:
+      - displayport
+      - display port
     join: ", "
   _ExpansionSlots_6416760_CAT_1002_EN:
     sources:
@@ -265,7 +277,8 @@ fields:
   _USBPorts_3902_CAT_1002_EN:
     sources:
       - ["internal", "io", "ports"]
-    filter_include_keywords: ["usb"]
+    filter_include_keywords:
+      - usb
     join: ", "
   _CardReader_15231_CAT_1002_EN:
     sources:
@@ -356,6 +369,7 @@ fields:
   _MaximumSupportedRAM_26500977_CAT_1002_EN:
     sources:
       - ["internal", "memory", "max_capacity_gb"]
+    suffix: " GB"
   _WiFiStandards_26475847_CAT_1002_EN:
     sources:
       - ["internal", "network", "wifi"]
@@ -413,10 +427,12 @@ fields:
     default: FILL
   discount-start-date:
     from_submission: marketplaces.bestbuy.discount_start_date
-    suffix: "T00:00:00.000-07:00"
+    transform: start_of_day_pst
+#    suffix: "T00:00:00.000-07:00"
   discount-end-date:
     from_submission: marketplaces.bestbuy.discount_end_date
-    suffix: "T23:59:59.999-07:00"
+    transform: end_of_day_pst
+#    suffix: "T23:59:59.999-07:00"
   update-delete:
     literal: "UPDATE"
   manufacturer-warranty:

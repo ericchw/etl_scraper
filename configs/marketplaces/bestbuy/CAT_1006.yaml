@@ -308,10 +308,12 @@ fields:
     default: FILL
   discount-start-date:
     from_submission: marketplaces.bestbuy.discount_start_date
-    suffix: "T00:00:00.000-07:00"
+    transform: start_of_day_pst
+#    suffix: "T00:00:00.000-07:00"
   discount-end-date:
     from_submission: marketplaces.bestbuy.discount_end_date
-    suffix: "T23:59:59.999-07:00"
+    transform: end_of_day_pst
+#    suffix: "T23:59:59.999-07:00"
   update-delete:
     literal: "UPDATE"
   manufacturer-warranty:

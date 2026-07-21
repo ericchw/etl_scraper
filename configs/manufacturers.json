@@ -46,5 +46,11 @@
     "search_url": "https://ca.msi.com/search/{mpn}",
     "redirect": false,
     "enabled": false
+  },
+  "arctic": {
+    "label": "Arctic",
+    "google_search": true,
+    "google_cite": "https://www.arctic.de",
+    "enabled": true
   }
 }

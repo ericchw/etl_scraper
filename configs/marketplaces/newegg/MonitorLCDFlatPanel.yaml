@@ -153,7 +153,17 @@ fields:
   MonitorConnectivityConnectors:
     sources:
       - [ "internal", "io", "interfaces" ]
-    filter_include_keywords: [ "d-sub", "dsub", "bnc", "hdmi", "dvi", "usb", "displayport", "display port", "mhl", "s-video" ]
+    filter_include_keywords:
+      - d-sub
+      - dsub
+      - bnc
+      - hdmi
+      - dvi
+      - usb
+      - displayport
+      - display port
+      - mhl
+      - s-video
   MonitorPowerComplieswith:
     sources:
       - [ "internal", "certification", "energy_star_version" ]
@@ -207,12 +217,15 @@ fields:
     transform: get_brand_label
   MonitorDisplayD-Sub:
     sources:
-      - [ "internal", "io", "interface" ]
-    filter_include_keywords: [ "dsub", "d-sub" ]
+      - [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - dsub
+      - d-sub
   MonitorDisplayDVI:
     sources:
-      - [ "internal", "io", "interface" ]
-    filter_include_keywords: [ "dvi" ]
+      - [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - dvi
   MonitorDisplayVideo:
     literal: ''
   CommonPackageContents:
@@ -222,8 +235,9 @@ fields:
     template: "{mpn};{value}"
   MonitorDisplayHDMI:
     sources:
-      - [ "internal", "io", "interface" ]
-    filter_include_keywords: [ "hdmi" ]
+      - [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - hdmi
   MonitorConvenienceBuilt-inTVTuner:
     sources:
       - [ "internal", "technical", "tv_tuner_presence" ]
@@ -250,7 +264,9 @@ fields:
     suffix: ' cd/m2'
   MonitorDisplayUSB20:
     source: [ "internal", "io", "interfaces" ]
-    filter_include_keywords: [ "usb2.0", "usb 2.0" ]
+    filter_include_keywords:
+      - usb2.0
+      - usb 2.0
   MonitorModelSeries:
     literal: ''
   ManufacturerWarrantyParts:
@@ -265,7 +281,9 @@ fields:
     literal: ''
   MonitorDisplayDisplayPort:
     source: [ "internal", "io", "ports" ]
-    filter_include_keywords: [ "displayport" ]
+    filter_include_keywords:
+      - displayport
+      - display port
   MonitorConvenienceBuilt-inWebcam:
     sources:
       - [ "internal", "camera", "webcam" ]
@@ -288,7 +306,9 @@ fields:
     list_join: ","
   MonitorDisplayUSB30:
     source: [ "internal", "io", "interfaces" ]
-    filter_include_keywords: [ "usb3.0", "usb 3.0" ]
+    filter_include_keywords:
+      - usb3.0
+      - usb 3.0
   MonitorProcessor:
     literal: ''
   MonitorMemory:
@@ -331,16 +351,27 @@ fields:
     #pending
   MonitorDisplayHeadphone:
     sources:
-      - [ "internal", "io", "interface" ]
-    filter_include_keywords: [ "usb" ]
+      - [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - usb
   MultiValueMNTRVideoPorts:
     sources:
-      - [ "internal", "io", "interfaces" ]
-    filter_include_keywords: [ "d-sub", "dsub", "bnc", "hdmi", "dvi", "usb", "displayport", "display port", "mhl", "s-video" ]
+      - [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - d-sub
+      - dsub
+      - bnc
+      - hdmi
+      - dvi
+      - displayport
+      - display port
+      - mhl
+      - s-video
   MultiValueMNTRUSBPorts:
     sources:
-      - [ "internal", "io", "interface" ]
-    filter_include_keywords: [ "usb" ]
+      - [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - usb
   MonitorModelCosmeticCondition:
     literal: ''
     allowed: ["", "Grade A", "Grade B", "Grade C"]

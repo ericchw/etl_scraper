@@ -260,11 +260,26 @@ fields:
     literal: ''
   NBVideoPort:
     source: ["internal", "io", "ports"]
-    filter_include_keywords: ["hdmi", "displayport", "display port", "dvi", "vga"]
+    filter_include_keywords:
+      - hdmi
+      - displayport
+      - display port
+      - dvi
+      - vga
     join: ", "
   NBOtherport:
     source: ["internal", "io", "ports"]
-    filter_exclude_keywords: [ "hdmi", "displayport", "display port", "dvi", "vga", "usb", "lan", "rj-45", "rj45", "ethernet" ]
+    filter_exclude_keywords:
+      - hdmi
+      - displayport
+      - display port
+      - dvi
+      - vga
+      - usb
+      - lan
+      - rj-45
+      - rj45
+      - ethernet
     join: ", "
   NBBOtherFeatures:
     transform: join_specs
@@ -348,7 +363,8 @@ fields:
     allowed: ["", "Wi-Fi 7", "Wi-Fi 6E", "Wi-Fi 6", "Wi-Fi 5", "Wi-Fi 4 and earlier generation"]
   NBThunderbolt:
     source: [ "internal", "io", "ports" ]
-    filter_include_keywords: [ "thunderbolt" ]
+    filter_include_keywords:
+      - thunderbolt
     join: ", "
   NBEthernet:
     source: [ "internal", "network", "ethernet_speed" ]

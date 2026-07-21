@@ -108,7 +108,7 @@ BH_GET_DESIGN_JS = """
 }
 """
 
-BH_GET_SPECS_JS = """
+BH_GET_SPECS_JS_OLD = """
 () => {
     let output = 'Specifications:\\n';
     const specContent = document.querySelector('div[class^="specsContent_"]');
@@ -134,6 +134,65 @@ BH_GET_SPECS_JS = """
     });
     return output.trim();
 }
+"""
+
+BH_GET_SPECS_JS = """
+() => {
+                let output = 'Specifications:\n';
+                const specContent = document.querySelector('div[class^="specsContent_"]');
+                if (!specContent) return '⚠️ No specs found';
+
+                // Specification groups
+                const groups = specContent.querySelectorAll('div[class^="group_"]');
+
+                groups.forEach(group => {
+                    // group title
+                    let title = '';
+                    const nameEl = group.querySelector('div[class^="name_"]');
+                    if (nameEl) {
+                        title = nameEl.textContent.trim().toUpperCase();
+                    } else {
+                        const h2El = specContent.querySelector('div[class^="title_"] h2');
+                        if (h2El) title = h2El.textContent.trim();
+                    }
+                    if (!title) title = 'GENERAL';
+
+                    output += `　${title}\n`;
+
+                    // spec rows
+                    group.querySelectorAll('tr[data-selenium="specsItemGroupTableRow"]').forEach(row => {
+                        const key = row.querySelector('td[class^="label_"]')?.textContent?.trim();
+                        const val = row.querySelector('td[class^="value_"]')
+                        ?.innerText
+                        ?.trim()
+                        .replace(/\s*\n\s*/g, ', ');
+
+                        if (key && val) {
+                            output += `　　${key}: ${val}\n`;
+                        }
+                    });
+
+                    output += '\n';
+                });
+
+                // Items Included section
+                const includesTitle = document.querySelector('[data-selenium="includesInTheBoxTitle"]');
+                const includesItems = document.querySelectorAll('[data-selenium="includesInTheBoxItem"]');
+
+                if (includesTitle && includesItems.length) {
+                    output += `　${includesTitle.textContent.trim().toUpperCase()}\n`;
+
+                    const items = [...includesItems]
+                    .map(item => item.querySelector('span')?.textContent?.trim() || item.textContent.trim())
+                    .filter(Boolean)
+                    .join(', ');
+
+                    output += `　　${items}\n\n`;
+                }
+
+                return output.trim();
+            }
+        }
 """
 
 BH_GET_PACKAGING_JS = """

@@ -1,0 +1,445 @@
+marketplace: newegg
+name: AllinOnePCs
+headers_file: ../../../templates/newegg/ComputerHardware_BatchItemCreation_AllinOnePCs.csv
+csv_preamble_row:
+- Version=1.01
+- SubCategoryID=3271
+- ''
+- TemplateDate=2026-06-24
+fields:
+  'Seller Part #':
+    from_submission: sku
+  Manufacturer:
+    from_submission: manufacturer
+    transform: get_brand_label
+  'Manufacturer Parts #':
+    from: identity.mpn
+  UPC / ISBN:
+    from_submission: upc
+  Related Seller Part#:
+    literal: ''
+  Website Short Title:
+    pipeline:
+      - transform: ne_title
+    #      - replace: #replace in function
+    #          " - ": ", "
+  Bullet Description:
+    transform: export_features
+  Product Description:
+    transform: ne_long_description
+    design_heading: "Feature & Design:"
+    spec_heading: "Specifications:"
+  Item Length:
+    sources:
+      - [ "internal", "physical", "dimensions", "package", "length_in" ]
+      - [ "internal", "physical", "dimensions", "item", "length_in" ]
+  Item Width:
+    sources:
+      - [ "internal", "physical", "dimensions", "package", "width_in" ]
+      - [ "internal", "physical", "dimensions", "item", "width_in" ]
+  Item Height:
+    sources:
+      - [ "internal", "physical", "dimensions", "package", "height_in" ]
+      - [ "internal", "physical", "dimensions", "item", "height_in" ]
+  Item Weight:
+    sources:
+      - [ "internal", "physical", "weight", "package_lb" ]
+      - [ "internal", "physical", "weight", "item_lb" ]
+  Packs Or Sets:
+    literal: 1
+    #    sources:
+    #      - ["internal", "physical", "packaged_qty"]
+    #    default: 1
+    #    type: integer
+  Item Condition:
+    transform: ne_product_condition
+    allowed: [ "", "New", "Refurbished", "UsedLikeNew", "UsedVeryGood" , "UsedGood", "UsedAcceptable" ]
+  Item Package:
+    literal: "Retail"
+    allowed: [ "Retail", "OEM" ]
+  Shipping Restriction:
+    literal: ''
+    allowed: [ "", "Yes", "No" ]
+  Currency:
+    literal: ''
+  MSRP:
+    literal: ''
+  MAP:
+    literal: ''
+  CheckoutMAP:
+    literal: ''
+    allowed: ["", "True", "False"]
+  Selling Price:
+    from_submission: price
+  Shipping:
+    from_submission: marketplaces.newegg.shipping_type
+    allowed: [ "Free", "Default" ]
+  Inventory:
+    literal: 0
+  Limit Quantity:
+    literal: ''
+  Activation Mark:
+    literal: 'TRUE'
+    allowed: [ "", "TRUE", "FALSE" ]
+  Action:
+    literal: 'Create Item'
+    allowed: [ "", "Create Item", "Update Item", "Update/Append Image", "Replace Image" ]
+  Item Images:
+    sources:
+      - [ "internal", "content", "images" ]
+    list_join: ","
+    #    transform: scraped_image_url
+    #    image_index: 1
+  Condition Details:
+    literal: ''
+  Used Item Images:
+    literal: ''
+  Country Of Origin:
+    literal: ''
+  Age 18+ Verification:
+    literal: ''
+  Choking Hazard 1:
+    literal: ''
+  Choking Hazard 2:
+    literal: ''
+  Choking Hazard 3:
+    literal: ''
+  Choking Hazard 4:
+    literal: ''
+  Lead Time:
+    literal: ''
+  Shipping Template:
+    literal: ''
+  Custom Variety 1 Name:
+    literal: ''
+  Custom Variety 1 Value:
+    literal: ''
+  Custom Variety 2 Name:
+    literal: ''
+  Custom Variety 2 Value:
+    literal: ''
+  Custom Variety 3 Name:
+    literal: ''
+  Custom Variety 3 Value:
+    literal: ''
+  DTSeries:
+    sources:
+      - [ "internal", "identity", "product_line" ]
+  DTModel:
+    sources:
+      - [ "internal", "identity", "model" ]
+  DTOperatingSystem:
+    source: [ "internal", "software", "os"]
+  DTFormFactor:
+    literal: 'All-in-One'
+    allowed: [""]
+  DTColor:
+    source: ["internal", "physical", "color"]
+  DTPowerSupply:
+    source: ["internal", "power", "power_watt"]
+    suffix: 'W'
+  DTCPUType:
+    literal: ''
+  DTCPUName:
+    sources:
+      - [ "internal", "processor", "brand" ]
+      - [ "internal", "processor", "model" ]
+    join: " "
+  DTCPUSocketType:
+    literal: ''
+  DTCPUFSB:
+    literal: ''
+  DTMemoryCapacity:
+    sources:
+      - [ "internal", "memory", "capacity_gb" ]
+      - [ "internal", "memory", "type" ]
+    join: " "
+  DTMemorySpeed:
+    sources:
+      - [ "internal", "memory", "type" ]
+      - [ "internal", "memory", "speed_mhz" ]
+    join: " "
+  DTMemorySlotsAvailableTotal:
+    sources:
+      - [ "internal", "memory", "slots" ]
+    transform: only_digits
+  DTMaximumMemorySupported:
+    sources:
+      - [ "internal", "memory", "max_capacity_gb" ]
+    suffix: " GB"
+  DTHDD:
+    sources:
+      - [ "internal", "storage", "capacity_gb" ]
+    transform: hdd_capacity_gb
+  DTHDDRPM:
+    literal: ''
+  DTOpticalDriveType:
+    literal: ''
+  DTOpticalDriveSpec:
+    literal: ''
+  DTAudioChipset:
+    literal: ''
+  DTAudioChannels:
+    literal: ''
+  DTGPUVGAType:
+    literal: ''
+  DTGraphicsInterface:
+    literal: ''
+  DTDisplayFeature:
+    sources:
+      - [ "internal", "display", "features" ]
+    list_join: ", "
+  DTScreenSize:
+    sources:
+      - [ "internal", "display", "size_in" ]
+    transform: ne_check_screensize
+  DTModem:
+    literal: ''
+  DTLANChipset:
+    literal: ''
+  DTLANSpeed:
+    sources:
+      - [ "internal", "network", "ethernet_speed" ]
+  DTWLAN:
+    sources:
+      - [ "internal", "network", "wifi" ]
+    transform: ne_check_wifi_standard
+  DTBluetooth:
+    sources:
+      - [ "internal", "network", "bluetooth" ]
+  DTFrontUSB:
+    literal: ''
+  DTFrontIEEE1394:
+    literal: ''
+  DTFrontAudioPorts:
+    literal: ''
+  DTCardReader:
+    sources:
+      - [ "internal", "io", "flash_memory" ]
+  DTCOM:
+    literal: ''
+  DTLPT:
+    literal: ''
+  DTPS2:
+    literal: ''
+  DTVideoPorts:
+    source: [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - hdmi
+      - displayport
+      - display port
+      - dvi
+      - vga
+    join: ", "
+  DTRearUSB:
+    literal: ''
+  DTRearIEEE1394:
+    literal: ''
+  DTRJ45:
+    source: [ "internal", "io", "ports" ]
+    filter_include_keywords:
+      - rj45
+      - rj-45
+      - ethernet
+  DTRearAudioPorts:
+    sources:
+      - [ "internal", "audio", "input_type" ]
+      - [ "internal", "audio", "output_types" ]
+    join: ", "
+  DTSPDIF:
+    literal: ''
+  DTExternalBays:
+    literal: ''
+  DTInternalBays:
+    literal: ''
+  DTPCIeSlots:
+    literal: ''
+  DTMouseType:
+    literal: ''
+  DTKeyboardType:
+    literal: ''
+  DTSpeakerConfiguration:
+    sources:
+      - [ "internal", "audio", "speaker" ]
+  DTSpeakerFeatures:
+    literal: ''
+  DTDimensionsHxWxD:
+    sources:
+      - [ "internal", "physical", "dimensions", "item", "height_in" ]
+      - [ "internal", "physical", "dimensions", "item", "width_in" ]
+      - [ "internal", "physical", "dimensions", "item", "length_in" ]
+    join: ' x '
+  DTWeight:
+    sources:
+      - [ "internal", "physical", "weight", "item_lb" ]
+  DTBrand:
+    from_submission: manufacturer
+    transform: get_brand_label
+  DTChipset:
+    literal: ''
+  DTSoftwareIncluded:
+    source: [ "internal", "software", "types" ]
+    join: ", "
+  DTL2CachePerCPU:
+    source: [ "internal", "processor", "cache_mb" ]
+    suffix: " MB"
+  DTPackageContents:
+    sources:
+      - path: included_items
+        join: ", "
+    template: "{mpn};{value}"
+  DTMemorySpec:
+    sources:
+      - path: [ "internal", "memory", "configuration_features" ]
+      - path: [ "internal", "memory", "rated_speed_mhz" ]
+        suffix: " MHz"
+      - path: [ "internal", "memory", "type" ]
+        join: "/"
+    join: " "
+  DTGraphicsCard:
+    literal: ''
+  DTMotherboardName:
+    literal: ''
+  DTCPUMainFeatures:
+    literal: ''
+  DTStorageSpec:
+    literal: ''
+  DTSpecialFeatures:
+    literal: ''
+  DTStorageController:
+    literal: ''
+  DTTProcessor:
+    sources:
+      - [ "internal", "processor", "brand" ]
+      - [ "internal", "processor", "model" ]
+    join: " "
+  DTTMemory:
+    sources:
+      - path: [ "internal", "memory", "configuration_features" ]
+      - path: [ "internal", "memory", "rated_speed_mhz" ]
+        suffix: " MHz"
+      - path: [ "internal", "memory", "type" ]
+        join: "/"
+    join: " "
+  DTTStorage:
+    source:
+      - [ "internal", "storage", "capacity_gb" ]
+    transform: ssd_capacity_with_unit
+  DTTOpticalDrive:
+    literal: ''
+  DTTGraphics:
+    source:
+      - [ "internal", "graphics", "model" ]
+    list_join: " "
+  DTTAudio:
+    literal: ''
+  DTTEthernet:
+    source:
+      - [ "internal", "network", "ethernet_controllers" ]
+  DTTWirelessCard:
+    source:
+      - [ "internal", "network", "ethernet_controllers" ]
+  DTTMonitor:
+    literal: ''
+  DTTSpeaker:
+    literal: ''
+  DTTKeyboard:
+    source:
+      - [ "internal", "included_items" ]
+    filter_include_keywords:
+      - keyboard
+  DTTMouse:
+    source:
+      - [ "internal", "included_items" ]
+    filter_include_keywords:
+      - mouse
+  DTTCachePerProcessor:
+    literal: ''
+  DTTProcessorMainFeatures:
+    literal: ''
+  DTTInstalledQty:
+    literal: ''
+  DTTMaxSupportedQty:
+    literal: ''
+  DTTFormFactor:
+    literal: ''
+  DTTAudioFeatures:
+    literal: ''
+  DTPCCardSlot:
+    literal: ''
+  DTType:
+    literal: ''
+  DTHDDInterface:
+    literal: ''
+  ManufacturerWarrantyParts:
+    literal: ''
+  ManufacturerWarrantyLabor:
+    literal: ''
+  CommonConsumerAlert:
+    literal: ''
+  DTeSATA:
+    literal: ''
+  DTFronteSATA:
+    literal: ''
+  DTL3CachePerCPU:
+    source: [ "internal", "processor", "cache_mb" ]
+    suffix: " MB"
+  DTMemorySlotTotal:
+    source: ["internal", "memory", "slots"]
+    transform: only_digits
+  DTMemorySlotAvailable:
+    source: [ "internal", "memory", "expansion_slots" ]
+    transform: only_digits
+  DTScreenType:
+    literal: ''
+  SportsGlobalSportsTeam:
+    literal: ''
+  DTUsage:
+    literal: ''
+  DTTouchscreen:
+    source: [ "internal", "display", "touchscreen" ]
+    transform: ne_check_touchscreen
+    allowed: [ "", "Touch Screen", "Non-Touch Screen" ]
+  AIODTScreenResolution:
+    sources:
+      - [ "internal", "display", "resolution" ]
+  SportsGlobalSportsLeague:
+    literal: ''
+  DTPackageType:
+    literal: ''
+  DTPartNumber:
+    sources:
+      - [ "internal", "identity", "mpn" ]
+  DTSSD:
+    source: [ "internal", "storage", "capacity_gb" ]
+    transform: ssd_capacity_with_unit
+  GlobalElectricalOutletPlugType:
+    literal: ''
+  AIODTWebcam:
+    sources:
+      - [ "internal", "camera", "webcam" ]
+    transform: spec_yes_no
+  DTVirtualRealityReady:
+    literal: ''
+  DTGPUMemory:
+    sources:
+      - [ "internal", "type", "vram_gb" ]
+    suffix: " GB"
+  DTOptaneMemory:
+    literal: ''
+  PortThunderbolt3:
+    literal: ''
+  DTAntennaPorts:
+    literal: ''
+  DTTurboFrequency:
+    literal: ''
+  DTCosmeticCondition:
+    literal: ''
+  DTReleaseYear:
+    literal: ''
+  DTCPUBaseFrequency:
+    literal: ''
+  GeneralAIFeatures:
+    literal: ''
+  UniversalContainsEmbeddedBattery:
+    literal: ''

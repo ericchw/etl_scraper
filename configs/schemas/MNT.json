@@ -71,7 +71,7 @@
   },
   "io": {
     "input_signal": "",
-    "interfaces": [],
+    "ports": [],
     "usb_hub": "",
     "usb_power_delivery_watt": "",
     "built-in_devices": []

@@ -500,35 +500,7 @@ def fill_item_dimensions_weight(
 #     if wt is not None:
 #         internal["weight"]["item_lb"] = weight_to_lb(wt)
 
-def to_int_number(text: str) -> int | None:
-    text = text.strip().lower()
-
-    scale_map = {
-        "hundred": 100,
-        "thousand": 1_000,
-        "million": 1_000_000,
-        "billion": 1_000_000_000,
-        "k": 1_000,
-        "m": 1_000_000,
-        "b": 1_000_000_000,
-    }
-
-    # extract number + scale anywhere in the string (ignore trailing words like "colors")
-    match = re.search(r"(\d+(?:\.\d+)?)\s*(hundred|thousand|million|billion|k|m|b)?", text)
-    if not match:
-        return None
-
-    num = float(match.group(1))
-    scale = match.group(2)
-
-    if scale:
-        num *= scale_map[scale]
-
-    return int(num)
-
 if __name__ == "__main__":
-    # print(to_int_number("16.7 million colors"))
-    #
     # text = "Height, Pivot (rotation), Swivel, Tilt"
     # targets = ["pivot", "swivel"]
     # print(match_any(text, targets))

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from core.schema.registry import empty_internal
-from core.spec_lookup import extract_number, spec_value, spec_list, match_any
+from core.spec_lookup import extract_number, spec_value, spec_list, match_any, to_int_number
 from sites.bh.content import parse_description_from_raw, parse_features_from_raw
 from sites.bh.normalize_shared import fill_bh_packaging
 
@@ -20,13 +20,33 @@ def normalize_bh_mnt(raw: dict) -> dict:
     internal["identity"]["mpn"] = str(raw.get("mpn") or "").strip().upper()
     internal["content"]["features"] = parse_features_from_raw(raw)
 
-    #test cdw no details on 32U889SA-W
     # display
-    internal["display"]["brightness_cdm2"] = extract_number(spec_value(specs, "Key Specs", "Maximum Brightness"))
+    internal["display"]["size_in"] = extract_number(spec_value(specs, "Key Specs", "Display Size")) or extract_number(spec_value(specs, "Display", "Size"))
+    internal["display"]["panel"] = spec_value(specs, "Key Specs", "Panel Type") or spec_value(specs, "Display", "Panel Type")
+    internal["display"]["resolution"] = spec_value(specs, "Key Specs", "Native Resolution") or spec_value(specs, "Display", "Native Resolution")
+    internal["display"]["hdr"]["hdr_capable"] = match_any(spec_value(specs, "Key Specs", "HDR Support"),["yes"])
+    internal["display"]['hdr']["hdr_format"] = spec_value(specs, "Key Specs", "HDR Support").split(":", 1)[1].strip() if "yes" in spec_value(specs, "Key Specs", "HDR Support").lower() else spec_value(specs, "Key Specs","HDR Support")
+    internal["display"]["color_support"] = to_int_number(spec_value(specs, "Key Specs", "Color Support")) or spec_value(specs, "Display", "Color Support")
+    internal["display"]["color_gamut"] = spec_list(specs, "Key Specs", "Color Gamut") or spec_value(specs, "Display", "Color Gamut")
+    # spec_list(specs, "Key Specs", "Finish") -> Anti-Glare -> using full web search
+    internal["display"]["touchscreen"] = match_any(spec_value(specs, "Key Specs", "Touchscreen"), ["yes"])
+    internal["display"]["aspect_ratio"] = spec_value(specs, "Display", "Aspect Ratio")
+    internal["display"]["brightness_cdm2"] = extract_number(spec_value(specs, "Display", "Maximum Brightness"))
+    # spec_value(specs, "Display", "Contrast Ratio")
     internal["display"]["refresh_rate_hz"] = extract_number(spec_value(specs, "Display", "Refresh Rate"))
-    internal["display"]['hdr']["hdr_capable"] = match_any(spec_value(specs, "Key Specs", "HDR Support"),["yes"])
-    internal["display"]['hdr']["hdr_format"] = spec_value(specs, "Key Specs", "HDR Support").split(":", 1)[1].strip() if "yes" in spec_value(specs, "Key Specs", "HDR Support").lower() else spec_value(specs, "Key Specs", "HDR Support")
-    internal["display"]["color_gamut"] = spec_list(specs, "Key Specs", "Color Gamut")
+    internal["display"]["features"] = spec_list(specs, "Display", "Variable Refresh Technology")
+    internal["display"]["horizontal_viewing_angle"] = spec_value(specs, "Display & Graphics", "Horizontal Viewing Angle")
+    internal["display"]["vertical_viewing_angle"] = spec_value(specs, "Display & Graphics", "Vertical Viewing Angle")
+
+
+
+
+    # io
+    internal["io"]["ports"] = spec_list(specs, "Key Specs", "A/V Inputs") + spec_list(specs, "Key Specs", "USB I/O")
+
+    # audio
+    internal["audio"]["speaker"] = match_any(spec_value(specs, "Key Specs", "Built-In Speakers"), ["yes"])
+
 
     # desc = parse_description_from_raw(raw)
     # if desc:
@@ -47,6 +67,6 @@ def normalize_bh_mnt(raw: dict) -> dict:
     # disp["display_type"] = disp["panel_type"]
     # disp["aspect_ratio"] = spec_value(specs, "DISPLAY", "Aspect Ratio")
     #
-    # internal["io"]["interfaces"] = spec_list(specs, "CONNECTIVITY", "USB I/O")
+    # internal["io"]["ports"] = spec_list(specs, "CONNECTIVITY", "USB I/O")
 
     return internal

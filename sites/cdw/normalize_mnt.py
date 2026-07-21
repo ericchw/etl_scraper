@@ -5,9 +5,9 @@ from __future__ import annotations
 import re
 
 from core.schema.registry import empty_internal
-from core.spec_lookup import extract_number, resolve_spec_field, spec_value, spec_list, split_and_filter_patterns, match_any
+from core.spec_lookup import extract_number, resolve_spec_field, spec_value, spec_list, split_and_filter_patterns, match_any, to_int_number
 from core.units import length_to_in, weight_to_lb
-from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch, to_int_number
+from sites.cdw._common import cdw_payload, fill_identity_content, fill_item_dimensions_weight, parse_inch
 from sites.cdw.spec_bindings import CDW_PROCESSOR_BINDINGS
 
 def normalize_cdw_mnt(raw: dict) -> dict:
@@ -69,7 +69,7 @@ def normalize_cdw_mnt(raw: dict) -> dict:
 
     # io
     internal["io"]["output_type"] = spec_list(specs, "Display & Graphics", "Input Signal")
-    internal["io"]["interfaces"] = spec_list(specs, "Connectivity", "Interfaces")
+    internal["io"]["ports"] = spec_list(specs, "Connectivity", "Interfaces")
     internal["io"]["usb_hub"] = match_any(spec_value(specs, "Product Information", "Built-in USB Hub"), ["yes"])
     internal["io"]["usb_power_delivery_watt"] = spec_value(specs, "Product Information", "USB Power Delivery").replace(" watt", "")
     internal["io"]["built-in_devices"] = spec_list(specs, "Technical Information", "Built-in Devices")

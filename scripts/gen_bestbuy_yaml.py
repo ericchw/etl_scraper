@@ -46,7 +46,7 @@ def generate_for_category(category_key: str, *, overwrite: bool = False) -> Path
 
     mapping = ROOT / "configs" / "marketplaces" / "bestbuy" / f"{cat_id}.yaml"
     if mapping.exists() and not overwrite:
-        print(f"Exists (use --overwrite): {mapping}")
+        print(f"Exists already: {mapping}")
         return mapping
 
     headers = load_csv_headers(template, marketplace="bestbuy")
@@ -71,7 +71,7 @@ def generate_for_category(category_key: str, *, overwrite: bool = False) -> Path
     return mapping
 
 
-def main() -> None:
+def main(cat_code) -> None:
     parser = argparse.ArgumentParser(description="Generate Best Buy YAML from template CSV")
     parser.add_argument(
         "--category",
@@ -101,4 +101,13 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    cat_code = input("Enter category code: ")
+    main(cat_code)
+
+
+"""
+Update gen_bestbuy_yaml to accept cat_id as input and generate the YAML. If the target YAML already exists, prompt whether to replace it.
+Update gen_newegg_yaml with the same behavior as gen_bestbuy_yaml, and include support for csv_preamble_row.
+
+also implement on main UI
+"""
