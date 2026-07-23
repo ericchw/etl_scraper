@@ -24,10 +24,40 @@ def get_category_entry(category_key: str) -> dict:
     return load_categories().get(category_key, {})
 
 
+def category_enabled(category_key: str) -> bool:
+    entry = get_category_entry(category_key)
+    if not entry:
+        return False
+    return entry.get("enable", True) is not False
+
+
+def enabled_categories() -> dict:
+    return {
+        key: entry
+        for key, entry in load_categories().items()
+        if isinstance(entry, dict) and entry.get("enable", True) is not False
+    }
+
+
 def product_code(category_key: str) -> str:
-    """Product family for internal schema + normalizers (NB, MNT, …)."""
+    """Product family for internal schema + SKU prefix (NB, MNT, ACC, …)."""
     code = str(get_category_entry(category_key).get("code") or "").strip().upper()
     return code or DEFAULT_PRODUCT_CODE
+
+
+def sub_code(category_key: str) -> str:
+    """Optional finer normalizer key (e.g. CPU-AIO under ACC)."""
+    entry = get_category_entry(category_key)
+    sub = str(entry.get("sub_code") or "").strip().upper()
+    return sub
+
+
+def normalizer_key(category_key: str) -> str:
+    """
+    Key for source-specific normalizer dispatch.
+    Uses sub_code when present, otherwise product code (NB, MNT, …).
+    """
+    return sub_code(category_key) or product_code(category_key)
 
 
 def sku_prefix(category_key: str) -> str:

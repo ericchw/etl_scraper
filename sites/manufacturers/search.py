@@ -47,6 +47,7 @@ def resolve_manufacturer_product_url(
     *,
     brand_key: str,
     log: Callable[[str], None] = print,
+    wait_for_captcha: Callable[[], None] | None = None,
 ) -> str | None:
     """
     1. Try ``search_url`` — detect redirect to PDP vs search listing.
@@ -95,6 +96,7 @@ def resolve_manufacturer_product_url(
             mpn,
             google_cite=google_cite,
             log=log,
+            wait_for_captcha=wait_for_captcha,
         )
         return product_url
 

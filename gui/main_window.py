@@ -18,13 +18,14 @@ from PyQt6.QtWidgets import (
 )
 
 from core.cache import resolve_product_json_path
-from core.categories import load_categories
+from core.categories import enabled_categories
 from core.ehf import load_ehf_profiles
 from core.exporter import export_bestbuy_laptop, export_newegg
 from core.app_settings import download_product_images_enabled
 from core.marketplace_defaults import bestbuy_discount_dates
 from core.merge_policy import load_merge_sources
 from core.pipeline import dedupe_jobs_by_mpn, run_batch_pipeline, use_existing_scrape
+from core.scrape_ui import get_captcha_waiter
 from core.utils import load_json
 from core.marketplace_templates import ensure_mapping_yaml, migrate_legacy_templates
 from gui.scrape_item_panel import ScrapeItemPanel
@@ -37,6 +38,7 @@ ROOT = Path(__file__).resolve().parent.parent
 class ScrapeThread(QThread):
     finished = pyqtSignal(dict)
     log_line = pyqtSignal(str)
+    captcha_required = pyqtSignal()
 
     def __init__(self, items: list[dict], *, rescrape: bool) -> None:
         super().__init__()
@@ -47,9 +49,18 @@ class ScrapeThread(QThread):
         def log(msg: str) -> None:
             self.log_line.emit(str(msg))
 
+        waiter = get_captcha_waiter()
+        waiter.configure(lambda: self.captcha_required.emit())
+
         jobs = [{**item, "rescrape": self._rescrape} for item in self._items]
         try:
-            self.finished.emit(run_batch_pipeline(jobs, log=log))
+            self.finished.emit(
+                run_batch_pipeline(
+                    jobs,
+                    log=log,
+                    wait_for_captcha=waiter.wait,
+                )
+            )
         except Exception as exc:  # noqa: BLE001
             self.log_line.emit(str(exc))
             self.finished.emit({"success": False, "error": str(exc)})
@@ -74,7 +85,7 @@ class MainWindow(QWidget):
         self._thread: ScrapeThread | None = None
         self._item_index = 0
         self._items: list[ScrapeItemPanel] = []
-        self._categories = load_categories()
+        self._categories = enabled_categories()
         self._ehf_profiles = load_ehf_profiles()
 
         self._items_layout = QVBoxLayout()
@@ -315,8 +326,18 @@ class MainWindow(QWidget):
             self._append_log(f"Scraping {len(jobs)} item(s)…")
         self._thread = ScrapeThread(jobs, rescrape=rescrape)
         self._thread.log_line.connect(self._append_log)
+        self._thread.captcha_required.connect(self._on_google_captcha)
         self._thread.finished.connect(self._on_scrape_finished)
         self._thread.start()
+
+    def _on_google_captcha(self) -> None:
+        QMessageBox.warning(
+            self,
+            "Google captcha",
+            "Google showed a captcha.\n\n"
+            "Solve it in the browser window, then click OK to continue scraping.",
+        )
+        get_captcha_waiter().release()
 
     def _on_scrape_finished(self, result: dict) -> None:
         self._run_btn.setEnabled(True)

@@ -1,0 +1,11 @@
+{
+  "CPU-AIO": {
+    "code": "ACC",
+    "sub_code": "CPU-AIO",
+    "label": "CPU AIO Cooler",
+    "schema": "ACC",
+    "brands": {
+      "arctic": "normalize_cpu_aio"
+    }
+  }
+}

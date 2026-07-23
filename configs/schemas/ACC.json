@@ -1,0 +1,48 @@
+{
+  "identity": {
+    "brand": "",
+    "mpn": "",
+    "upc": "",
+    "product_line": "",
+    "model": "",
+    "product_type": "",
+    "package_qty": ""
+  },
+  "content": {
+    "title": "",
+    "description": "",
+    "features": [],
+    "images": []
+  },
+  "cooling": {
+    "product_type": "",
+    "radiator_size_mm": "",
+    "fan_size_mm": "",
+    "fan_count": "",
+    "socket_compatibility": [],
+    "thermal_conductivity": "",
+    "density": "",
+    "viscosity": "",
+    "volume_resistivity": "",
+    "continuous_use_temperature": "",
+    "colour": ""
+  },
+  "physical": {
+    "dimensions": {
+      "item": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      },
+      "package": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      }
+    },
+    "weight": {
+      "item_lb": "",
+      "package_lb": ""
+    }
+  }
+}

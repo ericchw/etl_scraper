@@ -17,69 +17,57 @@ ARCTIC_GET_IMAGES_JS = """
     document.querySelectorAll('.gallery-slider-image.magnifier-image').forEach(img => {
         add(img.getAttribute('data-src') || img.src);
     });
-     /*
-     return Array.from(urls).sort((a, b) => {
-        const ma = a.match(/_g(\\d+)/);
-        const mb = b.match(/_g(\\d+)/);
-    
-        const ga = ma ? parseInt(ma[1], 10) : 999;
-        const gb = mb ? parseInt(mb[1], 10) : 999;
-    
-        if (ga !== gb) return ga - gb;
-    
-        // Same g number (e.g. g00 vs g00_eha_award)
-        return a.localeCompare(b);
-    });
-    */
     return Array.from(urls).sort((a, b) => {
         const ga = parseInt(a.match(/_g(\\d+)/)?.[1] ?? "999", 10);
         const gb = parseInt(b.match(/_g(\\d+)/)?.[1] ?? "999", 10);
-    
         return ga - gb;
     });
-    
 }
 """
 
-ARCTIC_GET_SPECS_JS = """
+ARCTIC_GET_SPECS_JS = r"""
 () => {
-    let output = 'Specifications:\\n';
-    const tables = document.querySelectorAll('table');
-    tables.forEach(table => {
-        let group = 'General Specifications';
-        const heading = table.closest('section, .cms-element-text, .product-detail-tabs')
-            ?.querySelector('h2, h3, h4');
-        if (heading) group = heading.textContent.trim();
-        output += `　${group}\\n`;
-        table.querySelectorAll('tr').forEach(row => {
-            const cells = row.querySelectorAll('th, td');
-            if (cells.length >= 2) {
-                const key = cells[0].textContent.trim();
-                const val = cells[1].textContent.trim();
-                if (key && val) output += `　　${key}: ${val}\\n`;
-            } else if (cells.length === 1) {
-                const text = cells[0].textContent.trim();
-                const match = text.match(/^([^:]+):\\s*(.+)$/);
-                if (match) output += `　　${match[1].trim()}: ${match[2].trim()}\\n`;
+    let output = 'Specifications:\n';
+
+    const blocks = document.querySelectorAll('.collapse-item');
+    if (!blocks.length) return '⚠️ No specs found';
+
+    blocks.forEach(block => {
+        const titleEl = block.querySelector('.collapse-headline span');
+        const title = titleEl?.textContent.trim();
+
+        if (title) {
+            output += `　${title}\n`;
+        }
+
+        // CASE 1: table style (technical-data)
+        const tables = block.querySelectorAll('.technical-data .table');
+        tables.forEach(row => {
+            const cols = row.querySelectorAll('.spalte');
+            if (cols.length >= 2) {
+                const key = cols[0].textContent.trim();
+                const val = cols[1].textContent.trim().replace(/\s+/g, ' ');
+                output += `　　${key}: ${val}\n`;
             }
         });
-    });
-    const packaging = document.querySelector('.product-detail-packaging, [class*="packaging"]');
-    if (packaging) {
-        output += '　Packaging\\n';
-        packaging.querySelectorAll('li, p').forEach(el => {
-            const text = el.textContent.trim();
-            const match = text.match(/^([^:]+):\\s*(.+)$/);
-            if (match) output += `　　${match[1].trim()}: ${match[2].trim()}\\n`;
+
+        // CASE 2: UL list (Packaging)
+        const listItems = block.querySelectorAll('ul li');
+        listItems.forEach(li => {
+            const text = li.textContent.trim().replace(/\s+/g, ' ');
+            if (text) output += `　　${text}\n`;
         });
-    }
-    document.querySelectorAll('ul li').forEach(li => {
-        const text = li.textContent.trim();
-        if (/^(Width|Height|Length|Weight|EAN|UPC):\\s*/i.test(text)) {
-            const match = text.match(/^([^:]+):\\s*(.+)$/);
-            if (match) output += `　　${match[1].trim()}: ${match[2].trim()}\\n`;
-        }
+
+        // CASE 3: paragraph info (Manufacturer / EAN / UPC)
+        const paragraphs = block.querySelectorAll('.technical-data p');
+        paragraphs.forEach(p => {
+            const text = p.textContent.trim().replace(/\s+/g, ' ');
+            if (text) output += `　　${text}\n`;
+        });
+
+        output += '\n';
     });
+
     return output.trim();
 }
 """
@@ -87,18 +75,15 @@ ARCTIC_GET_SPECS_JS = """
 ARCTIC_GET_FEATURES_JS = """
 () => {
     const features = [];
-
     const desc = document.querySelector(
         '#senza-content > div > div > div:nth-child(2) > div.product-detail-description-text.text-right'
     );
-
     if (desc) {
         desc.querySelectorAll('p').forEach(p => {
             const text = p.textContent.trim();
             if (text) features.push(text);
         });
     }
-
     return features;
 }
 """

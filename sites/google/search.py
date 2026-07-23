@@ -75,6 +75,7 @@ def google_search_product_url(
     *,
     google_cite: str,
     log: Callable[[str], None] = print,
+    wait_for_captcha: Callable[[], None] | None = None,
 ) -> str | None:
     """
     Search Google for ``{mpn} site:{domain}`` and return the first organic
@@ -94,8 +95,12 @@ def google_search_product_url(
 
     if _is_google_blocked(page):
         log("Google: blocked by captcha / unusual-traffic page")
-        input("Resolve captcha and Press Enter to continue...")
-        # return None
+        if wait_for_captcha:
+            wait_for_captcha()
+        else:
+            from core.scrape_ui import get_captcha_waiter
+
+            get_captcha_waiter().wait(log=log)
 
     seen = set()
     for i, (cite_text, href) in enumerate(_iter_google_results(page), start=1):

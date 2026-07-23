@@ -6,7 +6,7 @@ import copy
 from typing import Any
 
 from core.schema.registry import DEFAULT_PRODUCT_CODE, empty_internal as _empty_internal
-
+from sites.cdw.normalizer import normalize_cdw_raw
 
 def empty_internal(product_code: str = DEFAULT_PRODUCT_CODE) -> dict[str, Any]:
     return _empty_internal(product_code)
@@ -39,21 +39,26 @@ def envelope_from_internal(
     internal: dict[str, Any],
     *,
     product_code: str = DEFAULT_PRODUCT_CODE,
+    sub_code: str = "",
 ) -> dict[str, Any]:
     identity = internal.get("identity") or {}
     code = (product_code or DEFAULT_PRODUCT_CODE).strip().upper()
-    return {
+    envelope: dict[str, Any] = {
         "mpn": identity.get("mpn") or "",
         "product_code": code,
         "internal": internal,
     }
+    sub = (sub_code or (internal.get("_meta") or {}).get("sub_code") or "").strip().upper()
+    if sub:
+        envelope["sub_code"] = sub
+    return envelope
 
 
 def ensure_internal(product: dict) -> dict[str, Any]:
     """Return internal block, rebuilding from scraped_data when missing."""
     if isinstance(product.get("internal"), dict) and product["internal"]:
         return product["internal"]
-    from sites.cdw.normalizer import normalize_cdw_raw
+
 
     code = (product.get("product_code") or DEFAULT_PRODUCT_CODE).strip().upper()
     raw = {

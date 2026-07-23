@@ -65,7 +65,7 @@ def scrape_dell_product(page) -> dict:
     except Exception:
         pass
     return {
-        "source": "manufacturer",
+        "source": "dell",
         "brand": "dell",
         "title": title,
         "images": images,

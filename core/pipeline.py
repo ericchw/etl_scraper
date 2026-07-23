@@ -55,6 +55,7 @@ def _scrape_manufacturer(
     *,
     submission: dict | None,
     log: Callable[[str], None],
+    wait_for_captcha: Callable[[], None] | None = None,
 ) -> tuple[dict | None, str]:
     brand = (submission or {}).get("manufacturer", "").strip()
     cfg = manufacturer_config(brand)
@@ -80,6 +81,7 @@ def _scrape_manufacturer(
         cfg,
         brand_key=brand_key,
         log=log,
+        wait_for_captcha=wait_for_captcha,
     )
     if not product_url:
         log(f"Manufacturer {brand}: product not found")
@@ -115,6 +117,7 @@ def _scrape_source(
     *,
     submission: dict | None,
     log: Callable[[str], None],
+    wait_for_captcha: Callable[[], None] | None = None,
 ) -> tuple[dict | None, str]:
     cfg = load_scraper_config(source)
     if cfg.get("enabled") is False:
@@ -131,7 +134,13 @@ def _scrape_source(
         return product, ""
 
     if source == "manufacturer":
-        return _scrape_manufacturer(page, mpn, submission=submission, log=log)
+        return _scrape_manufacturer(
+            page,
+            mpn,
+            submission=submission,
+            log=log,
+            wait_for_captcha=wait_for_captcha,
+        )
 
     log(f"Unknown source: {source}")
     return None, ""
@@ -158,7 +167,11 @@ def use_existing_scrape(
             submission=submission,
             existing_doc=existing,
         )
-        product = build_product_document(raw_by_source, product_code=code)
+        product = build_product_document(
+            raw_by_source,
+            product_code=code,
+            submission=submission,
+        )
         log(
             f"Rebuilt internal ({code}) from products/{mpn_key}.json scraped_data "
             f"({len(raw_by_source)} source(s))"
@@ -182,7 +195,11 @@ def use_existing_scrape(
                 }
             }
             code = resolve_product_code(submission=submission)
-            product = build_product_document(raw_by_source, product_code=code)
+            product = build_product_document(
+                raw_by_source,
+                product_code=code,
+                submission=submission,
+            )
             log(f"Migrated legacy JSON -> products/{mpn_key}.json")
         else:
             return {"success": False, "error": "FILE_NOT_FOUND"}
@@ -206,6 +223,7 @@ def run_product_pipeline(
     rescrape: bool = False,
     download_product_images: bool = False,
     log: Callable[[str], None] = print,
+    wait_for_captcha: Callable[[], None] | None = None,
 ) -> dict:
     mpn_key = (mpn or "").strip().upper()
     if not mpn_key:
@@ -271,7 +289,14 @@ def run_product_pipeline(
                 continue
 
             log(f"SCRAPE {source.upper()} ({reason}) …")
-            raw, _url = _scrape_source(source, page, mpn_key, submission=submission, log=log)
+            raw, _url = _scrape_source(
+                source,
+                page,
+                mpn_key,
+                submission=submission,
+                log=log,
+                wait_for_captcha=wait_for_captcha,
+            )
             if raw:
                 raw["mpn"] = raw.get("mpn") or mpn_key
                 raw_by_source[source] = raw
@@ -281,7 +306,11 @@ def run_product_pipeline(
         if not raw_by_source:
             return {"success": False, "error": "NO_SOURCE_DATA"}
 
-        product = build_product_document(raw_by_source, product_code=code)
+        product = build_product_document(
+            raw_by_source,
+            product_code=code,
+            submission=submission,
+        )
 
         json_path = product_path(mpn_key)
         save_json(product, str(json_path), log=log)
@@ -358,6 +387,7 @@ def run_batch_pipeline(
     items: list[dict],
     *,
     log: Callable[[str], None] = print,
+    wait_for_captcha: Callable[[], None] | None = None,
 ) -> dict:
     """
     Each item: {"mpn": "...", "submission": {...}, "rescrape": bool optional}.
@@ -379,6 +409,7 @@ def run_batch_pipeline(
             rescrape=bool(job.get("rescrape")),
             download_product_images=download_product_images_enabled(),
             log=log,
+            wait_for_captcha=wait_for_captcha,
         )
         results.append({"mpn": mpn, "item_count": count, **result})
         if result.get("success"):

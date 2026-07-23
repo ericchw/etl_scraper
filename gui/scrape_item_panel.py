@@ -54,6 +54,8 @@ class ScrapeItemPanel(QGroupBox):
         self._category = QComboBox()
         self._category.addItem("— select —", userData="")
         for key, data in categories.items():
+            if isinstance(data, dict) and data.get("enable", True) is False:
+                continue
             self._category.addItem(data.get("label", key), userData=key)
 
         self._manufacturer = QComboBox()
@@ -196,10 +198,10 @@ class ScrapeItemPanel(QGroupBox):
         self._refresh_title()
 
     def _category_value(self) -> str:
-        data = self._manufacturer.currentData()
-        if data or str(data) != "— select —":
+        data = self._category.currentData()
+        if data:
             return str(data)
-        return self._manufacturer.currentText().strip()
+        return ""
     def _manufacturer_value(self) -> str:
         data = self._manufacturer.currentData()
         if data or str(data) != "— select —":

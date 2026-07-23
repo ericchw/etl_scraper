@@ -3,54 +3,71 @@
     "code": "MNT",
     "label": "Monitor",
     "bestbuy": "CAT_1006",
-    "newegg": "MonitorLCDFlatPanel"
+    "newegg": "MonitorLCDFlatPanel",
+    "enable": true
   },
   "gaming_monitor": {
     "code": "MNT",
     "label": "(X) Gaming Monitor",
     "bestbuy": "CAT_1006",
-    "newegg": "GamingMonitor"
+    "newegg": "GamingMonitor",
+    "enable": false
   },
   "notebook": {
     "code": "NB",
     "label": "Laptop",
     "bestbuy": "CAT_1002",
-    "newegg": "Notebooks"
+    "newegg": "Notebooks",
+    "enable": true
   },
   "business_laptop": {
     "code": "NB",
     "label": "(X) Business Laptop",
     "bestbuy": "CAT_1002",
-    "newegg": "BusinessLaptops"
+    "newegg": "BusinessLaptops",
+    "enable": false
   },
   "gaming_laptop": {
     "code": "NB",
     "label": "(X) Gaming Laptop",
     "bestbuy": "CAT_1002",
-    "newegg": "GamingLaptops"
+    "newegg": "GamingLaptops",
+    "enable": false
   },
   "2_in1_laptop": {
     "code": "NB",
     "label": "(X) 2 in 1 Laptop",
     "bestbuy": "CAT_1002",
-    "newegg": "2in1Laptops"
+    "newegg": "2in1Laptops",
+    "enable": false
   },
   "desktop_pc": {
     "code": "SYS",
     "label": "(X) Desktop PC",
     "bestbuy": "CAT_1003",
-    "newegg": "DesktopPC"
+    "newegg": "DesktopPC",
+    "enable": false
   },
   "all_in_one_pc": {
     "code": "SYS",
     "label": "All-in-One PC",
     "bestbuy": "CAT_1003",
-    "newegg": "AllinOnePCs"
+    "newegg": "AllinOnePCs",
+    "enable": true
   },
   "tablet": {
     "code": "NB",
     "label": "Tablet",
     "bestbuy": "CAT_314802",
-    "newegg": "TabletPCTablets"
+    "newegg": "TabletPCTablets",
+    "enable": true
+  },
+  "CPU-AIO": {
+    "code": "ACC",
+    "sub_code": "CPU-AIO",
+    "label": "CPU AIO Cooler",
+    "bestbuy": "27116056",
+    "newegg": "LiquidWaterCooling",
+    "enable": true
   }
 }
