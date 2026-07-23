@@ -51,6 +51,7 @@
     "label": "Arctic",
     "google_search": true,
     "google_cite": "https://www.arctic.de",
+    "redirect": false,
     "enabled": true
   }
 }

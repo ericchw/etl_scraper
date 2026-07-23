@@ -204,36 +204,20 @@ def ensure_mapping_yaml(
 
     Returns (mapping_path, template_csv_path, created_yaml).
     """
+    from core.yaml_generator import generate_mapping_yaml
+
     mapping = mapping_path(category_key, marketplace)
     template_csv = resolve_template_csv(category_key, marketplace)
     if not mapping or not template_csv:
         return mapping, template_csv, False
 
-    if mapping.exists():
-        return mapping, template_csv, False
-
-    headers = load_csv_headers(template_csv, marketplace=marketplace)
-    if not headers:
-        log(f"No template headers at {template_csv} — cannot generate YAML")
-        return mapping, template_csv, False
-
-    name = mapping.stem
-    rel_headers = f"../../../templates/{marketplace}/{template_csv.name}"
-    preamble = (
-        load_csv_preamble_row(template_csv)
-        if marketplace == "newegg"
-        else None
-    )
-    data = scaffold_yaml_dict(
-        marketplace=marketplace,
-        name=name,
-        headers=headers,
-        headers_file=rel_headers,
-        csv_preamble_row=preamble or None,
-    )
-    write_yaml(mapping, data)
-    log(f"Generated mapping -> {mapping}")
-    return mapping, template_csv, True
+    result = generate_mapping_yaml(category_key, marketplace, overwrite=False)
+    if result.status == "created":
+        log(result.message)
+        return mapping, template_csv, True
+    if result.status == "error":
+        log(result.message)
+    return mapping, template_csv, False
 
 
 def save_downloaded_template(

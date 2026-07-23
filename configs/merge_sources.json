@@ -1,27 +1,27 @@
 {
   "spec": [
+    "manufacturer",
     "cdw",
-    "bh",
-    "manufacturer"
+    "bh"
   ],
   "packing": [
+    "manufacturer",
     "bh",
-    "cdw",
-    "manufacturer"
+    "cdw"
   ],
   "photo": [
+    "manufacturer",
     "cdw",
-    "bh",
-    "manufacturer"
+    "bh"
   ],
   "features": [
+    "manufacturer",
     "bh",
-    "cdw",
-    "manufacturer"
+    "cdw"
   ],
   "design": [
+    "manufacturer",
     "cdw",
-    "bh",
-    "manufacturer"
+    "bh"
   ]
 }

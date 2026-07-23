@@ -1,0 +1,245 @@
+marketplace: newegg
+name: 2in1Laptops
+headers_file: ../../../templates/newegg/ComputerHardware_BatchItemCreation_2in1Laptops.csv
+csv_preamble_row:
+- Version=1.01
+- SubCategoryID=3073
+- ''
+- TemplateDate=2026-05-26
+fields:
+  'Seller Part #':
+    literal: ''
+  Manufacturer:
+    literal: ''
+  'Manufacturer Parts #':
+    literal: ''
+  UPC / ISBN:
+    literal: ''
+  Related Seller Part#:
+    literal: ''
+  Website Short Title:
+    literal: ''
+  Bullet Description:
+    literal: ''
+  Product Description:
+    literal: ''
+  Item Length:
+    literal: ''
+  Item Width:
+    literal: ''
+  Item Height:
+    literal: ''
+  Item Weight:
+    literal: ''
+  Packs Or Sets:
+    literal: ''
+  Item Condition:
+    literal: ''
+  Item Package:
+    literal: ''
+  Shipping Restriction:
+    literal: ''
+  Currency:
+    literal: ''
+  MSRP:
+    literal: ''
+  MAP:
+    literal: ''
+  CheckoutMAP:
+    literal: ''
+  Selling Price:
+    literal: ''
+  Shipping:
+    literal: ''
+  Inventory:
+    literal: ''
+  Limit Quantity:
+    literal: ''
+  Activation Mark:
+    literal: ''
+  Action:
+    literal: ''
+  Item Images:
+    literal: ''
+  Condition Details:
+    literal: ''
+  Used Item Images:
+    literal: ''
+  Country Of Origin:
+    literal: ''
+  Age 18+ Verification:
+    literal: ''
+  Choking Hazard 1:
+    literal: ''
+  Choking Hazard 2:
+    literal: ''
+  Choking Hazard 3:
+    literal: ''
+  Choking Hazard 4:
+    literal: ''
+  Lead Time:
+    literal: ''
+  Shipping Template:
+    literal: ''
+  Custom Variety 1 Name:
+    literal: ''
+  Custom Variety 1 Value:
+    literal: ''
+  Custom Variety 2 Name:
+    literal: ''
+  Custom Variety 2 Value:
+    literal: ''
+  Custom Variety 3 Name:
+    literal: ''
+  Custom Variety 3 Value:
+    literal: ''
+  NBModel:
+    literal: ''
+  NBSeries:
+    literal: ''
+  NBPartNumber:
+    literal: ''
+  NBCPUType:
+    literal: ''
+  NBProcessorName:
+    literal: ''
+  NBCPUL2Cache:
+    literal: ''
+  NBScreenSize:
+    literal: ''
+  NBDisplayType:
+    literal: ''
+  NBResolution:
+    literal: ''
+  NBGPUVPU:
+    literal: ''
+  NBVideoMemory:
+    literal: ''
+  NBAudio:
+    literal: ''
+  NBSpeaker:
+    literal: ''
+  NBHDD:
+    literal: ''
+  NBMemorySpeed:
+    literal: ''
+  NBMemory:
+    literal: ''
+  NBMaxMemorySupported:
+    literal: ''
+  NBOpticalDriveType:
+    literal: ''
+  NBLAN:
+    literal: ''
+  NBWLAN:
+    literal: ''
+  NBBluetooth:
+    literal: ''
+  NBTouchpad:
+    literal: ''
+  NBKeyboard:
+    literal: ''
+  NBOtherInputDevices:
+    literal: ''
+  NBUSB:
+    literal: ''
+  NBLPT:
+    literal: ''
+  NBAudioPorts:
+    literal: ''
+  NBDockingConnector:
+    literal: ''
+  NBCardReader:
+    literal: ''
+  NBWebcam:
+    literal: ''
+  NBDimensionsWxDxH:
+    literal: ''
+  NBWeight:
+    literal: ''
+  NBACAdapterCharger:
+    literal: ''
+  NBBattery:
+    literal: ''
+  NBBatteryLife:
+    literal: ''
+  NBOperatingSystem:
+    literal: ''
+  NBSoftwareIncluded:
+    literal: ''
+  NBMemoryDualChannelSupport:
+    literal: ''
+  NBBrand:
+    literal: ''
+  NBDisplayFeatures:
+    literal: ''
+  NBStorageSpec:
+    literal: ''
+  NBMemorySpec:
+    literal: ''
+  NBVideoPort:
+    literal: ''
+  NBOtherport:
+    literal: ''
+  NBBOtherFeatures:
+    literal: ''
+  NBGraphicType:
+    literal: ''
+  NBWideScreenSupport:
+    literal: ''
+  ManufacturerWarrantyParts:
+    literal: ''
+  ManufacturerWarrantyLabor:
+    literal: ''
+  NBBColor:
+    literal: ''
+  CommonConsumerAlert:
+    literal: ''
+  NBBatteryRecall:
+    literal: ''
+  NBMemorySlotTotal:
+    literal: ''
+  NBMemorySlotAvailable:
+    literal: ''
+  NBHDMI:
+    literal: ''
+  NBUsage:
+    literal: ''
+  NBType:
+    literal: ''
+  NBStyle:
+    literal: ''
+  NBTouchscreen:
+    literal: ''
+  UBScreenSize:
+    literal: ''
+  NBSSD:
+    literal: ''
+  NBService:
+    literal: ''
+  NBBacklitKeyboard:
+    literal: ''
+  NBNumberofCores:
+    literal: ''
+  NBPackageContent:
+    literal: ''
+  NBTurboFrequency:
+    literal: ''
+  NBCPUL3Cache:
+    literal: ''
+  NBCoreName:
+    literal: ''
+  NBPanel:
+    literal: ''
+  NBWiFiGeneration:
+    literal: ''
+  NBThunderbolt:
+    literal: ''
+  NBCosmeticCondition:
+    literal: ''
+  GeneralAIFeatures:
+    literal: ''
+  NBNeuralProcessingUnitNPU:
+    literal: ''
+  UniversalContainsEmbeddedBattery:
+    literal: ''

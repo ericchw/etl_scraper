@@ -29,6 +29,7 @@ from core.utils import load_json
 from core.marketplace_templates import ensure_mapping_yaml, migrate_legacy_templates
 from gui.scrape_item_panel import ScrapeItemPanel
 from gui.source_priority_dialog import SourcePriorityDialog
+from gui.yaml_generator_dialog import YamlGeneratorDialog
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -101,11 +102,16 @@ class MainWindow(QWidget):
         )
         self._settings_btn.clicked.connect(self._open_source_settings)
 
+        self._yaml_btn = QPushButton("YAML")
+        self._yaml_btn.setToolTip("Generate Best Buy / Newegg mapping YAML from templates")
+        self._yaml_btn.clicked.connect(self._open_yaml_generator)
+
         title = QLabel("ETL Scraper")
         title.setStyleSheet("font-size: 14px; font-weight: 600;")
         header = QHBoxLayout()
         header.addWidget(title)
         header.addStretch()
+        header.addWidget(self._yaml_btn)
         header.addWidget(self._settings_btn)
 
         self._run_btn = QPushButton("Run scrape")
@@ -211,6 +217,9 @@ class MainWindow(QWidget):
             self._append_log(
                 f"Settings saved · download photos {dl} · discount {start} → {end}"
             )
+
+    def _open_yaml_generator(self) -> None:
+        YamlGeneratorDialog(self).exec()
 
     def _all_scrape_errors(self) -> list[str]:
         errors: list[str] = []

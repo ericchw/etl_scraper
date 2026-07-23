@@ -1,0 +1,351 @@
+marketplace: newegg
+name: DesktopPC
+headers_file: ../../../templates/newegg/ComputerHardware_BatchItemCreation_DesktopPC.csv
+csv_preamble_row:
+- Version=1.01
+- SubCategoryID=10
+- ''
+- TemplateDate=2026-06-24
+fields:
+  'Seller Part #':
+    literal: ''
+  Manufacturer:
+    literal: ''
+  'Manufacturer Parts #':
+    literal: ''
+  UPC / ISBN:
+    literal: ''
+  Related Seller Part#:
+    literal: ''
+  Website Short Title:
+    literal: ''
+  Bullet Description:
+    literal: ''
+  Product Description:
+    literal: ''
+  Item Length:
+    literal: ''
+  Item Width:
+    literal: ''
+  Item Height:
+    literal: ''
+  Item Weight:
+    literal: ''
+  Packs Or Sets:
+    literal: ''
+  Item Condition:
+    literal: ''
+  Item Package:
+    literal: ''
+  Shipping Restriction:
+    literal: ''
+  Currency:
+    literal: ''
+  MSRP:
+    literal: ''
+  MAP:
+    literal: ''
+  CheckoutMAP:
+    literal: ''
+  Selling Price:
+    literal: ''
+  Shipping:
+    literal: ''
+  Inventory:
+    literal: ''
+  Limit Quantity:
+    literal: ''
+  Activation Mark:
+    literal: ''
+  Action:
+    literal: ''
+  Item Images:
+    literal: ''
+  Condition Details:
+    literal: ''
+  Used Item Images:
+    literal: ''
+  Country Of Origin:
+    literal: ''
+  Age 18+ Verification:
+    literal: ''
+  Choking Hazard 1:
+    literal: ''
+  Choking Hazard 2:
+    literal: ''
+  Choking Hazard 3:
+    literal: ''
+  Choking Hazard 4:
+    literal: ''
+  Lead Time:
+    literal: ''
+  Shipping Template:
+    literal: ''
+  Custom Variety 1 Name:
+    literal: ''
+  Custom Variety 1 Value:
+    literal: ''
+  Custom Variety 2 Name:
+    literal: ''
+  Custom Variety 2 Value:
+    literal: ''
+  Custom Variety 3 Name:
+    literal: ''
+  Custom Variety 3 Value:
+    literal: ''
+  DTSeries:
+    literal: ''
+  DTModel:
+    literal: ''
+  DTOperatingSystem:
+    literal: ''
+  DTFormFactor:
+    literal: ''
+  DTColor:
+    literal: ''
+  DTPowerSupply:
+    literal: ''
+  DTCPUType:
+    literal: ''
+  DTCPUName:
+    literal: ''
+  DTCPUSocketType:
+    literal: ''
+  DTCPUFSB:
+    literal: ''
+  DTMemoryCapacity:
+    literal: ''
+  DTMemorySpeed:
+    literal: ''
+  DTMemorySlotsAvailableTotal:
+    literal: ''
+  DTMaximumMemorySupported:
+    literal: ''
+  DTHDD:
+    literal: ''
+  DTHDDRPM:
+    literal: ''
+  DTOpticalDriveType:
+    literal: ''
+  DTOpticalDriveSpec:
+    literal: ''
+  DTOpticalDriveFeatures:
+    literal: ''
+  DTFDD:
+    literal: ''
+  DTMediaSlots:
+    literal: ''
+  DTAudioChipset:
+    literal: ''
+  DTAudioChannels:
+    literal: ''
+  DTGPUVGAType:
+    literal: ''
+  DTGraphicsInterface:
+    literal: ''
+  DTDisplayFeature:
+    literal: ''
+  DTScreenSize:
+    literal: ''
+  DTModem:
+    literal: ''
+  DTLANChipset:
+    literal: ''
+  DTLANSpeed:
+    literal: ''
+  DTWLAN:
+    literal: ''
+  DTFIR:
+    literal: ''
+  DTBluetooth:
+    literal: ''
+  DTFrontUSB:
+    literal: ''
+  DTFrontIEEE1394:
+    literal: ''
+  DTFrontAudioPorts:
+    literal: ''
+  DTCardReader:
+    literal: ''
+  DTCOM:
+    literal: ''
+  DTLPT:
+    literal: ''
+  DTPS2:
+    literal: ''
+  DTVideoPorts:
+    literal: ''
+  DTTVOut:
+    literal: ''
+  DTRearUSB:
+    literal: ''
+  DTRearIEEE1394:
+    literal: ''
+  DTRJ45:
+    literal: ''
+  DTRearAudioPorts:
+    literal: ''
+  DTSPDIF:
+    literal: ''
+  DTExternalBays:
+    literal: ''
+  DTInternalBays:
+    literal: ''
+  DTPCIeSlots:
+    literal: ''
+  DTMouseType:
+    literal: ''
+  DTKeyboardType:
+    literal: ''
+  DTSpeakerConfiguration:
+    literal: ''
+  DTSpeakerFeatures:
+    literal: ''
+  DTDimensionsHxWxD:
+    literal: ''
+  DTWeight:
+    literal: ''
+  DTBrand:
+    literal: ''
+  DTChipset:
+    literal: ''
+  DTSoftwareIncluded:
+    literal: ''
+  DTL2CachePerCPU:
+    literal: ''
+  DTPackageContents:
+    literal: ''
+  DTMemorySpec:
+    literal: ''
+  DTGraphicsCard:
+    literal: ''
+  DTMotherboardName:
+    literal: ''
+  DTCPUMainFeatures:
+    literal: ''
+  DTStorageSpec:
+    literal: ''
+  DTSpecialFeatures:
+    literal: ''
+  DTStorageController:
+    literal: ''
+  DTTProcessor:
+    literal: ''
+  DTTMemory:
+    literal: ''
+  DTTStorage:
+    literal: ''
+  DTTOpticalDrive:
+    literal: ''
+  DTTOpticalDrive2:
+    literal: ''
+  DTTGraphics:
+    literal: ''
+  DTTAudio:
+    literal: ''
+  DTTEthernet:
+    literal: ''
+  DTTWirelessCard:
+    literal: ''
+  DTTMonitor:
+    literal: ''
+  DTTSpeaker:
+    literal: ''
+  DTTKeyboard:
+    literal: ''
+  DTTMouse:
+    literal: ''
+  DTTCachePerProcessor:
+    literal: ''
+  DTTProcessorMainFeatures:
+    literal: ''
+  DTTInstalledQty:
+    literal: ''
+  DTTMaxSupportedQty:
+    literal: ''
+  DTTFormFactor:
+    literal: ''
+  DTTOpticalDrive2Type:
+    literal: ''
+  DTOpticalDrive2Spec:
+    literal: ''
+  DTTAudioFeatures:
+    literal: ''
+  DTPCCardSlot:
+    literal: ''
+  DTType:
+    literal: ''
+  DTHDDInterface:
+    literal: ''
+  ManufacturerWarrantyParts:
+    literal: ''
+  ManufacturerWarrantyLabor:
+    literal: ''
+  CommonConsumerAlert:
+    literal: ''
+  DTeSATA:
+    literal: ''
+  DTFronteSATA:
+    literal: ''
+  DTL3CachePerCPU:
+    literal: ''
+  DTMemorySlotTotal:
+    literal: ''
+  DTMemorySlotAvailable:
+    literal: ''
+  DTScreenType:
+    literal: ''
+  DTUsage:
+    literal: ''
+  DTTouchscreen:
+    literal: ''
+  DTGreenComplianceCertificate:
+    literal: ''
+  DTCertificationsStandards:
+    literal: ''
+  DTPackageType:
+    literal: ''
+  DTPartNumber:
+    literal: ''
+  DTTCase:
+    literal: ''
+  DTSSD:
+    literal: ''
+  GlobalElectricalOutletPlugType:
+    literal: ''
+  DTVirtualRealityReady:
+    literal: ''
+  DTSLICrossfire:
+    literal: ''
+  DTGPUMemory:
+    literal: ''
+  DTOptaneMemory:
+    literal: ''
+  PortThunderbolt3:
+    literal: ''
+  DTCaseFeatures:
+    literal: ''
+  DTCoolingInstalled:
+    literal: ''
+  DTTCoolingSystem:
+    literal: ''
+  DTAntennaPorts:
+    literal: ''
+  DTWiFiGeneration:
+    literal: ''
+  DTWindows11:
+    literal: ''
+  DTTurboFrequency:
+    literal: ''
+  DTCosmeticCondition:
+    literal: ''
+  DTReleaseYear:
+    literal: ''
+  DTCPUBaseFrequency:
+    literal: ''
+  GeneralAIFeatures:
+    literal: ''
+  DTExternalIOPorts:
+    literal: ''
+  UniversalContainsEmbeddedBattery:
+    literal: ''

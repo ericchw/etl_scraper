@@ -1,4 +1,4 @@
-"""Generate Best Buy mapping YAML from category template CSV."""
+"""Generate Newegg mapping YAML from category template CSV."""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from core.categories import mapping_path
 from core.yaml_generator import generate_all_missing, generate_mapping_yaml, resolve_category_key
 
 
@@ -18,10 +19,10 @@ def _prompt_overwrite(path: Path) -> bool:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate Best Buy YAML from template CSV")
+    parser = argparse.ArgumentParser(description="Generate Newegg YAML from template CSV")
     parser.add_argument(
         "--category",
-        help="Internal category key or Best Buy CAT id (e.g. gaming_laptop or CAT_1002)",
+        help="Internal category key or Newegg suffix (e.g. monitor or MonitorLCDFlatPanel)",
     )
     parser.add_argument("--all", action="store_true", help="Generate for all categories")
     parser.add_argument(
@@ -39,36 +40,31 @@ def main() -> None:
     overwrite = args.overwrite and not args.ensure_only
 
     if args.all:
-        results = generate_all_missing("bestbuy", overwrite=overwrite)
+        results = generate_all_missing("newegg", overwrite=overwrite)
         for result in results:
             print(f"{result.category_key}: {result.status} — {result.message}")
         return
 
     category_input = args.category
     if not category_input:
-        category_input = input("Category key or CAT id: ").strip()
+        category_input = input("Category key or Newegg suffix: ").strip()
 
-    category_key = resolve_category_key(category_input, "bestbuy")
+    category_key = resolve_category_key(category_input, "newegg")
     if not category_key:
         print(f"Unknown category: {category_input!r}")
         sys.exit(1)
 
-    mapping_path_dir = ROOT / "configs" / "marketplaces" / "bestbuy"
-    from core.categories import bestbuy_category_id
-
-    cat_id = bestbuy_category_id(category_key)
-    target = mapping_path_dir / f"{cat_id}.yaml"
-
+    target = mapping_path(category_key, "newegg")
     do_overwrite = overwrite
-    if target.exists() and not do_overwrite:
+    if target and target.exists() and not do_overwrite:
         if sys.stdin.isatty():
             do_overwrite = _prompt_overwrite(target)
         if not do_overwrite:
-            result = generate_mapping_yaml(category_key, "bestbuy", overwrite=False)
+            result = generate_mapping_yaml(category_key, "newegg", overwrite=False)
             print(result.message)
             return
 
-    result = generate_mapping_yaml(category_key, "bestbuy", overwrite=do_overwrite)
+    result = generate_mapping_yaml(category_key, "newegg", overwrite=do_overwrite)
     print(f"{result.status}: {result.message}")
 
 

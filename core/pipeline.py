@@ -64,24 +64,48 @@ def _scrape_manufacturer(
     if cfg.get("enabled") is False:
         log(f"Manufacturer {brand}: disabled in manufacturers.json")
         return None, ""
-    url_template = cfg.get("search_url", "")
-    if not url_template:
-        return None, ""
-    search_url = url_template.format(mpn=mpn)
-    log(f"Manufacturer {brand} -> {search_url}")
-    page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
-    page.wait_for_timeout(2000)
 
     brand_key = brand.lower().replace(" ", "_")
+    has_search = bool((cfg.get("search_url") or "").strip())
+    has_google = bool(cfg.get("google_search")) and bool((cfg.get("google_cite") or "").strip())
+    if not has_search and not has_google:
+        log(f"Manufacturer {brand}: no search_url or google_search configured")
+        return None, ""
+
+    from sites.manufacturers.search import resolve_manufacturer_product_url
+
+    product_url = resolve_manufacturer_product_url(
+        page,
+        mpn,
+        cfg,
+        brand_key=brand_key,
+        log=log,
+    )
+    if not product_url:
+        log(f"Manufacturer {brand}: product not found")
+        return None, ""
+
+    if page.url != product_url:
+        log(f"Manufacturer PDP -> {product_url}")
+        page.goto(product_url, wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_timeout(2000)
+
     if brand_key == "dell":
         from sites.manufacturers.dell import scrape_dell_product
 
         raw = scrape_dell_product(page)
         raw["mpn"] = mpn.upper()
-        return raw, search_url
+        return raw, product_url
+
+    if brand_key == "arctic":
+        from sites.manufacturers.arctic import scrape_arctic_product
+
+        raw = scrape_arctic_product(page)
+        raw["mpn"] = mpn.upper()
+        return raw, product_url
 
     log(f"Manufacturer scraper for {brand!r} not implemented yet")
-    return {"source": "manufacturer", "mpn": mpn.upper(), "specs": {}}, search_url
+    return {"source": "manufacturer", "mpn": mpn.upper(), "specs": {}}, product_url
 
 
 def _scrape_source(
