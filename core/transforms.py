@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import ast
 from datetime import datetime
 from typing import Any
 import json
@@ -318,15 +319,16 @@ def _condition_from_context(context: dict) -> dict:
 
 
 def bb_title(value: Any, *, context: dict, **_kwargs) -> str:
-    del value
-    title = clean(context.get("title") or "")
+    print("bb_title", value)
+    print("bb_title", context)
+    title = clean(context.get("title")).replace(" - ", ", ") or value
     mpn = clean(context.get("mpn") or "")
     if not title and not mpn:
         return ""
 
     base = f"{title} ({mpn})" if mpn else title
     label = _condition_label(context.get("condition"))
-    if label:
+    if label != "Brand New":
         return f"{label} - {base}" #–
     return base
 
@@ -337,7 +339,7 @@ def ne_title(value: Any, *, context: dict, **_kwargs) -> str:
     mpn = clean(context.get("mpn"))
     base = f"{title} ({mpn})"
     label = clean(_condition_from_context(context).get("label") or "")
-    if label:
+    if label != "Brand New":
         label = label.replace("Open Box", "Open_Box")
         return f"{label} - {base}" #–
     return base
@@ -396,7 +398,7 @@ def export_features(value: Any, *, context: dict, **_kwargs) -> str:
         "Refurbished Good",
         "Refurbished Fair",
     ):
-        prefix = f"{label}: UNUSED, 10/10 condition product w/ valid manufacturer warranty"
+        prefix = f"{label}: UNUSED, 10/10 condition product w/ full warranty still valid, original accessories ALL are include"
         return f"{prefix}\n{features}" if features else prefix
 
     return features or ""
@@ -422,7 +424,7 @@ def export_features_bullets(value: Any, *, context: dict, **_kwargs) -> str:
         "Refurbished Good",
         "Refurbished Fair",
     ):
-        prefix = f"{label}: UNUSED, 10/10 condition product w/ full warranty still valid"
+        prefix = f"{label}: UNUSED, 10/10 condition product w/ full warranty still valid, original accessories ALL are include"
         lines.append(f"• {prefix}")
 
     if features:
@@ -640,6 +642,17 @@ def weight_lb_to_kg(value: Any, **_kwargs) -> str:
         return ""
 
     return f"{n / 2.20462:.3f}"
+
+def weight_lb_to_g(value: Any, **_kwargs) -> str:
+    if not value:
+        return ""
+
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return ""
+
+    return f"{n * 453.59237:.3f}"
 
 def contains_keywords(obj, keywords) -> bool:
     if isinstance(obj, dict):
@@ -892,6 +905,211 @@ def ne_curved_surface_screen(value: Any, *, context: dict, **_kwargs) -> str:
     curve = clean(internal.get("display", {}).get("curve_screen", "")).strip().lower()
     return "Curved" if curve in {"true", "yes"} else "Flat Panel"
 
+def bb_cooler_led_rgb(value: Any, **_kwargs) -> str:
+    text = clean(value).lower()
+    if not text:
+        return ""
+
+    if "rgb" in text:
+        return "RGB"
+    elif "led" in text:
+        return "LED"
+
+    return ""
+
+def bb_cooler_heatsink_material(value: Any, **_kwargs) -> str:
+    text = clean(value).lower()
+    if not text:
+        return ""
+    if "copper" in text:
+        return "Cooper"
+    elif "aluminum" in text:
+        return "Aluminum"
+    return "Other"
+
+# def bb_cpu_socket_type(value: Any, **_kwargs) -> str:
+#     # Convert to dict if necessary
+#     if isinstance(value, str):
+#         try:
+#             value = json.loads(value)  # JSON string
+#         except json.JSONDecodeError:
+#             try:
+#                 value = ast.literal_eval(value)  # Python dict string
+#             except (ValueError, SyntaxError):
+#                 value = {}
+#
+#     elif value is None:
+#         value = {}
+#
+#     elif not isinstance(value, dict):
+#         value = {}
+#
+#     result = []
+#
+#     for socket in value.get("amd", []):
+#         result.append(f"AMD {socket}")
+#
+#     for socket in value.get("intel", []):
+#         if socket.upper().startswith("LGA") and not socket.upper().startswith("LGA "):
+#             socket = f"LGA {socket[3:]}"
+#         result.append(f"Intel {socket}")
+#
+#     for socket in value.get("pi_nnpi", []):
+#         result.append(f"PI/NNPI {socket}")
+#
+#     return " ".join(result)
+
+def bb_cpu_socket_type(value: Any, **_kwargs) -> str:
+    # Convert to dict if necessary
+    if isinstance(value, str):
+        try:
+            value = json.loads(value)  # JSON string
+        except json.JSONDecodeError:
+            try:
+                value = ast.literal_eval(value)  # Python dict string
+            except (ValueError, SyntaxError):
+                value = {}
+
+    elif value is None:
+        value = {}
+
+    elif not isinstance(value, dict):
+        value = {}
+
+    result = []
+
+    # Get Intel sockets
+    intel = value.get("intel", [])
+
+    if isinstance(intel, list):
+        for socket in intel:
+            socket = str(socket).strip()
+
+            # Add LGA prefix if it doesn't already have one
+            if socket and not socket.upper().startswith("LGA"):
+                socket = f"Intel LGA{socket}"
+
+            if socket:
+                result.append(socket)
+
+    # Get AMD sockets
+    amd = value.get("amd", [])
+
+    if isinstance(amd, list):
+        for socket in amd:
+            socket = str(socket).strip()
+
+            if socket:
+                result.append(socket)
+
+    # Get Pi / NNPI sockets
+    pi_nnpi = value.get("pi_nnpi", [])
+
+    if isinstance(pi_nnpi, list):
+        for socket in pi_nnpi:
+            socket = str(socket).strip()
+
+            if socket:
+                result.append(socket)
+
+    return ";".join(result)
+
+
+def bb_cooler_compatibility(value: Any, **_kwargs) -> str:
+    # Convert to dict if necessary
+    if isinstance(value, str):
+        try:
+            value = json.loads(value)  # JSON string
+        except json.JSONDecodeError:
+            try:
+                value = ast.literal_eval(value)  # Python dict string
+            except (ValueError, SyntaxError):
+                value = {}
+
+    elif value is None:
+        value = {}
+
+    elif not isinstance(value, dict):
+        value = {}
+
+    result = []
+
+    # Get Intel sockets
+    intel = value.get("intel", [])
+
+    if isinstance(intel, list):
+        for socket in intel:
+            socket = str(socket).strip()
+
+            # Add LGA prefix if it doesn't already have one
+            if socket and not socket.upper().startswith("LGA"):
+                socket = f"Intel LGA{socket}"
+
+            if socket:
+                result.append(socket)
+
+    # Get AMD sockets
+    amd = value.get("amd", [])
+
+    if isinstance(amd, list):
+        for socket in amd:
+            socket = str(socket).strip()
+
+            if socket:
+                result.append(socket)
+
+    # Get Pi / NNPI sockets
+    pi_nnpi = value.get("pi_nnpi", [])
+
+    if isinstance(pi_nnpi, list):
+        for socket in pi_nnpi:
+            socket = str(socket).strip()
+
+            if socket:
+                result.append(socket)
+
+    return ";".join(result)
+
+
+# def bb_max_rpm(value: Any, **_kwargs) -> str:
+#     text = clean(value)
+#     if not text:
+#         return ""
+#     numbers = re.findall(r"\d+", text)
+#     return numbers[-1] if numbers else ""
+#
+# def bb_min_rpm(value: Any, **_kwargs) -> str:
+#     text = clean(value)
+#     if not text:
+#         return ""
+#
+#     numbers = re.findall(r"\d+", text)
+#     return numbers[0] if numbers else ""
+
+def bb_PCCoolingType(value: Any, **_kwargs) -> str:
+    print("bb_PCCoolingType value:", value )
+    if not value:
+        return ""
+
+    # if "Case Fan" in value:
+    #     return "PC Case Fan"
+    # elif "Radiator Fan" in value:
+    #     return "Radiator Fan"
+    if "Fan" in value:
+        return "Case/Radiator Fan"
+    elif "Remote/Controller" in value:
+        return "Remote/Controller"
+    elif "Heatsink" in value:
+        return "Heatsink only"
+    elif "CPU AIO Cooler" in value:
+        return "All-in-One Liquid CPU Cooler"
+    elif "Thermal Paste" in value:
+        return "Thermal Paste"
+    elif "CPU Air Cooler" in value:
+        return "CPU Air Cooler"
+    return "Other"
+
+
 TRANSFORMS = {
     "clean": clean,
     "only_number": only_number,
@@ -924,6 +1142,7 @@ TRANSFORMS = {
     "end_of_day_pst": end_of_day_pst,
     "length_in_to_cm": length_in_to_cm,
     "weight_lb_to_kg": weight_lb_to_kg,
+    "weight_lb_to_g":weight_lb_to_g,
     "check_anti_glare": check_anti_glare,
     "check_stylus": check_stylus,
     "check_cellular": check_cellular,
@@ -941,6 +1160,13 @@ TRANSFORMS = {
     "bb_extract_display_type": bb_extract_display_type,
     "ne_monitor_convenience_stand_adjustments": ne_monitor_convenience_stand_adjustments,
     "ne_curved_surface_screen": ne_curved_surface_screen,
+    "bb_cooler_led_rgb": bb_cooler_led_rgb,
+    "bb_cooler_heatsink_material": bb_cooler_heatsink_material,
+    "bb_cpu_socket_type": bb_cpu_socket_type,
+    "bb_cooler_compatibility": bb_cooler_compatibility,
+    # "bb_max_rpm": bb_max_rpm,
+    # "bb_min_rpm": bb_min_rpm,
+    "bb_PCCoolingType": bb_PCCoolingType,
     "passthrough": clean,
 }
 
@@ -973,5 +1199,16 @@ if __name__ == "__main__":
     #
     # print(ne_check_wifi_standard("IEEE 802.11be"))
 
-    print(spec_yes_no("No"))
+    # print(spec_yes_no("No"))
+
+    context = {
+        "title": 'LG UltraGear 27G411A-B 27" Class Gaming LCD Monitor',
+        "mpn": "27G411A-B",
+        "condition": {"label": "Open Box"},
+    }
+
+    print(bb_title(None, context=context))
+
+
+
     pass

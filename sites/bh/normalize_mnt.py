@@ -31,22 +31,36 @@ def normalize_bh_mnt(raw: dict) -> dict:
     # spec_list(specs, "Key Specs", "Finish") -> Anti-Glare -> using full web search
     internal["display"]["touchscreen"] = match_any(spec_value(specs, "Key Specs", "Touchscreen"), ["yes"])
     internal["display"]["aspect_ratio"] = spec_value(specs, "Display", "Aspect Ratio")
+    internal["display"]["static_contrast_ratio"] = spec_value(specs, "Display", "Contrast Ratio")
+    internal["display"]["adjustment"]["height"] = match_any(spec_value(specs, "General", "Adjustments"), ["height"])
+    internal["display"]["adjustment"]["pivot"] = match_any(spec_value(specs, "General", "Adjustments"), ["pivot", "rotation"])
+    internal["display"]["adjustment"]["swivel"] = match_any(spec_value(specs, "General", "Adjustments"), ["swivel"])
+    internal["display"]["adjustment"]["tilt"] = match_any(spec_value(specs, "General", "Adjustments"), ["tilt"])
+
+
     internal["display"]["brightness_cdm2"] = extract_number(spec_value(specs, "Display", "Maximum Brightness"))
     # spec_value(specs, "Display", "Contrast Ratio")
     internal["display"]["refresh_rate_hz"] = extract_number(spec_value(specs, "Display", "Refresh Rate"))
     internal["display"]["features"] = spec_list(specs, "Display", "Variable Refresh Technology")
-    internal["display"]["horizontal_viewing_angle"] = spec_value(specs, "Display & Graphics", "Horizontal Viewing Angle")
-    internal["display"]["vertical_viewing_angle"] = spec_value(specs, "Display & Graphics", "Vertical Viewing Angle")
 
+    def viewing_angle(value: str, index: int) -> str:
+        parts = value.replace("°", "").split("x")
+        return f"{parts[index].strip()}°" if len(parts) == 2 else ""
 
-
+    value = spec_value(specs, "Display & Graphics", "Viewing Angle (H x V)")
+    internal["display"]["horizontal_viewing_angle"] = viewing_angle(value, 0)
+    internal["display"]["vertical_viewing_angle"] = viewing_angle(value, 1)
+    internal["display"]["curve_screen"] = match_any(spec_value(specs, "Display", "Curved Display"), ["yes"])
 
     # io
-    internal["io"]["ports"] = spec_list(specs, "Key Specs", "A/V Inputs") + spec_list(specs, "Key Specs", "USB I/O")
+    internal["io"]["ports"] = spec_list(specs, "Key Specs", "A/V Inputs") + spec_list(specs, "Key Specs", "A/V Outputs") + spec_list(specs, "Key Specs", "USB I/O")
 
     # audio
     internal["audio"]["speaker"] = match_any(spec_value(specs, "Key Specs", "Built-In Speakers"), ["yes"])
 
+    #technical
+    internal["technical"]["vesa_mount"] = match_any(spec_value(specs, "General", "VESA Mounting-Hole Pattern"), ["*"])
+    internal["technical"]["vesa_mount_size"] = [s.replace(" mm", "") for s in spec_list(specs, "General", "VESA Mounting-Hole Pattern")]
 
     # desc = parse_description_from_raw(raw)
     # if desc:

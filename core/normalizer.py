@@ -8,6 +8,7 @@ from sites.manufacturers.normalizer import normalize_manufacturer_raw
 
 from core.categories import normalizer_key as normalizer_key_from_category
 from core.categories import product_code as product_code_from_category
+from core.categories import schema_code as schema_code_from_category
 from core.categories import sub_code as sub_code_from_category
 from core.merge.field_merge import merge_internals
 from core.product_document import finalize_product_document
@@ -82,19 +83,20 @@ def build_product_document(
     cat = category_key or (submission or {}).get("category")
     norm_key = normalizer_key_from_category(cat) if cat else code
     sub = sub_code_from_category(cat) if cat else ""
+    schema = schema_code_from_category(cat) if cat else code
 
     partials = {
         source: normalize_source_raw(
             source,
             raw,
-            product_code=code,
+            product_code=schema,
             normalizer_key=norm_key,
         )
         for source, raw in raw_by_source.items()
         if raw
     }
 
-    merged, merge_report = merge_internals(partials, product_code=code)
+    merged, merge_report = merge_internals(partials, product_code=schema)
 
     if not (merged.get("identity") or {}).get("mpn"):
         for raw in raw_by_source.values():
@@ -103,8 +105,8 @@ def build_product_document(
                 merged.setdefault("identity", {})["mpn"] = mpn
                 break
 
-    if sub:
-        merged.setdefault("_meta", {})["sub_code"] = sub
+    # if sub:
+    #     merged.setdefault("_meta", {})["sub_code"] = sub
 
     doc = envelope_from_internal(merged, product_code=code, sub_code=sub)
     doc["scraped_data"] = raw_by_source

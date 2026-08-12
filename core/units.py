@@ -44,7 +44,7 @@ def weight_to_lb(value: Any, unit_hint: str = "") -> str:
         return f"{n:.2f}"
     if "kilogram" in text or " kg" in text or unit_hint in ("kg", "kilogram"):
         return f"{n * 2.20462:.2f}"
-    if "gram" in text and "kilogram" not in text:
+    if ("gram" in text or re.search(r"(?:^|\s)g(?:$|\s)", text)) and "kilogram" not in text:
         return f"{n * 0.00220462:.2f}"
     return f"{n:.2f}"
 

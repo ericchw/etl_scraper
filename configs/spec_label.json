@@ -32,5 +32,21 @@
     "item_lb": "Item (lb)",
     "package_lb": "Package (lb)",
     "pixel_pitch_mm": "Pixel Pitch (mm)",
-    "height_mm": "Height (mm)"
+    "height_mm": "Height (mm)",
+    "outer_mm": "Outer (mm)",
+    "inner_mm": "Inner (mm)",
+    "amd": "AMD",
+    "pi_nnpi": "PI | NNPI",
+    "fan_size_cm": "Fan Size (cm)",
+    "max_rpm": "Maximum (RPM)",
+    "min_rpm": "Minimum (RPM)",
+    "airflow_cfm": "Airflow (cfm)",
+    "airflow_m3h": "Airflow (m³/h3/h)",
+    "static_pressure_mmh2o": "Static Pressure (mm H20)",
+    "current_a": "Current (A)",
+    "voltage_v": "Voltage (V)",
+    "vrm_module": "VRM Module",
+    "vrm_fan": "VRM Fan",
+    "rgb": "RGB",
+    "leds": "LEDs"
 }

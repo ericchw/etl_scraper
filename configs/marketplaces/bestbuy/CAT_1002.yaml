@@ -10,9 +10,9 @@ fields:
     from_submission: sku
   _Title_BB_Category_Root_EN:
     transform: bb_title
-    pipeline:
-      - replace:
-          " - ": ", "
+#    pipeline:
+#      - replace:
+#          " - ": ", "
   _Short_Description_BB_Category_Root_EN:
     transform: export_features_bullets
   _Brand_Name_Category_Root_EN:
@@ -128,7 +128,6 @@ fields:
   _RAMSize_9685909_CAT_1002_EN:
     sources:
       - ["internal", "memory", "capacity_gb"]
-    # transform: only_number
     transform: only_digits
   _NativeScreenResolution_15195_CAT_1002_EN:
     sources:
@@ -174,7 +173,7 @@ fields:
     sources:
       - ["internal", "power", "battery", "cells"]
       - ["internal", "power", "battery", "chemistry"]
-    join: " x "
+    join: " "
   _Colour_5105_CAT_1002_EN:
     sources:
       - ["internal", "physical", "color"]

@@ -1,0 +1,77 @@
+{
+  "identity": {
+    "brand": "",
+    "mpn": "",
+    "upc": "",
+    "product_line": "",
+    "model": "",
+    "product_type": "",
+    "package_qty": ""
+  },
+  "content": {
+    "title": "",
+    "description": "",
+    "features": [],
+    "images": []
+  },
+  "cooling": {
+    "operating_ambient_temperature": ""
+  },
+  "compatibility": {
+    "intel": [],
+    "amd": [],
+    "pi_nnpi": [],
+    "ram_clearance": ""
+  },
+  "heatsink": {
+    "number_of_heatpipe": "",
+    "heatpipe": [],
+    "fin_material": "",
+    "number_of_fins": "",
+    "fim_thickness_mm": "",
+    "thermal_paste": ""
+  },
+  "fan": {
+    "general": [],
+    "fan": "",
+    "number_of_fan": "",
+    "length_cm": "",
+    "width_cm": "",
+    "height_cm": "",
+    "min_rpm": "",
+    "max_rpm": "",
+    "bearing": "",
+    "noise_level": "",
+    "current_a": "",
+    "voltage_v": "",
+    "cable_length": "",
+    "connector": ""
+  },
+  "rgb": {
+    "leds": "",
+    "current_a": "",
+    "voltage_v": "",
+    "cable_length": "",
+    "connector": ""
+  },
+  "included_items": [],
+  "physical": {
+    "dimensions": {
+      "item": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      },
+      "package": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      }
+    },
+    "weight": {
+      "item_lb": "",
+      "package_lb": ""
+    }
+  },
+  "warranty": ""
+}

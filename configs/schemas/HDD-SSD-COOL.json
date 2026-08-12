@@ -1,0 +1,47 @@
+{
+  "identity": {
+    "brand": "",
+    "mpn": "",
+    "upc": "",
+    "product_line": "",
+    "model": "",
+    "product_type": "",
+    "package_qty": ""
+  },
+  "content": {
+    "title": "",
+    "description": "",
+    "features": [],
+    "images": []
+  },
+  "storage_cooling": {
+    "product_type": "",
+    "drive_form_factor": [],
+    "drive_interface": [],
+    "ps5_compatible": false,
+    "single_double_sided": "",
+    "material": "",
+    "assembly_type": "",
+    "thermal_pads_included": []
+  },
+  "included_items": [],
+  "physical": {
+    "dimensions": {
+      "item": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      },
+      "package": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      }
+    },
+    "weight": {
+      "item_lb": "",
+      "package_lb": ""
+    }
+  },
+  "warranty": ""
+}

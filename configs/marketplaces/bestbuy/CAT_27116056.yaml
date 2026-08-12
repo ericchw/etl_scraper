@@ -1,0 +1,219 @@
+marketplace: bestbuy
+name: CAT_27116056
+headers_file: ../../../templates/bestbuy/CAT_27116056-example.csv
+fields:
+  BBYCat:
+    from_category:
+      marketplace: bestbuy
+  shop_sku:
+    from_submission: sku
+  _Title_BB_Category_Root_EN:
+    sources: ["scraped_data", "manufacturer", "title"]
+    transform: bb_title
+#    pipeline:
+#      - replace:
+#          " - ": ", "
+  _Short_Description_BB_Category_Root_EN:
+    transform: export_features_bullets
+  _Brand_Name_Category_Root_EN:
+    from: identity.brand
+  _Primary_UPC_Category_Root_EN:
+    from_submission: upc
+  _Model_Number_Category_Root_EN:
+    from: identity.model
+  _Manufacturers_Part_Number_Category_Root_EN:
+    from: identity.mpn
+  _Long_Description_BB_Category_Root_EN:
+    transform: bb_long_description
+    design_heading: "Feature & Design:"
+    spec_heading: "Specifications:"
+  _MP_Source_Image_URL_01_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 1
+  _MP_Source_Image_URL_02_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 2
+  _MP_Source_Image_URL_03_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 3
+  _MP_Source_Image_URL_04_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 4
+  _MP_Source_Image_URL_05_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 5
+  _MP_Source_Image_URL_06_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 6
+  _MP_Source_Image_URL_07_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 7
+  _MP_Source_Image_URL_08_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 8
+  _MP_Source_Image_URL_09_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 9
+  _MP_Source_Image_URL_10_Category_Root_EN:
+    transform: scraped_image_url
+    image_index: 10
+  _Web_Hierarchy_Location_Category_Root_EN:
+    literal: ''
+  _French_Compliant_Category_Root_EN:
+    literal: ''
+  _ESRB_Category_Root_EN:
+    literal: ""
+    allowed: [ "", "C", "R", "P", "O", "M", "A", "E", "S", "T" ]
+  _Software_Platform_Category_Root_EN:
+    literal: ''
+  _Energy_Star_Indicator_Category_Root_EN:
+    literal: ''
+  Variant_Group_Code:
+    literal: ''
+  _Pim_Code_Category_Root_EN:
+    literal: ''
+  _Warranty_And_Repair_Disclosure_URL_Category_Root_EN:
+    literal: ''
+  _Warranty_And_Repair_Disclosure_URL_FR_Category_Root_EN:
+    literal: ''
+  _ProductCondition_20257570_CAT_27116056_EN:
+    transform: bb_product_condition
+    allowed: [ "Brand New", "Open Box", "Refurbished Excellent", "Refurbished Good", "Refurbished Fair" ]
+  _SoftwareIncluded_13360_CAT_27116056_EN:
+    literal: ''
+  _PCCoolingType_18622611_CAT_27116056_EN:
+    from: identity.product_type
+#    sources:
+#      - [ "internal", "product_type" ]
+    transform: bb_PCCoolingType
+    allowed: ["", "Other", "PC Case Fan", "Radiator Fan", "All-in-One Liquid CPU Cooler", "Remote/Controller", "Heatsink only", "Liquid CPU Cooler", "Case/Radiator Fan", "Thermal Paste", "CPU Air Cooler"]
+  _Width_6823_CAT_27116056_EN:
+    sources:
+      - [ "internal", "physical", "dimensions", "item", "width_in" ]
+    transform: length_in_to_cm
+  _Height_15404_CAT_27116056_EN:
+    sources:
+      - [ "internal", "physical", "dimensions", "item", "height_in" ]
+    transform: length_in_to_cm
+  _Depth_14236_CAT_27116056_EN:
+    sources:
+      - [ "internal", "physical", "dimensions", "item", "length_in" ]
+    transform: length_in_to_cm
+  _Weight_6612_CAT_27116056_EN:
+    sources:
+      - [ "internal", "physical", "weight", "item_lb" ]
+    transform: weight_lb_to_g
+  _WhatsintheBox_4667_CAT_27116056_EN:
+    sources:
+      - [ "internal", "included_items" ]
+    list_join: ";"
+  _LightingType_27120118_CAT_27116056_EN:
+    sources:
+      - [ "internal", "radiator_fan", "fan" ]
+      - [ "internal", "rgb", "fan" ]
+    transform: bb_cooler_led_rgb
+    allowed: ["", "LED", "RGB"]
+  _HeatsinkMaterial_18675406_CAT_27116056_EN:
+    sources:
+      - [ "internal", "radiator", "material" ]
+      - [ "internal", "heatsink", "fin_material" ]
+    transform: bb_cooler_heatsink_material
+    allowed: ["", "Other", "Copper", "Aluminum"]
+  _CPUSocketType_23225124_CAT_27116056_EN:
+    sources:
+      - [ "internal", "compatibility" ]
+    transform: bb_cpu_socket_type
+  _Compatibility_27170_CAT_27116056_EN:
+    sources:
+      - [ "internal", "compatibility" ]
+    transform: bb_cooler_compatibility
+  _DesignedForLaptops_28603_CAT_27116056_EN:
+    literal: ''
+    allowed: ["", "No", "Yes"]
+  _AirFlowCapacity_9176_CAT_27116056_EN:
+    sources:
+      - [ "internal", "radiator_fan", "airflow_cfm" ]
+      - [ "internal", "fan", "airflow_cfm" ]
+    transform: only_digits
+  _RotationsPerMinuteRPM_13347_CAT_27116056_EN:
+    sources:
+      - [ "internal", "radiator_fan", "fan", "max_rpm" ]
+      - [ "internal", "fan", "max_rpm" ]
+    transform: only_digits
+  _NumberofFans_6773_CAT_27116056_EN:
+    sources:
+      - [ "internal", "radiator_fan", "fan" ]
+      - [ "internal", "fan", "number_of_fan" ]
+    transform: only_digits
+  _NoiseLevel_28376_CAT_27116056_EN:
+    sources:
+      - [ "internal", "fan", "noise_level" ]
+    transform: only_number
+  _Connectivity_4967_CAT_27116056_EN:
+    sources:
+      - [ "internal", "radiator_fan", "connector" ]
+      - [ "internal", "fan", "connector" ]
+      - [ "internal", "rgb", "connector" ]
+    join: ";"
+  _FanSize_28942_CAT_27116056_EN:
+    sources:
+      - [ "internal", "radiator_fan", "fan", "size_cm" ]
+      - [ "internal", "fan", "length_cm" ]
+    suffix: '0'
+    transform: only_digits
+  _RadiatorSize_18634637_CAT_27116056_EN:
+    sources:
+      - [ "internal", "radiator", "size" ]
+    transform: only_digits
+  sku:
+    from_submission: sku
+  product-id:
+    from_submission: sku
+  product-id-type:
+    literal: "SHOP_SKU"
+  description:
+    literal: ''
+  internal-description:
+    literal: ''
+  price:
+    from_submission: marketplaces.bestbuy.list_price
+    type: decimal
+    decimals: 2
+    default: FILL
+  price-additional-info:
+    literal: ''
+  quantity:
+    literal: 0
+    type: integer
+  min-quantity-alert:
+    literal: ''
+  state:
+    literal: "11"
+  available-start-date:
+    literal: ''
+  available-end-date:
+    literal: ''
+  logistic-class:
+    from_submission: marketplaces.bestbuy.package_size
+  discount-price:
+    from_submission: price
+    type: decimal
+    decimals: 2
+    default: FILL
+  discount-start-date:
+    from_submission: marketplaces.bestbuy.discount_start_date
+    transform: start_of_day_pst
+    #    suffix: "T00:00:00.000-07:00"
+  discount-end-date:
+    from_submission: marketplaces.bestbuy.discount_end_date
+    transform: end_of_day_pst
+    #    suffix: "T23:59:59.999-07:00"
+  leadtime-to-ship:
+    literal: ''
+  update-delete:
+    literal: "UPDATE"
+  manufacturer-warranty:
+    literal: 365
+    type: integer
+  pim:
+    literal: ''

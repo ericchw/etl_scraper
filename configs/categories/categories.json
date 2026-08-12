@@ -66,8 +66,32 @@
     "code": "ACC",
     "sub_code": "CPU-AIO",
     "label": "CPU AIO Cooler",
-    "bestbuy": "27116056",
+    "bestbuy": "CAT_27116056",
     "newegg": "LiquidWaterCooling",
+    "enable": true
+  },
+  "HDD-SSD-COOL": {
+    "code": "ACC",
+    "sub_code": "HDD-SSD-COOL",
+    "label": "HDD SSD Cooling",
+    "bestbuy": "CAT_27116056",
+    "newegg": "HardDriveSSDCooling",
+    "enable": true
+  },
+  "CPU-AIR-COOL": {
+    "code": "FAN",
+    "sub_code": "CPU-AIR-COOL",
+    "label": "CPU Air Coolers",
+    "bestbuy": "CAT_27116056",
+    "newegg": "CPUAirCoolers",
+    "enable": true
+  },
+  "CASE-FAN": {
+    "code": "FAN",
+    "sub_code": "CASE-FAN",
+    "label": "Case Fan",
+    "bestbuy": "CAT_27116056",
+    "newegg": "CaseFans",
     "enable": true
   }
 }

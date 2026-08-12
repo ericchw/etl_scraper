@@ -1,0 +1,185 @@
+marketplace: newegg
+name: LiquidWaterCooling
+headers_file: ../../../templates/newegg/ComputerHardware_BatchItemCreation_LiquidWaterCooling.csv
+csv_preamble_row:
+- Version=1.01
+- SubCategoryID=575
+- ''
+- TemplateDate=2026-07-21
+fields:
+  'Seller Part #':
+    literal: ''
+  Manufacturer:
+    literal: ''
+  'Manufacturer Parts #':
+    literal: ''
+  UPC / ISBN:
+    literal: ''
+  Related Seller Part#:
+    literal: ''
+  Website Short Title:
+    literal: ''
+  Bullet Description:
+    literal: ''
+  Product Description:
+    literal: ''
+  Item Length:
+    literal: ''
+  Item Width:
+    literal: ''
+  Item Height:
+    literal: ''
+  Item Weight:
+    literal: ''
+  Packs Or Sets:
+    literal: ''
+  Item Condition:
+    literal: ''
+  Item Package:
+    literal: ''
+  Shipping Restriction:
+    literal: ''
+  Currency:
+    literal: ''
+  MSRP:
+    literal: ''
+  MAP:
+    literal: ''
+  CheckoutMAP:
+    literal: ''
+  Selling Price:
+    literal: ''
+  Shipping:
+    literal: ''
+  Inventory:
+    literal: ''
+  Limit Quantity:
+    literal: ''
+  Activation Mark:
+    literal: ''
+  Action:
+    literal: ''
+  Item Images:
+    literal: ''
+  Condition Details:
+    literal: ''
+  Used Item Images:
+    literal: ''
+  Country Of Origin:
+    literal: ''
+  Age 18+ Verification:
+    literal: ''
+  Choking Hazard 1:
+    literal: ''
+  Choking Hazard 2:
+    literal: ''
+  Choking Hazard 3:
+    literal: ''
+  Choking Hazard 4:
+    literal: ''
+  Lead Time:
+    literal: ''
+  Shipping Template:
+    literal: ''
+  Custom Variety 1 Name:
+    literal: ''
+  Custom Variety 1 Value:
+    literal: ''
+  Custom Variety 2 Name:
+    literal: ''
+  Custom Variety 2 Value:
+    literal: ''
+  Custom Variety 3 Name:
+    literal: ''
+  Custom Variety 3 Value:
+    literal: ''
+  CommonPackageContents:
+    literal: ''
+  WaterCoolingBrand:
+    literal: ''
+  WaterCoolingSeries:
+    literal: ''
+  WaterCoolingModel:
+    literal: ''
+  WaterCoolingType:
+    literal: ''
+  WaterCoolingBlockDim:
+    literal: ''
+  WaterCoolingBlockMaterial:
+    literal: ''
+  WaterCoolingPumpDim:
+    literal: ''
+  WaterCoolingPumpBearing:
+    literal: ''
+  WaterCoolingPumpCapacity:
+    literal: ''
+  WaterCoolingPumpNoise:
+    literal: ''
+  WaterCoolingRadiatorSize:
+    literal: ''
+  WaterCoolingRadiatorMaterial:
+    literal: ''
+  WaterCoolingFanDim:
+    literal: ''
+  WaterCoolingFanRPM:
+    literal: ''
+  WaterCoolingFanAirFlow:
+    literal: ''
+  WaterCoolingFanNoise:
+    literal: ''
+  WaterCoolingFanConnector:
+    literal: ''
+  WaterCoolingReservoirDim:
+    literal: ''
+  WaterCoolingReservoirCapacity:
+    literal: ''
+  WaterCoolingTubeDim:
+    literal: ''
+  WaterCoolingTubeMaterial:
+    literal: ''
+  WaterCoolingCoolantCapacity:
+    literal: ''
+  WaterCoolingFeatures:
+    literal: ''
+  ManufacturerWarrantyParts:
+    literal: ''
+  ManufacturerWarrantyLabor:
+    literal: ''
+  WaterCoolingBlockCompatibility:
+    literal: ''
+  SportsGlobalSportsTeam:
+    literal: ''
+  SportsGlobalSportsLeague:
+    literal: ''
+  WaterCoolingFanSize:
+    literal: ''
+  WaterCoolingBearingType:
+    literal: ''
+  WaterCoolingColor:
+    literal: ''
+  WaterCoolingLEDColor:
+    literal: ''
+  GlobalElectricalOutletPlugType:
+    literal: ''
+  WaterCoolingBlockCompatibility-Intel:
+    literal: ''
+  WaterCoolingBlockCompatibility-AMD:
+    literal: ''
+  DIYWaterCoolingWaterCoolingKit:
+    literal: ''
+  WaterCoolingPartNumber:
+    literal: ''
+  WaterCoolingPressure:
+    literal: ''
+  WaterCoolingDisplay:
+    literal: ''
+  WaterCoolingPumpSpeed:
+    literal: ''
+  WaterCoolingCoolantType:
+    literal: ''
+  UniversalContainsEmbeddedBattery:
+    literal: ''
+  WaterCoolingScreenSize:
+    literal: ''
+  WaterCoolingResolution:
+    literal: ''

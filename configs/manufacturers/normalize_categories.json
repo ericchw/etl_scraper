@@ -3,9 +3,18 @@
     "code": "ACC",
     "sub_code": "CPU-AIO",
     "label": "CPU AIO Cooler",
-    "schema": "ACC",
+    "schema": "CPU-AIO",
     "brands": {
-      "arctic": "normalize_cpu_aio"
+      "arctic": "normalizer"
+    }
+  },
+  "HDD-SSD-COOL": {
+    "code": "ACC",
+    "sub_code": "HDD-SSD-COOL",
+    "label": "HDD SSD Cooling",
+    "schema": "HDD-SSD-COOL",
+    "brands": {
+      "arctic": "normalizer"
     }
   }
 }

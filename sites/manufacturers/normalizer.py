@@ -31,14 +31,29 @@ def _resolve_normalizer_fn(brand: str, normalizer_key: str):
     entry = load_manufacturer_normalize_categories().get(normalizer_key) or {}
     brands = entry.get("brands") if isinstance(entry.get("brands"), dict) else {}
     module_name = brands.get(brand) or brands.get("default")
-    if not module_name:
-        return None
+
+    if module_name:
+        try:
+            module = importlib.import_module(f"sites.manufacturers.{brand}.{module_name}")
+            for fn_name in (
+                f"normalize_{brand}_raw",
+                f"normalize_{brand}_{module_name.removeprefix('normalize_')}",
+                module_name,
+            ):
+                fn = getattr(module, fn_name, None)
+                if callable(fn):
+                    return fn
+        except ModuleNotFoundError:
+            pass
+
     try:
-        module = importlib.import_module(f"sites.manufacturers.{brand}.{module_name}")
+        pkg = importlib.import_module(f"sites.manufacturers.{brand}.normalizer")
+        fn = getattr(pkg, f"normalize_{brand}_raw", None)
+        if callable(fn):
+            return fn
     except ModuleNotFoundError:
-        return None
-    fn_name = f"normalize_{brand}_{module_name.removeprefix('normalize_')}"
-    return getattr(module, fn_name, None) or getattr(module, module_name, None)
+        pass
+    return None
 
 
 def schema_code_for_normalizer_key(normalizer_key: str, *, product_code: str) -> str:

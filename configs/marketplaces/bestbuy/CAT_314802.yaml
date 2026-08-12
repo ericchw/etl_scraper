@@ -3,184 +3,246 @@ name: CAT_314802
 headers_file: ../../../templates/bestbuy/CAT_314802-example.csv
 fields:
   BBYCat:
-    from_category:
-      marketplace: bestbuy
+    literal: ''
   shop_sku:
-    from_submission: sku
+    literal: ''
   _Title_BB_Category_Root_EN:
-    transform: bb_title
-    pipeline:
-      - replace:
-          " - ": ", "
+    literal: ''
   _Short_Description_BB_Category_Root_EN:
-    transform: export_features_bullets
+    literal: ''
   _Brand_Name_Category_Root_EN:
-    from: identity.brand
+    literal: ''
   _Primary_UPC_Category_Root_EN:
-    from_submission: upc
+    literal: ''
   _Model_Number_Category_Root_EN:
-    from: identity.model
+    literal: ''
   _Manufacturers_Part_Number_Category_Root_EN:
-    from: identity.mpn
+    literal: ''
   _Long_Description_BB_Category_Root_EN:
-    transform: bb_long_description
-    design_heading: "Feature & Design:"
-    spec_heading: "Specifications:"
+    literal: ''
   _MP_Source_Image_URL_01_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 1
+    literal: ''
   _MP_Source_Image_URL_02_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 2
+    literal: ''
   _MP_Source_Image_URL_03_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 3
+    literal: ''
   _MP_Source_Image_URL_04_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 4
+    literal: ''
   _MP_Source_Image_URL_05_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 5
+    literal: ''
   _MP_Source_Image_URL_06_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 6
+    literal: ''
   _MP_Source_Image_URL_07_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 7
+    literal: ''
   _MP_Source_Image_URL_08_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 8
+    literal: ''
   _MP_Source_Image_URL_09_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 9
+    literal: ''
   _MP_Source_Image_URL_10_Category_Root_EN:
-    transform: scraped_image_url
-    image_index: 10
+    literal: ''
   _Web_Hierarchy_Location_Category_Root_EN:
     literal: ''
   _French_Compliant_Category_Root_EN:
     literal: ''
   _ESRB_Category_Root_EN:
-    literal: ""
-    allowed: [ "", "C", "R", "P", "O", "M", "A", "E", "S", "T" ]
+    literal: ''
   _Software_Platform_Category_Root_EN:
-    sources:
-      - path: software.platform
-      - group: Product Information
-        key: Platform Supported
-      - group: Software
-        key: Operating System Platform
-    join: " "
+    literal: ''
   _Energy_Star_Indicator_Category_Root_EN:
-    sources:
-      - [ "internal", "certification", "energy_star_certified" ]
-    transform: spec_y_n
+    literal: ''
   Variant_Group_Code:
     literal: ''
   _Pim_Code_Category_Root_EN:
     literal: ''
   _Warranty_And_Repair_Disclosure_URL_Category_Root_EN:
     literal: ''
-    #    transform: warranty_url_by_brand
   _Warranty_And_Repair_Disclosure_URL_FR_Category_Root_EN:
     literal: ''
   _ScreenSize_3914_CAT_29958_EN:
-    sources:
-      - [ "internal", "display", "size_in" ]
+    literal: ''
   _WhatsintheBox_4667_CAT_29958_EN:
-    sources:
-      - [ "internal", "included_items" ]
-    list_join: ";"
+    literal: ''
   _DLNACertified_19688_CAT_29958_EN:
     literal: ''
   _FrontCameraAutofocus_25403_CAT_29958_EN:
+    literal: ''
   _FrontCameraFlash_25404_CAT_29958_EN:
+    literal: ''
   _VideoCallingWiFi_25405_CAT_29958_EN:
+    literal: ''
   _VideoCallingCellular_25406_CAT_29958_EN:
+    literal: ''
   _OperatingSystem_25414_CAT_29958_EN:
+    literal: ''
   _PreloadedSoftware_25415_CAT_29958_EN:
+    literal: ''
   _AppStoreCompatibility_25417_CAT_29958_EN:
+    literal: ''
   _CellularProvider_25430_CAT_29958_EN:
+    literal: ''
   _HDMIOutput_25433_CAT_29958_EN:
+    literal: ''
   _HeightInches_25131_CAT_29958_EN:
+    literal: ''
   _IntegratedBluetooth_15246_CAT_29958_EN:
+    literal: ''
   _IntegratedMicrophone_15207_CAT_29958_EN:
+    literal: ''
   _MicrophoneInput_15208_CAT_29958_EN:
+    literal: ''
   _NativeScreenResolution_15917_CAT_29958_EN:
+    literal: ''
   _OtherInputsOutputs_18576_CAT_29958_EN:
+    literal: ''
   _ProcessorCores_23322_CAT_29958_EN:
+    literal: ''
   _ProcessorType_3885_CAT_29958_EN:
+    literal: ''
   _Sensors_8727_CAT_29958_EN:
+    literal: ''
   _Stylus_15607_CAT_29958_EN:
+    literal: ''
   _UnassistedGPSNavigation_21902_CAT_29958_EN:
+    literal: ''
   _Weight_6612_CAT_29958_EN:
+    literal: ''
   _Width_6823_CAT_29958_EN:
+    literal: ''
   _WidthInches_25132_CAT_29958_EN:
+    literal: ''
   _BuiltinStorageType_25391_CAT_29958_EN:
+    literal: ''
   _CompatibleMemoryCardTypes_25393_CAT_29958_EN:
+    literal: ''
   _RearCameraVideoResolution_25398_CAT_29958_EN:
+    literal: ''
   _RearCameraAutofocus_25399_CAT_29958_EN:
+    literal: ''
   _RearCameraFlash_25400_CAT_29958_EN:
+    literal: ''
   _FrontCameraVideoResolution_25401_CAT_29958_EN:
+    literal: ''
   _Multitasking_42788_CAT_29958_EN:
+    literal: ''
   _AssistedGPSNavigation_21901_CAT_29958_EN:
+    literal: ''
   _BatteryCapacity_15253_CAT_29958_EN:
+    literal: ''
   _BuiltinMemoryCardReader_15230_CAT_29958_EN:
+    literal: ''
   _BuiltinSpeaker_19941_CAT_29958_EN:
+    literal: ''
   _BuiltinStand_24740_CAT_29958_EN:
+    literal: ''
   _ChargeoverUSB_21951_CAT_29958_EN:
+    literal: ''
   _Depth_14236_CAT_29958_EN:
+    literal: ''
   _DepthInches_25133_CAT_29958_EN:
+    literal: ''
   _HardwareVolumeControl_15211_CAT_29958_EN:
+    literal: ''
   _Height_15404_CAT_29958_EN:
+    literal: ''
   _HeadphoneJack_6432_CAT_29958_EN:
+    literal: ''
   _MaxMemoryCardCapacity_33514_CAT_29958_EN:
+    literal: ''
   _OperatingSystemLanguage_15257_CAT_29958_EN:
+    literal: ''
   _ProcessorSpeed_3886_CAT_29958_EN:
+    literal: ''
   _YearofOriginalRelease_12007740_CAT_29958_EN:
+    literal: ''
   _SpeakerWattage_16519892_CAT_29958_EN:
+    literal: ''
   _ScreenFinish_16519920_CAT_29958_EN:
+    literal: ''
   _RearCameraStillResolution_16519889_CAT_29958_EN:
+    literal: ''
   _FrontCameraStillResolution_16519884_CAT_29958_EN:
+    literal: ''
   _ApproximateStandbyBatteryLife_16519878_CAT_29958_EN:
+    literal: ''
   _ApproximateInuseBatteryLife_16519876_CAT_29958_EN:
+    literal: ''
   _RAMType_24674_CAT_29958_EN:
+    literal: ''
   _BuiltinStorageCapacity_21097759_CAT_29958_EN:
+    literal: ''
   _MicrosoftOfficeCompatible_42787_CAT_29958_EN:
+    literal: ''
   _RAMSize_26545701_CAT_29958_EN:
+    literal: ''
   _WiFiStandards_26475847_CAT_29958_EN:
+    literal: ''
   _IntegratedWiFi_26690001_CAT_29958_EN:
+    literal: ''
   _CellularConnectivity_26690318_CAT_29958_EN:
+    literal: ''
   _DisplayTechnology_26908001_CAT_29958_EN:
+    literal: ''
   _StylusSupport_26923159_CAT_29958_EN:
+    literal: ''
   _KeyboardCompatibility_26923256_CAT_29958_EN:
+    literal: ''
   _ProductCondition_20257570_CAT_314802_EN:
+    literal: ''
   _NumberofUSBTypeCPorts_17216491_CAT_314802_EN:
+    literal: ''
   _NumberofUSBTypeAPorts_17216494_CAT_314802_EN:
+    literal: ''
   _GraphicsCard_15196_CAT_314802_EN:
+    literal: ''
   _NumberofUSBPortsTotal_31805_CAT_314802_EN:
+    literal: ''
   _PreinstalledVoiceAssistant_19775045_CAT_314802_EN:
+    literal: ''
   _CopilotPC_23854063_CAT_314802_EN:
+    literal: ''
   _ComboPack_18730731_CAT_314802_EN:
+    literal: ''
   _Colour_5105_CAT_314802_EN:
+    literal: ''
   _Model_20123681_CAT_314802_EN:
+    literal: ''
   sku:
+    literal: ''
   product-id:
+    literal: ''
   product-id-type:
+    literal: ''
   description:
+    literal: ''
   internal-description:
+    literal: ''
   price:
+    literal: ''
   price-additional-info:
+    literal: ''
   quantity:
+    literal: ''
   min-quantity-alert:
+    literal: ''
   state:
+    literal: ''
   available-start-date:
+    literal: ''
   available-end-date:
+    literal: ''
   logistic-class:
+    literal: ''
   discount-price:
+    literal: ''
   discount-start-date:
+    literal: ''
   discount-end-date:
+    literal: ''
   leadtime-to-ship:
+    literal: ''
   update-delete:
+    literal: ''
   manufacturer-warranty:
+    literal: ''
   pim:
+    literal: ''

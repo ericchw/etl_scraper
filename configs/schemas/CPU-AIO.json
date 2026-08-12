@@ -1,0 +1,97 @@
+{
+  "identity": {
+    "brand": "",
+    "mpn": "",
+    "upc": "",
+    "product_line": "",
+    "model": "",
+    "product_type": "",
+    "package_qty": ""
+  },
+  "content": {
+    "title": "",
+    "description": "",
+    "features": [],
+    "images": []
+  },
+  "cooling": {
+    "operating_ambient_temperature": "",
+    "pump": {
+      "description": "",
+      "min_rpm": "",
+      "max_rpm": ""
+    },
+    "current_a": "",
+    "voltage_v": "",
+    "cold_plate": [],
+    "tube_diameter": {
+      "outer_mm": "",
+      "inner_mm": "",
+      "length_mm": ""
+    }
+  },
+  "compatibility": {
+    "intel": [],
+    "amd": [],
+    "pi_nnpi": []
+  },
+  "radiator": {
+    "size": "",
+    "material": "",
+    "dimension": {
+      "length_in": "",
+      "width_in": "",
+      "height_in": ""
+    }
+  },
+  "radiator_fan": {
+    "fan": {
+      "number_of_fan": "",
+      "size_cm": "",
+      "min_rpm": "",
+      "max_rpm": ""
+    },
+    "airflow_cfm": "",
+    "airflow_m3h": "",
+    "static_pressure_mmh2o": "",
+    "bearing": "",
+    "current_a": "",
+    "voltage_v": "",
+    "connector": ""
+  },
+  "vrm_module": {
+    "vrm_fan": {
+      "description": "",
+      "min_rpm": "",
+      "max_rpm": ""
+    },
+    "current_a": "",
+    "voltage_v": ""
+  },
+  "rgb": {
+    "leds": "",
+    "current_a": "",
+    "voltage_v": "",
+    "connector": ""
+  },
+  "included_items": [],
+  "physical": {
+    "dimensions": {
+      "item": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      },
+      "package": {
+        "length_in": "",
+        "width_in": "",
+        "height_in": ""
+      }
+    },
+    "weight": {
+      "item_lb": "",
+      "package_lb": ""
+    }
+  },
+  "warranty": ""
+}

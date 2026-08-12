@@ -40,7 +40,7 @@ def enabled_categories() -> dict:
 
 
 def product_code(category_key: str) -> str:
-    """Product family for internal schema + SKU prefix (NB, MNT, ACC, …)."""
+    """Product family for the SKU and product-document code (NB, MNT, ACC, …)."""
     code = str(get_category_entry(category_key).get("code") or "").strip().upper()
     return code or DEFAULT_PRODUCT_CODE
 
@@ -57,6 +57,11 @@ def normalizer_key(category_key: str) -> str:
     Key for source-specific normalizer dispatch.
     Uses sub_code when present, otherwise product code (NB, MNT, …).
     """
+    return sub_code(category_key) or product_code(category_key)
+
+
+def schema_code(category_key: str) -> str:
+    """Schema template key; subcodes own their schema when one is defined."""
     return sub_code(category_key) or product_code(category_key)
 
 

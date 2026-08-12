@@ -15,18 +15,30 @@
     "images": []
   },
   "cooling": {
-    "product_type": "",
-    "radiator_size_mm": "",
-    "fan_size_mm": "",
-    "fan_count": "",
-    "socket_compatibility": [],
-    "thermal_conductivity": "",
-    "density": "",
-    "viscosity": "",
-    "volume_resistivity": "",
-    "continuous_use_temperature": "",
-    "colour": ""
+    "operating_ambient_temperature": ""
   },
+  "fan": {
+    "min_rpm": "",
+    "max_rpm": "",
+    "airflow_cfm": "",
+    "airflow_m3h": "",
+    "static_pressure": "",
+    "bearing": "",
+    "noise_level": "",
+    "current_a": "",
+    "voltage_v_typical": "",
+    "voltage_v_startup": "",
+    "cable_length": "",
+    "connector": ""
+  },
+  "rgb": {
+    "leds": "",
+    "current_a": "",
+    "voltage_v": "",
+    "cable_length": "",
+    "connector": ""
+  },
+  "included_items": [],
   "physical": {
     "dimensions": {
       "item": {
@@ -44,5 +56,6 @@
       "item_lb": "",
       "package_lb": ""
     }
-  }
+  },
+  "warranty": ""
 }

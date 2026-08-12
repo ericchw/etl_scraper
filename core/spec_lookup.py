@@ -5,28 +5,136 @@ import fnmatch
 import re
 from typing import Any
 
-def spec_value(specs: dict | None, group: str, key: str) -> str:
-    """Case-insensitive group and key match."""
+def spec_value(
+    specs: dict | None,
+    path: list[str] | tuple[str, ...] | str,
+    key: str | None = None,
+    *,
+    match_suffix: bool = False,
+    last: bool = False,
+) -> str:
+    """
+    Case-insensitive nested spec lookup.
+
+    New style:
+        spec_value(
+            specs,
+            [
+                "General Specifications",
+                "Pump/Tubing Specifications",
+                "Min rpm"
+            ]
+        )
+
+    Old style still supported:
+        spec_value(
+            specs,
+            "General Specifications",
+            "Min rpm"
+        )
+    """
+
     if not isinstance(specs, dict):
         return ""
 
-    target_group = group.strip().lower()
-    matched_block: dict = {}
-    for g_key, g_val in specs.items():
-        if str(g_key).strip().lower() == target_group and isinstance(g_val, dict):
-            matched_block = g_val
-            break
+    # Backward compatibility:
+    # spec_value(specs, group, key)
+    if isinstance(path, str) and key is not None:
+        path = [path, key]
 
-    if not matched_block:
+    # Single string lookup
+    elif isinstance(path, str):
+        path = [path]
+
+    current = specs
+
+    # Walk nested layers except final key
+    for layer in path[:-1]:
+
+        if not isinstance(current, dict):
+            return ""
+
+        target = layer.strip().lower()
+
+        found = None
+
+        for k, v in current.items():
+            if str(k).strip().lower() == target:
+                found = v
+                break
+
+        if found is None:
+            return ""
+
+        current = found
+
+    if not isinstance(current, dict):
         return ""
 
-    target_key = key.strip().lower()
-    for k, v in matched_block.items():
-        if str(k).strip().lower() == target_key:
-            value = "" if v is None else str(v).strip()
-            return "" if value.lower() == "none" else value
+    # Final key lookup
+    target_key = str(path[-1]).strip().lower()
 
-    return ""
+    matches = []
+
+    for k, v in current.items():
+
+        source_key = re.sub(
+            r"\s+#\d+$",
+            "",
+            str(k).strip()
+        ).lower()
+
+        if (
+            source_key == target_key
+            or (
+                match_suffix
+                and source_key.endswith(f" {target_key}")
+            )
+        ):
+            value = "" if v is None else str(v).strip()
+
+            if value and value.lower() != "none":
+                matches.append(value)
+
+    if not matches:
+        return ""
+
+    return matches[-1] if last else matches[0]
+
+# def spec_value(
+#     specs: dict | None,
+#     group: str,
+#     key: str,
+#     *,
+#     match_suffix: bool = False,
+#     last: bool = False,
+# ) -> str:
+#     """Case-insensitive spec lookup, optionally matching section-prefixed keys."""
+#     if not isinstance(specs, dict):
+#         return ""
+#
+#     target_group = group.strip().lower()
+#     matched_block: dict = {}
+#     for g_key, g_val in specs.items():
+#         if str(g_key).strip().lower() == target_group and isinstance(g_val, dict):
+#             matched_block = g_val
+#             break
+#
+#     if not matched_block:
+#         return ""
+#
+#     target_key = key.strip().lower()
+#     matches: list[str] = []
+#     for k, v in matched_block.items():
+#         source_key = re.sub(r"\s+#\d+$", "", str(k).strip()).lower()
+#         if source_key == target_key or (match_suffix and source_key.endswith(f" {target_key}")):
+#             value = "" if v is None else str(v).strip()
+#             if value and value.lower() != "none":
+#                 matches.append(value)
+#
+#     if not matches:
+#         return ""
+#     return matches[-1] if last else matches[0]
 
 # def spec_list(
 #     specs: dict | None,
@@ -68,17 +176,46 @@ def spec_value(specs: dict | None, group: str, key: str) -> str:
 
 def spec_list(
     specs: dict | None,
-    group: str,
-    key: str,
+    path: list[str] | tuple[str, ...] | str,
+    key: str | None = None,
     *,
-    separators: str = r"[,;/|\r\n]"
+    separators: str = r"[,;/|\r\n]",
+    match_suffix: bool = False,
+    last: bool = False,
 ) -> list[str]:
-    value = spec_value(specs, group, key)
+    """
+    Get a spec value and split into a list.
+
+    New style:
+        spec_list(
+            specs,
+            [
+                "General Specifications",
+                "Pump/Tubing Specifications",
+                "Tube Outer Diameter"
+            ]
+        )
+
+    Old style:
+        spec_list(
+            specs,
+            "General Specifications",
+            "Tube Outer Diameter"
+        )
+    """
+
+    value = spec_value(
+        specs,
+        path,
+        key,
+        match_suffix=match_suffix,
+        last=last
+    )
 
     if not value:
         return []
 
-    # New: support literal multi-character separators
+    # Support literal multi-character separators
     if len(separators) > 1 and not separators.startswith("["):
         splitters = [separators]
     else:
@@ -89,45 +226,63 @@ def spec_list(
     depth = 0
     i = 0
 
+    pattern = re.compile(separators) if not splitters else None
+
     while i < len(value):
+
         ch = value[i]
 
         if ch == "(":
             depth += 1
+
         elif ch == ")":
             depth = max(0, depth - 1)
 
         matched = False
 
         if depth == 0:
+
             if splitters:
+
                 for sep in splitters:
+
                     if value.startswith(sep, i):
+
                         item = "".join(buf).strip()
+
                         if item:
                             result.append(item)
+
                         buf = []
                         i += len(sep)
                         matched = True
                         break
-            else:
-                pattern = re.compile(separators)
-                if pattern.match(ch):
-                    item = "".join(buf).strip()
-                    if item:
-                        result.append(item)
-                    buf = []
-                    matched = True
+
+            elif pattern and pattern.match(ch):
+
+                item = "".join(buf).strip()
+
+                if item:
+                    result.append(item)
+
+                buf = []
+                matched = True
+                i += 1
 
         if not matched:
             buf.append(ch)
             i += 1
 
-    last = "".join(buf).strip()
-    if last:
-        result.append(last)
+    last_item = "".join(buf).strip()
 
-    return [item for item in result if item]
+    if last_item:
+        result.append(last_item)
+
+    return [
+        item
+        for item in result
+        if item
+    ]
 
 def extract_number(text: str) -> str:
     if not text:

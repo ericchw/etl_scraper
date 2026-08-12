@@ -139,6 +139,22 @@ def _partial_has_spec(partial: dict | None, *, product_code: str = DEFAULT_PRODU
             or (isinstance(disp, dict) and disp.get("panel_type"))
             or get_path(partial, "identity.brand")
         )
+    if code == "HDD-SSD-COOL":
+        sc = partial.get("storage_cooling") or {}
+        return bool(
+            sc.get("drive_form_factor")
+            or sc.get("material")
+            or get_path(partial, "physical.dimensions.item.length_in")
+            or get_path(partial, "physical.weight.item_lb")
+            or get_path(partial, "identity.brand")
+        )
+    if code == "CPU-AIO":
+        return bool(
+            get_path(partial, "cooling.pump.description")
+            or get_path(partial, "radiator.size")
+            or get_path(partial, "radiator_fan.fan.size_cm")
+            or get_path(partial, "identity.brand")
+        )
     proc = partial.get("processor") or {}
     if isinstance(proc, dict) and (
         proc.get("model") or proc.get("brand") or proc.get("cores") or proc.get("threads")

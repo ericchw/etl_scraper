@@ -33,11 +33,11 @@
   },
   "samsung": {
     "label": "Samsung",
-    "google_search": false,
+    "google_search": true,
     "google_cite": "https://www.samsung.com",
     "search_url": "https://www.samsung.com/ca/search/?searchvalue={mpn}",
     "redirect": false,
-    "enabled": false
+    "enabled": true
   },
   "msi": {
     "label": "MSI",

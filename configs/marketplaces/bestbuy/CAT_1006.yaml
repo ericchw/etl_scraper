@@ -9,9 +9,9 @@ fields:
     from_submission: sku
   _Title_BB_Category_Root_EN:
     transform: bb_title
-    pipeline:
-      - replace:
-          " - ": ", "
+#    pipeline:
+#      - replace:
+#          " - ": ", "
   _Short_Description_BB_Category_Root_EN:
     transform: export_features_bullets
   _Brand_Name_Category_Root_EN:
