@@ -15,31 +15,13 @@
     "images": []
   },
   "cooling": {
-    "operating_ambient_temperature": ""
+    "continuous_use_temperature": ""
   },
-  "fan": {
-    "number_of_fan": "",
-    "size_cm": "",
-    "min_rpm": "",
-    "max_rpm": "",
-    "airflow_cfm": "",
-    "airflow_m3h": "",
-    "static_pressure": "",
-    "bearing": "",
-    "noise_level": "",
-    "current_a": "",
-    "voltage_v_typical": "",
-    "voltage_v_startup": "",
-    "cable_length": "",
-    "connector": ""
-  },
-  "rgb": {
-    "leds": "",
-    "current_a": "",
-    "voltage_v": "",
-    "cable_length": "",
-    "connector": ""
-  },
+  "density": "",
+  "viscosity": "",
+  "volume_resistivity": "",
+  "breakdown_voltage": "",
+  "colour": "",
   "included_items": [],
   "physical": {
     "dimensions": {
@@ -58,6 +40,5 @@
       "item_lb": "",
       "package_lb": ""
     }
-  },
-  "warranty": ""
+  }
 }

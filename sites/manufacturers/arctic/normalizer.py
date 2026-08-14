@@ -8,6 +8,7 @@ from sites.manufacturers.arctic.normalize_arctic_hdd_ssd_cool import normalize_a
 from sites.manufacturers.arctic.normalize_cpu_aio import normalize_arctic_cpu_aio
 from sites.manufacturers.arctic.normalize_cpu_air_cool import normalize_arctic_cpu_air_cool
 from sites.manufacturers.arctic.normalize_case_fan import normalize_arctic_case_fan
+from sites.manufacturers.arctic.normalize_thermal_paste import normalize_arctic_thermal_paste
 
 
 _ARCTIC_NORMALIZERS: dict[str, Callable] = {
@@ -15,6 +16,7 @@ _ARCTIC_NORMALIZERS: dict[str, Callable] = {
     "HDD-SSD-COOL": normalize_arctic_hdd_ssd_cool,
     "CPU-AIR-COOL": normalize_arctic_cpu_air_cool,
     "CASE-FAN": normalize_arctic_case_fan,
+    "THERMAL-PASTE": normalize_arctic_thermal_paste,
 }
 
 def normalize_arctic_raw(
@@ -39,4 +41,5 @@ __all__ = [
     "normalize_arctic_hdd_ssd_cool",
     "normalize_arctic_cpu_air_cool",
     "normalize_arctic_case_fan",
+    "normalize_arctic_thermal_paste",
 ]

@@ -93,5 +93,13 @@
     "bestbuy": "CAT_27116056",
     "newegg": "CaseFans",
     "enable": true
+  },
+  "THERMAL-PASTE": {
+    "code": "ACC",
+    "sub_code": "THERMAL-PASTE",
+    "label": "Thermal Paste",
+    "bestbuy": "CAT_27116056",
+    "newegg": "CPUThermalPasteGrease",
+    "enable": true
   }
 }

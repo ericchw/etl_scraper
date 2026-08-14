@@ -1,0 +1,125 @@
+marketplace: newegg
+name: CPUThermalPasteGrease
+headers_file: ../../../templates/newegg/ComputerHardware_BatchItemCreation_CPUThermalPasteGrease.csv
+csv_preamble_row:
+- Version=1.01
+- SubCategoryID=85
+- ''
+- TemplateDate=2026-08-13
+fields:
+  'Seller Part #':
+    literal: ''
+  Manufacturer:
+    literal: ''
+  'Manufacturer Parts #':
+    literal: ''
+  UPC / ISBN:
+    literal: ''
+  Related Seller Part#:
+    literal: ''
+  Website Short Title:
+    literal: ''
+  Bullet Description:
+    literal: ''
+  Product Description:
+    literal: ''
+  Item Length:
+    literal: ''
+  Item Width:
+    literal: ''
+  Item Height:
+    literal: ''
+  Item Weight:
+    literal: ''
+  Packs Or Sets:
+    literal: ''
+  Item Condition:
+    literal: ''
+  Item Package:
+    literal: ''
+  Shipping Restriction:
+    literal: ''
+  Currency:
+    literal: ''
+  MSRP:
+    literal: ''
+  MAP:
+    literal: ''
+  CheckoutMAP:
+    literal: ''
+  Selling Price:
+    literal: ''
+  Shipping:
+    literal: ''
+  Inventory:
+    literal: ''
+  Limit Quantity:
+    literal: ''
+  Activation Mark:
+    literal: ''
+  Action:
+    literal: ''
+  Item Images:
+    literal: ''
+  Condition Details:
+    literal: ''
+  Used Item Images:
+    literal: ''
+  Country Of Origin:
+    literal: ''
+  Age 18+ Verification:
+    literal: ''
+  Choking Hazard 1:
+    literal: ''
+  Choking Hazard 2:
+    literal: ''
+  Choking Hazard 3:
+    literal: ''
+  Choking Hazard 4:
+    literal: ''
+  Lead Time:
+    literal: ''
+  Shipping Template:
+    literal: ''
+  Custom Variety 1 Name:
+    literal: ''
+  Custom Variety 1 Value:
+    literal: ''
+  Custom Variety 2 Name:
+    literal: ''
+  Custom Variety 2 Value:
+    literal: ''
+  Custom Variety 3 Name:
+    literal: ''
+  Custom Variety 3 Value:
+    literal: ''
+  ThermalCompoundBrand:
+    literal: ''
+  ThermalCompoundSeries:
+    literal: ''
+  ThermalCompoundModel:
+    literal: ''
+  ThermalCompoundSpecifications:
+    literal: ''
+  ThermalCompoundFeatures:
+    literal: ''
+  ManufacturerWarrantyParts:
+    literal: ''
+  ManufacturerWarrantyLabor:
+    literal: ''
+  SportsGlobalSportsTeam:
+    literal: ''
+  SportsGlobalSportsLeague:
+    literal: ''
+  GlobalElectricalOutletPlugType:
+    literal: ''
+  ThermalCompoundThermalConductivity:
+    literal: ''
+  ThermalCompoundVolumeNetWeight:
+    literal: ''
+  ThermalCompoundLongTermOperatingTemperature:
+    literal: ''
+  ThermalCompoundPartNumber:
+    literal: ''
+  UniversalContainsEmbeddedBattery:
+    literal: ''

@@ -38,6 +38,7 @@
     "amd": "AMD",
     "pi_nnpi": "PI | NNPI",
     "fan_size_cm": "Fan Size (cm)",
+    "size_cm": "Size (cm)",
     "max_rpm": "Maximum (RPM)",
     "min_rpm": "Minimum (RPM)",
     "airflow_cfm": "Airflow (cfm)",

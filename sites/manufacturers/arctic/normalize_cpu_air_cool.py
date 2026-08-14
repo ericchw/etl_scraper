@@ -296,7 +296,7 @@ def extract_fan_dimensions(value):
 def normalize_arctic_cpu_air_cool(raw: dict, *, product_code: str = "CPU-AIR-COOL",
                                   sub_code: str = "CPU-AIR-COOL", ) -> dict:
     specs = raw.get("specs") or {}
-    title = raw.get("title") or ""
+    title = str(raw.get("title") or "").strip()
 
     internal = empty_internal(product_code)
 
@@ -337,7 +337,7 @@ def normalize_arctic_cpu_air_cool(raw: dict, *, product_code: str = "CPU-AIR-COO
     combined_fin_spec = spec_value(specs, ["General Specifications", "Heatsink Specifications", "Heatsink"])
 
     parse_heatsink_fin_dict = parse_heatsink_fins(combined_fin_spec)
-    internal["heatsink"]["fin_material"] = spec_value(specs, ["General Specifications", "Heatsink", "Fin Material"]) or parse_heatsink_fin_dict["fin_material"]
+    internal["heatsink"]["fin_material"] = spec_value(specs, ["General Specifications", "Heatsink", "Fin Material"]) or spec_value(specs, ["General Specifications", "Heatsink Specifications", "Fin Material"]) or parse_heatsink_fin_dict["fin_material"]
     internal["heatsink"]["number_of_fins"] = spec_value(specs, ["General Specifications", "Heatsink", "Number of Fins"]) or parse_heatsink_fin_dict["number_of_fins"]
     internal["heatsink"]["fim_thickness_mm"] = extract_number(spec_value(specs, ["General Specifications", "Heatsink", "Fin Thickness"])) or parse_heatsink_fin_dict["fim_thickness_mm"]
     internal["heatsink"]["thermal_paste"] = spec_value(specs, ["General Specifications", "Heatsink", "Thermal Paste"])
@@ -381,7 +381,8 @@ def normalize_arctic_cpu_air_cool(raw: dict, *, product_code: str = "CPU-AIR-COO
 
     fan_speed = (spec_value(specs, ["General Specifications", "Fan", "Speed", ], ) or
                  spec_value(specs, ["General Specifications", "Fans", "Speed"]) or
-                 spec_value(specs,["General Specifications", "Fan Specifications", "Speed"])
+                 spec_value(specs,["General Specifications", "Fan Specifications", "Speed"]) or
+                 spec_value(specs,["General Specifications", "Fan Specifications", "Fan Speed"])
     )
     internal["fan"]["min_rpm"] = minimum_rpm(fan_speed)
     internal["fan"]["max_rpm"] = maximum_rpm(fan_speed)
@@ -390,15 +391,20 @@ def normalize_arctic_cpu_air_cool(raw: dict, *, product_code: str = "CPU-AIR-COO
                                     spec_value(specs, ["General Specifications", "Fans", "Bearing"]) or
                                     spec_value(specs, ["General Specifications", "Fan Specifications", "Bearing"])
                                   )
-    internal["fan"]["cable_length"] = spec_value(specs, ["General Specifications", "Fans", "Cable Length"]
+    internal["fan"]["cable_length"] = (spec_value(specs, ["General Specifications", "Fans", "Cable Length"] or
+                                                  spec_value(specs,["General Specifications", "Fans", "Cable Length"]) or
+                                                  spec_value(specs, ["General Specifications", "Fans Specifications", "Cable Length"])
+                                                  )
     )
     internal["fan"]["noise_level"] = (spec_value(specs, ["General Specifications", "Fan", "Noise Level"]) or
-                                      spec_value(specs, ["General Specifications", "Fans", "Noise Level"])
+                                      spec_value(specs, ["General Specifications", "Fans", "Noise Level"]) or
+                                      spec_value(specs, ["General Specifications", "Fans Specifications", "Noise Level"])
                                     )
 
     # Current / Voltage
     current_voltage = (spec_value(specs, ["General Specifications", "Fan", "Current | Voltage"]) or
-                       spec_value(specs, ["General Specifications", "Fans", "Current | Voltage"])
+                       spec_value(specs, ["General Specifications", "Fans", "Current | Voltage"]) or
+                       spec_value(specs, ["General Specifications", "Fan Specifications", "Current | Voltage"])
                        )
 
     if not current_voltage:
@@ -423,6 +429,7 @@ def normalize_arctic_cpu_air_cool(raw: dict, *, product_code: str = "CPU-AIR-COO
     internal["fan"]["connector"] = (
             spec_value(specs, ["General Specifications", "Fan", "Connector"])
             or spec_value(specs, ["General Specifications", "Fans", "Connector"])
+            or spec_value(specs, ["General Specifications", "Fan Specifications", "Connector"])
     )
 
     # RGB
@@ -471,8 +478,8 @@ def normalize_arctic_cpu_air_cool(raw: dict, *, product_code: str = "CPU-AIR-COO
     # Included items
     internal["included_items"] = [value for value in
                                   [spec_value(specs, ["General Specifications", "TIM", ], ),  # 2nd case
-                                   spec_value(specs, ["General Specifications", "CPU Specifications",
-                                                      "Thermal Compound", ], ), ] if value]
+                                   spec_value(specs, ["General Specifications", "CPU Specifications", "Thermal Compound"])]
+                                  if value]
 
     # Packaging
     dims = _packaging_dims(specs)

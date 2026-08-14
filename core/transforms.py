@@ -448,7 +448,6 @@ def export_product_description(
     print(f"export_product_description - design_heading: {design_heading}")
     print(f"export_product_description - spec_heading: {spec_heading}")
 
-    del value
     # print("design_heading", design_heading)
     internal = (context.get("product") or {}).get("internal") or {}
     design = internal.get("content", {}).get("description", "")
@@ -456,6 +455,10 @@ def export_product_description(
         k: v
         for k, v in internal.items()
         if k not in {"identity", "content", "images"}
+           and (
+                   not isinstance(v, dict)
+                   or any(value not in ("", None, [], {}) for value in v.values())
+           )
     }
 
     return build_long_description_text(
@@ -547,18 +550,15 @@ def build_specs_text(specs: dict | None) -> str:
             if label:
                 lines.append(f"{pad}{label}: {value}")
 
-    # # ✅ ROOT HEADER (level 0)
-    # lines.append("Specifications:")
-
     for section, data in specs.items():
-        if not isinstance(data, dict):
-            continue
-
-        # ✅ SECTION MUST ALWAYS BE LEVEL 1
         section_label = format_label(section)
-        lines.append(f"　{section_label}")
 
-        render(data, 2)
+        if isinstance(data, dict):
+            lines.append(f"　{section_label}")
+            render(data, 2)
+
+        elif data not in (None, "", [], {}):
+            lines.append(f"　{section_label}: {data}")
 
     return "\n".join(lines).strip()
 
@@ -632,6 +632,25 @@ def length_in_to_cm(value: Any, **_kwargs) -> str:
         return ""
     return f"{n * 2.54:.2f}"
 
+def cm_to_mm(value: Any, **_kwargs) -> str:
+    if not value:
+        return ""
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return ""
+    result = round(n * 10)
+    return str(result)
+
+def length_in_to_mm_0f(value: Any, **_kwargs) -> str:
+    if not value:
+        return ""
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return ""
+    return f"{n * 25.4:.0f}"
+
 def weight_lb_to_kg(value: Any, **_kwargs) -> str:
     if not value:
         return ""
@@ -641,7 +660,7 @@ def weight_lb_to_kg(value: Any, **_kwargs) -> str:
     except (TypeError, ValueError):
         return ""
 
-    return f"{n / 2.20462:.3f}"
+    return f"{n / 2.20462:.2f}"
 
 def weight_lb_to_g(value: Any, **_kwargs) -> str:
     if not value:
@@ -1141,6 +1160,7 @@ TRANSFORMS = {
     "start_of_day_pst": start_of_day_pst,
     "end_of_day_pst": end_of_day_pst,
     "length_in_to_cm": length_in_to_cm,
+    "cm_to_mm": cm_to_mm,
     "weight_lb_to_kg": weight_lb_to_kg,
     "weight_lb_to_g":weight_lb_to_g,
     "check_anti_glare": check_anti_glare,

@@ -158,9 +158,8 @@ fields:
   _FanSize_28942_CAT_27116056_EN:
     sources:
       - [ "internal", "radiator_fan", "fan", "size_cm" ]
-      - [ "internal", "fan", "length_cm" ]
-    suffix: '0'
-    transform: only_digits
+      - [ "internal", "fan", "size_cm" ]
+    transform: cm_to_mm
   _RadiatorSize_18634637_CAT_27116056_EN:
     sources:
       - [ "internal", "radiator", "size" ]

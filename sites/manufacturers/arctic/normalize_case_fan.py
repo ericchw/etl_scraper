@@ -13,9 +13,18 @@ from sites.cdw._common import fill_identity_content
 def _packaging_dims(specs: dict) -> dict[str, str]:
     out: dict[str, str] = {}
 
-    for label, field in (("Width", "width_in"), ("Height", "height_in"), ("Length", "length_in"),
-                         ("Weight", "package_lb"),):
-        val = spec_value(specs, "Packaging", label, match_suffix=True, )
+    for label, field in (
+        ("Width", "width_in"),
+        ("Height", "height_in"),
+        ("Length", "length_in"),
+        ("Weight", "package_lb"),
+    ):
+        val = spec_value(
+            specs,
+            "Packaging",
+            label,
+            match_suffix=True,
+        )
 
         if not val:
             continue
@@ -25,6 +34,12 @@ def _packaging_dims(specs: dict) -> dict[str, str]:
         else:
             out[field] = length_to_in(val)
 
+    # Fan size
+    #
+    # Example:
+    # Length: 120 mm
+    # -> fan.size_cm = "12"
+    #
     return out
 
 
@@ -165,7 +180,7 @@ def number_of_fan(text: str) -> str:
 
     match = re.search(r"(\d+)\s*x", text, re.IGNORECASE, )
 
-    return match.group(1) if match else ""
+    return match.group(1) if match else "1"
 
 
 def fan_size(text: str) -> str:
@@ -176,23 +191,93 @@ def fan_size(text: str) -> str:
 
     return match.group(1) if match else ""
 
+def length_to_cm(value: str) -> str:
+    """
+    Convert a length value to centimeters.
+
+    Examples:
+        "120 mm" -> "12"
+        "12 cm"  -> "12"
+        "1.2 m"  -> "120"
+        "4 in"   -> "10.16"
+    """
+    if not value:
+        return ""
+
+    value = str(value).strip().lower()
+
+    # Extract numeric portion and unit
+    import re
+
+    match = re.search(r"([-+]?\d*\.?\d+)\s*([a-z\"]+)?", value)
+    if not match:
+        return ""
+
+    number = float(match.group(1))
+    unit = (match.group(2) or "cm").strip()
+
+    conversions = {
+        "mm": 0.1,
+        "millimeter": 0.1,
+        "millimeters": 0.1,
+        "cm": 1,
+        "centimeter": 1,
+        "centimeters": 1,
+        "m": 100,
+        "meter": 100,
+        "meters": 100,
+        "in": 2.54,
+        "inch": 2.54,
+        "inches": 2.54,
+        '"': 2.54,
+    }
+
+    multiplier = conversions.get(unit)
+    if multiplier is None:
+        return ""
+
+    result = number * multiplier
+
+    # Avoid "12.0"
+    if result.is_integer():
+        return str(int(result))
+
+    return str(round(result, 4))
+
+def in_to_cm(value: str) -> str:
+    if not value:
+        return ""
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return ""
+    return str(round(n * 2.54, 1))
+
+def _rpm_range(text: str):
+    if not text:
+        return None
+
+    match = re.search(
+        r"(\d+)\s*[–-]\s*(\d+)\s*rpm\b",
+        text,
+        re.IGNORECASE
+    )
+
+    if not match:
+        return None
+
+    a = int(match.group(1))
+    b = int(match.group(2))
+
+    return min(a, b), max(a, b)
 
 def maximum_rpm(text: str) -> str:
-    if not text:
-        return ""
-
-    numbers = re.findall(r"\d+", text)
-
-    return numbers[-1] if numbers else ""
-
+    result = _rpm_range(text)
+    return str(result[1]) if result else ""
 
 def minimum_rpm(text: str) -> str:
-    if not text:
-        return ""
-
-    numbers = re.findall(r"\d+", text)
-
-    return numbers[0] if numbers else ""
+    result = _rpm_range(text)
+    return str(result[0]) if result else ""
 
 
 def warranty_to_days(text: str) -> str:
@@ -313,6 +398,7 @@ def normalize_arctic_case_fan(raw: dict, *, product_code: str = "CASE-FAN",
                                                                               "Operating Ambient Temperature"], )
 
     # Fan
+    internal["fan"]["number_of_fan"] = ""
     fan_speed = (spec_value(specs, ["General Specifications", "Fan", "Speed"]) or
                  spec_value(specs, ["General Specifications", "Fans", "Speed"]) or
                  spec_value(specs,["General Specifications", "Fan Specifications", "Speed"]) or
@@ -385,7 +471,13 @@ def normalize_arctic_case_fan(raw: dict, *, product_code: str = "CASE-FAN",
     # Item dimensions
     item_dims = _item_dimensions_to_in(specs)
 
+
     internal["physical"]["dimensions"]["item"].update(item_dims)
+
+    internal["fan"]["size_cm"] = (
+            length_to_cm(spec_value(specs, ["General Specifications", "Size & Weight", "Length"]))
+            or in_to_cm(item_dims.get("length_in"))
+    )
 
     # Item weight
     item_weight = (
@@ -423,16 +515,24 @@ def normalize_arctic_case_fan(raw: dict, *, product_code: str = "CASE-FAN",
     dims = _packaging_dims(specs)
 
     if dims.get("length_in"):
-        internal["physical"]["dimensions"]["package"]["length_in"] = dims["length_in"]
+        internal["physical"]["dimensions"]["package"]["length_in"] = (
+            dims["length_in"]
+        )
 
     if dims.get("width_in"):
-        internal["physical"]["dimensions"]["package"]["width_in"] = dims["width_in"]
+        internal["physical"]["dimensions"]["package"]["width_in"] = (
+            dims["width_in"]
+        )
 
     if dims.get("height_in"):
-        internal["physical"]["dimensions"]["package"]["height_in"] = dims["height_in"]
+        internal["physical"]["dimensions"]["package"]["height_in"] = (
+            dims["height_in"]
+        )
 
     if dims.get("package_lb"):
-        internal["physical"]["weight"]["package_lb"] = (dims["package_lb"])
+        internal["physical"]["weight"]["package_lb"] = (
+            dims["package_lb"]
+        )
 
     # UPC
     for group in specs.values():
@@ -448,3 +548,6 @@ def normalize_arctic_case_fan(raw: dict, *, product_code: str = "CASE-FAN",
     # internal.setdefault("_meta", {})["sub_code"] = sub_code
 
     return internal
+
+# if __name__ == "__main__":
+#     print(minimum_rpm("200 - 1800 rpm, PWM Controlled (0 rpm below 5 % PWM)"))
