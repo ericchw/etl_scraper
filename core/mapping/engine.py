@@ -97,7 +97,7 @@ def _format_value(value: Any, rule: dict) -> str:
 def _validate(value: str, rule: dict, field_name: str, warnings: list[str]) -> str:
     allowed = rule.get("allowed")
     if allowed and value and value not in allowed:
-        pass
+        warnings.append(f"{field_name}: value {value!r} is not in the allowed values")
     return value
 
 
@@ -251,7 +251,6 @@ def _resolve_rule(
         warnings,
     )
 
-    print(field_name, repr(result))
     return result
 
 

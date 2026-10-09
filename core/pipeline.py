@@ -17,6 +17,7 @@ from core.cache import (
     resolve_product_json_path,
 )
 from core.downloader import download_images
+from core.paths import safe_path_component
 from core.merge_policy import (
     format_merge_priority_log,
     manufacturer_config,
@@ -35,7 +36,7 @@ from sites.cdw.scraper import scrape_cdw_product
 import traceback
 
 def scraped_json_path(mpn: str) -> str:
-    key = (mpn or "").strip().upper()
+    key = safe_path_component((mpn or "").upper())
     return f"products/{key}.json"
 
 
@@ -343,10 +344,12 @@ def run_product_pipeline(
         return {"success": False, "error": str(exc)}
 
     finally:
-        if browser:
-            browser.close()
-        if p:
-            p.stop()
+        try:
+            if browser:
+                browser.close()
+        finally:
+            if p:
+                p.stop()
 
 
 def run_cdw_pipeline(

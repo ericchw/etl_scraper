@@ -319,8 +319,6 @@ def _condition_from_context(context: dict) -> dict:
 
 
 def bb_title(value: Any, *, context: dict, **_kwargs) -> str:
-    print("bb_title", value)
-    print("bb_title", context)
     title = clean(context.get("title")).replace(" - ", ", ") or value
     mpn = clean(context.get("mpn") or "")
     if not title and not mpn:
@@ -443,10 +441,6 @@ def export_product_description(
     spec_heading: str = "",
     **_kwargs,
 ) -> str:
-    print(f"export_product_description - value: {value}")
-    print(f"export_product_description - context: {context}")
-    print(f"export_product_description - design_heading: {design_heading}")
-    print(f"export_product_description - spec_heading: {spec_heading}")
 
     # print("design_heading", design_heading)
     internal = (context.get("product") or {}).get("internal") or {}
@@ -703,7 +697,6 @@ def check_stylus(value, *, context, **kwargs) -> str:
 def check_cellular(value, *, context, **kwargs) -> str:
     del value
     keywords = ("4g", "5g", "cellular", "nanosim")
-    print('check_cellular:', context)
     return ("Yes" if contains_keywords(context, keywords) else "")
 
 def check_copilotpc(value, *, context, **kwargs) -> str:

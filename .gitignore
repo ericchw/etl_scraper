@@ -184,3 +184,13 @@ cython_debug/
 /output/
 /templates/
 /products/
+
+# Local credentials, browser sessions, and developer state
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+storage_state*.json
+/cache/
+/.idea/

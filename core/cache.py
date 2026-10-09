@@ -5,7 +5,9 @@ from __future__ import annotations
 import json
 from datetime import date
 from pathlib import Path
-from typing import Any, Callable
+from typing import Callable
+
+from core.paths import safe_path_component
 
 ROOT = Path(__file__).resolve().parent.parent
 CACHE_DIR = ROOT / "cache"
@@ -13,23 +15,23 @@ PRODUCTS_DIR = ROOT / "products"
 
 
 def cache_raw_path(source: str, mpn: str) -> Path:
-    key = (mpn or "").strip().upper()
-    return CACHE_DIR / source / f"{key}.json"
+    key = safe_path_component((mpn or "").upper())
+    return CACHE_DIR / safe_path_component(source) / f"{key}.json"
 
 
 def cache_meta_path(source: str, mpn: str) -> Path:
-    key = (mpn or "").strip().upper()
-    return CACHE_DIR / source / f"{key}.meta.json"
+    key = safe_path_component((mpn or "").upper())
+    return CACHE_DIR / safe_path_component(source) / f"{key}.meta.json"
 
 
 def product_path(mpn: str) -> Path:
-    key = (mpn or "").strip().upper()
+    key = safe_path_component((mpn or "").upper())
     return PRODUCTS_DIR / f"{key}.json"
 
 
 def legacy_json_path(mpn: str) -> Path:
     """Previous output/json/{mpn}.json location."""
-    key = (mpn or "").strip().upper()
+    key = safe_path_component((mpn or "").upper())
     return ROOT / "output" / "json" / f"{key}.json"
 
 

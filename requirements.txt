@@ -1,6 +1,14 @@
-playwright
-requests
-pandas
-openpyxl
+# Install with: python -m pip install -r requirements.txt
+# Requires Python 3.12+; use 64-bit Python for GUI/browser dependencies.
+
+# Desktop interface
 PyQt6
+
+# Browser automation (also run: python -m playwright install chromium)
+playwright
+
+# Product image downloads
+requests
+
+# Marketplace mapping configuration
 PyYAML

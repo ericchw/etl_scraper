@@ -16,8 +16,11 @@ DEFAULTS = {
 def load_app_settings() -> dict:
     if not SETTINGS_PATH.exists():
         return dict(DEFAULTS)
-    with open(SETTINGS_PATH, encoding="utf-8") as f:
-        data = json.load(f)
+    try:
+        with open(SETTINGS_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        return dict(DEFAULTS)
     if not isinstance(data, dict):
         return dict(DEFAULTS)
     return {**DEFAULTS, **data}

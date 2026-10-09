@@ -142,8 +142,6 @@ def _weight_to_lb(value) -> str:
 
 def normalize_arctic_thermal_paste(raw: dict, *, product_code: str = "THERMAL-PASTE", sub_code: str = "THERMAL-PASTE") -> dict:
     specs = raw.get("specs") or {}
-    print("raw DEBUG")
-    print(raw)
     title = str(raw.get("title") or "").strip()
 
     internal = empty_internal(product_code)
